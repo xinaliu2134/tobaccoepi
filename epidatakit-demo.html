@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TobaccoEpi — Tobacco Epidemiology & Regulatory Intelligence</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f8f9fc;--bg2:#ffffff;--bg3:#f0f2f7;--border:#e2e5ef;--text:#1a1f36;--muted:#6b7294;--sans:'Inter',-apple-system,sans-serif;--mono:'DM Mono',monospace;--primary:#d97706;--primary-light:#fef3c7;--primary-dim:#fffbeb;--accent:#b45309;--red:#dc2626;--red-light:#fef2f2;--green:#16a34a;--green-light:#f0fdf4;--blue:#2563eb;--blue-light:#eff6ff;--teal:#0d9488;--teal-light:#f0fdfa;--shadow:0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04);--shadow-lg:0 4px 16px rgba(0,0,0,.08)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14px;line-height:1.6}
+.site-header{display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:60px;border-bottom:1px solid var(--border);background:var(--bg2);box-shadow:var(--shadow)}
+.site-header .logo{font-weight:700;font-size:18px;color:var(--primary);letter-spacing:-.3px}.site-header .logo span{color:var(--text)}
+.site-header .company{font-size:11px;color:var(--muted)}
+.disclaimer{background:var(--red-light);border-bottom:1px solid #fecaca;padding:8px 32px;font-size:11px;color:#991b1b;text-align:center}
+.disclaimer strong{color:var(--red)}
+.nav-tabs{display:flex;background:var(--bg2);border-bottom:1px solid var(--border);padding:0 32px;overflow-x:auto;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+.nav-tab{padding:12px 20px;font-size:13px;font-weight:500;color:var(--muted);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;font-family:var(--sans);white-space:nowrap;transition:all .15s}
+.nav-tab:hover{color:var(--text)}.nav-tab.active{color:var(--primary);border-bottom-color:var(--primary);font-weight:600}
+.main{max-width:1200px;margin:0 auto;padding:28px 32px}
+.section{display:none}.section.active{display:block;animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+h2{font-size:22px;font-weight:700;margin-bottom:4px;color:var(--text);letter-spacing:-.3px}
+.section-sub{color:var(--muted);font-size:13px;margin-bottom:24px}
+h3{font-size:14px;font-weight:600;margin-bottom:12px;color:var(--text)}
+.stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:24px}
+.stat-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:18px;box-shadow:var(--shadow);transition:box-shadow .2s}
+.stat-card:hover{box-shadow:var(--shadow-lg)}
+.stat-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;font-weight:500}
+.stat-value{font-size:28px;font-weight:700;font-family:var(--mono);color:var(--primary)}
+.stat-detail{font-size:11px;color:var(--muted);margin-top:4px}
+.stat-value.red{color:var(--red)}.stat-value.green{color:var(--green)}.stat-value.blue{color:var(--blue)}.stat-value.teal{color:var(--teal)}
+.chart-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
+.chart-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:20px;box-shadow:var(--shadow)}
+.chart-card.full{grid-column:1/-1}.chart-wrap{position:relative;height:280px}.chart-wrap.tall{height:360px}
+.source-tag{display:inline-block;font-size:10px;font-family:var(--mono);padding:2px 8px;border-radius:10px;background:var(--bg3);color:var(--muted);margin-left:4px}
+.data-table{width:100%;border-collapse:separate;border-spacing:0;font-size:13px;margin-bottom:16px;border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.data-table th{text-align:left;padding:10px 14px;background:var(--bg3);color:var(--muted);font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid var(--border)}
+.data-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--muted)}
+.data-table tr:last-child td{border-bottom:none}
+.data-table td:first-child{color:var(--text);font-weight:500}
+.data-table tr:hover td{background:rgba(99,102,241,.03)}
+.data-table .highlight{color:var(--primary);font-weight:700;font-family:var(--mono)}
+.callout{border-radius:10px;padding:14px 18px;margin:16px 0;font-size:13px;border-left:3px solid;line-height:1.7}
+.callout-warn{background:var(--primary-dim);border-color:var(--primary);color:#92400e}
+.callout-err{background:var(--red-light);border-color:var(--red);color:#991b1b}
+.callout-info{background:var(--blue-light);border-color:var(--blue);color:#1e40af}
+.callout strong{font-weight:700}
+.sim-controls{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:24px}
+.sim-field label{display:block;font-size:13px;font-weight:500;margin-bottom:8px;color:var(--text)}
+.slider-row{display:flex;align-items:center;gap:12px}
+.slider-row input[type="range"]{flex:1;accent-color:var(--primary)}
+.slider-val{font-family:var(--mono);font-size:18px;font-weight:700;min-width:70px;text-align:right;color:var(--primary)}
+.harm-box{border:2px solid var(--red);border-radius:10px;padding:14px;background:var(--red-light)}
+.harm-box .warn-label{font-size:11px;color:var(--red);font-weight:600;margin-bottom:6px}
+.waterfall-item{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--border)}
+.waterfall-item:last-child{border-bottom:none}
+.waterfall-label{width:160px;font-size:13px;flex-shrink:0;color:var(--text)}
+.waterfall-bar-wrap{flex:1;height:28px;background:var(--bg3);border-radius:6px;overflow:hidden}
+.waterfall-bar{height:100%;border-radius:6px;transition:width .5s ease}
+.waterfall-val{width:110px;text-align:right;font-family:var(--mono);font-size:13px;color:var(--accent);flex-shrink:0;font-weight:600}
+.badge{display:inline-block;padding:3px 10px;border-radius:10px;font-size:11px;font-weight:600;font-family:var(--mono)}
+.badge-green{background:var(--green-light);color:var(--green)}
+.badge-red{background:var(--red-light);color:var(--red)}
+.badge-amber{background:var(--primary-light);color:var(--accent)}
+.site-footer{border-top:1px solid var(--border);padding:24px 32px;text-align:center;font-size:11px;color:var(--muted);margin-top:40px;background:var(--bg2)}
+@media(max-width:768px){.chart-grid,.sim-controls{grid-template-columns:1fr}.stats-row{grid-template-columns:1fr 1fr}.nav-tabs{padding:0 12px}.main{padding:20px 16px}}
+</style>
+</head>
+<body>
+<div class="site-header"><div><div class="logo">Tobacco<span>Epi</span></div></div><div style="display:flex;align-items:center;gap:16px"><button onclick="toggleLang()" id="langBtn" style="padding:5px 12px;border-radius:8px;border:1px solid var(--border);background:var(--bg3);color:var(--text);font-size:12px;font-weight:600;cursor:pointer;font-family:var(--sans);transition:all .15s">中文</button><div class="company" data-i18n="company">深圳循证智康科技有限公司 · EpiDataKit Demo v0.2</div></div></div>
+<div class="disclaimer" data-i18n-html="disclaimer">⚠ <strong>Legal Disclaimer:</strong> Data for scientific research and internal decision-making only. Not for regulatory submission. FDA states tobacco AE reports cannot alone estimate risk or compare products.</div>
+<div class="nav-tabs">
+  <button class="nav-tab active" onclick="sw(0,this)" data-i18n="nav0">Youth Tobacco (NYTS)</button>
+  <button class="nav-tab" onclick="sw(1,this)" data-i18n="nav1">E-Cigarette Deep Dive</button>
+  <button class="nav-tab" onclick="sw(2,this)" data-i18n="nav2">Nicotine Pouches &amp; MRTP</button>
+  <button class="nav-tab" onclick="sw(3,this)" data-i18n="nav3">Adult Smoking (WHO)</button>
+  <button class="nav-tab" onclick="sw(4,this)" data-i18n="nav4">Disease Burden &amp; Switching</button>
+  <button class="nav-tab" onclick="sw(5,this)" data-i18n="nav5">Data Sources</button>
+</div>
+<div class="main">
+
+<!-- SEC 0: Youth Overview -->
+<div class="section active" id="s0">
+<h2>U.S. Youth Tobacco Use — NYTS 2024</h2>
+<div class="section-sub">National Youth Tobacco Survey · CDC/FDA · Grades 6–12 · n ≈ 29,000</div>
+<div class="stats-row">
+  <div class="stat-card"><div class="stat-label">Any Tobacco Use</div><div class="stat-value">8.1%</div><div class="stat-detail">2.25M students · 25-year low</div></div>
+  <div class="stat-card"><div class="stat-label">E-Cigarettes (#1)</div><div class="stat-value">5.9%</div><div class="stat-detail">1.63M · ↓ from 7.7% in 2023</div></div>
+  <div class="stat-card"><div class="stat-label">Nicotine Pouches (#2)</div><div class="stat-value blue">1.8%</div><div class="stat-detail">480K · emerging product</div></div>
+  <div class="stat-card"><div class="stat-label">Cigarettes</div><div class="stat-value green">1.4%</div><div class="stat-detail">380K · all-time record low</div></div>
+  <div class="stat-card"><div class="stat-label">Combustible Products</div><div class="stat-value teal">2.8%</div><div class="stat-detail">760K students</div></div>
+  <div class="stat-card"><div class="stat-label">Multi-Product Use</div><div class="stat-value red">3.0%</div><div class="stat-detail">840K · ≥2 products</div></div>
+</div>
+<div class="chart-grid">
+  <div class="chart-card full"><h3>Youth Tobacco Product Use Trend (2013–2024) <span class="source-tag">NYTS</span></h3><div class="chart-wrap tall"><canvas id="c0a"></canvas></div></div>
+  <div class="chart-card"><h3>Current Use by Product — 2024 <span class="source-tag">NYTS 2024</span></h3><div class="chart-wrap"><canvas id="c0b"></canvas></div></div>
+  <div class="chart-card"><h3>High School vs Middle School <span class="source-tag">NYTS 2024</span></h3><div class="chart-wrap"><canvas id="c0c"></canvas></div></div>
+</div>
+<h3>Current Use by Race/Ethnicity — 2024 <span class="source-tag">NYTS 2024</span></h3>
+<table class="data-table"><thead><tr><th>Group</th><th>Any Tobacco</th><th>E-Cigarettes</th><th>Nic Pouches</th><th>Multi-Product</th></tr></thead><tbody>
+<tr><td>AI/AN</td><td class="highlight">16.3%</td><td>11.5%</td><td>—</td><td>6.9%</td></tr>
+<tr><td>Black</td><td>10.0%</td><td>7.0%</td><td>2.2%</td><td>3.3%</td></tr>
+<tr><td>Multiracial</td><td>9.0%</td><td>5.8%</td><td>—</td><td>3.8%</td></tr>
+<tr><td>Hispanic</td><td>8.4%</td><td>6.6%</td><td>1.4%</td><td>3.1%</td></tr>
+<tr><td>White</td><td>7.8%</td><td>6.1%</td><td>1.7%</td><td>3.0%</td></tr>
+<tr><td>Asian</td><td>3.3%</td><td>2.3%</td><td>—</td><td>1.1%</td></tr>
+</tbody></table>
+<div class="callout callout-warn"><strong>FDA Focus:</strong> AI/AN youth show 2× higher tobacco use vs national average. Disparities persist despite overall declines — informing FDA's equity-focused regulatory priorities.</div>
+
+<h3>2025 Update — Monitoring the Future Survey (12th Grade) <span class="source-tag">MTF 2025</span></h3>
+<div class="callout callout-err"><strong>⚠ Progress Stalled:</strong> 2025 Monitoring the Future data shows no statistically significant decline in any youth tobacco product. E-cigarette use among 12th graders: 15.7%. Nicotine pouch use tripled to 4.4%. About 1 in 5 high school seniors reports current tobacco use.</div>
+</div>
+
+<!-- SEC 1: E-Cig Deep Dive -->
+<div class="section" id="s1">
+<h2>E-Cigarette Use — Detailed Analysis</h2>
+<div class="section-sub">NYTS 2013–2024 · Youth e-cigarette use patterns, brands, flavors, frequency</div>
+<div class="stats-row">
+  <div class="stat-card"><div class="stat-label">2019 Peak</div><div class="stat-value red">20.2%</div><div class="stat-detail">5.4M students · crisis point</div></div>
+  <div class="stat-card"><div class="stat-label">2024 Current</div><div class="stat-value green">5.9%</div><div class="stat-detail">1.63M · 71% decline from peak</div></div>
+  <div class="stat-card"><div class="stat-label">Daily Users</div><div class="stat-value red">26.3%</div><div class="stat-detail">of current e-cig users</div></div>
+  <div class="stat-card"><div class="stat-label">Flavored Use</div><div class="stat-value">87.6%</div><div class="stat-detail">of users use flavored products</div></div>
+</div>
+<div class="chart-grid">
+  <div class="chart-card full"><h3>E-Cigarette Use by Age Group (2013–2022) <span class="source-tag">NYTS · PMC10844997</span></h3><div class="chart-wrap tall"><canvas id="c1a"></canvas></div></div>
+  <div class="chart-card"><h3>E-Cigarette Brands — 2024 <span class="source-tag">NYTS 2024</span></h3><div class="chart-wrap"><canvas id="c1b"></canvas></div></div>
+  <div class="chart-card"><h3>Flavor Preferences — 2024 <span class="source-tag">NYTS 2024</span></h3><div class="chart-wrap"><canvas id="c1c"></canvas></div></div>
+</div>
+<h3>Device Types — 2024</h3>
+<table class="data-table"><thead><tr><th>Device Type</th><th>Share</th><th>Regulatory Note</th></tr></thead><tbody>
+<tr><td>Disposables</td><td class="highlight">55.6%</td><td>FDA enforcement priority — most unauthorized</td></tr>
+<tr><td>Prefilled/refillable pods</td><td>15.6%</td><td>Includes PMTA-authorized (Vuse, JUUL)</td></tr>
+<tr><td>Tank/mod systems</td><td>7.0%</td><td>Open systems — harder to regulate</td></tr>
+<tr><td>Unknown/unsure</td><td>21.8%</td><td>Reflects product proliferation</td></tr>
+</tbody></table>
+<div class="callout callout-info"><strong>Key finding for PMTA:</strong> 87.6% of youth e-cig users consume flavored products. Fruit (62.8%) and candy/dessert (33.3%) dominate. FDA's flavor policy directly targets this — any PMTA for flavored products must demonstrate net population benefit despite youth appeal.</div>
+</div>
+
+<!-- SEC 2: Nicotine Pouches & MRTP -->
+<div class="section" id="s2">
+<h2>Nicotine Pouches — ZYN &amp; MRTP Landscape</h2>
+<div class="section-sub">NYTS 2024 + FDA MRTP Review · Swedish Match/ZYN · Docket FDA-2025-N-0835</div>
+<div class="stats-row">
+  <div class="stat-card"><div class="stat-label">Youth NP Use (NYTS)</div><div class="stat-value blue">1.8%</div><div class="stat-detail">480K students · 2024 NYTS</div></div>
+  <div class="stat-card"><div class="stat-label">12th Grade NP (MTF)</div><div class="stat-value red">4.4%</div><div class="stat-detail">2025 · ↑ from 1.4% in 2023</div></div>
+  <div class="stat-card"><div class="stat-label">ZYN Market Share</div><div class="stat-value">68.7%</div><div class="stat-detail">Among youth NP users</div></div>
+  <div class="stat-card"><div class="stat-label">Daily NP Users</div><div class="stat-value red">22.4%</div><div class="stat-detail">of current NP users</div></div>
+  <div class="stat-card"><div class="stat-label">Rural vs Urban</div><div class="stat-value red">11.2%</div><div class="stat-detail">vs 3.0% urban · 3.7× gap</div></div>
+  <div class="stat-card"><div class="stat-label">MRTP Filed</div><div class="stat-value green">Jun 2025</div><div class="stat-detail">20 ZYN products under review</div></div>
+</div>
+<div class="callout callout-err"><strong>⚠ 2025 Alert — NP Use Surging:</strong> Monitoring the Future 2025 data shows 12th grade NP use reached 4.4%, tripling from 1.4% in 2023. No statistically significant decline in any youth tobacco product in 2025 — progress has stalled. This directly impacts ZYN's MRTP review: FDA must weigh youth uptake risk against adult switching benefit.</div>
+<div class="chart-grid">
+  <div class="chart-card full"><h3>Nicotine Pouch Use Surge — Multi-Source Trend <span class="source-tag">MTF + NYTS + JAMA</span></h3><div class="chart-wrap"><canvas id="c2np"></canvas></div></div>
+  <div class="chart-card"><h3>NP Brand Market Share — Youth <span class="source-tag">NYTS 2024</span></h3><div class="chart-wrap"><canvas id="c2a"></canvas></div></div>
+  <div class="chart-card"><h3>NP Flavor Preferences <span class="source-tag">NYTS 2024</span></h3><div class="chart-wrap"><canvas id="c2b"></canvas></div></div>
+</div>
+<h3>NP Use by Demographics — MTF 2023 vs 2024 <span class="source-tag">JAMA Network Open</span></h3>
+<table class="data-table"><thead><tr><th>Group</th><th>Lifetime 2023</th><th>Lifetime 2024</th><th>Change</th></tr></thead><tbody>
+<tr><td>Overall (8th+10th+12th)</td><td>3.0%</td><td class="highlight">5.4%</td><td class="highlight">+80%</td></tr>
+<tr><td>Male</td><td>4.4%</td><td class="highlight">7.8%</td><td class="highlight">+77%</td></tr>
+<tr><td>Female</td><td>1.9%</td><td>2.7%</td><td>+42%</td></tr>
+<tr><td>Non-Hispanic White</td><td>5.4%</td><td class="highlight">9.0%</td><td class="highlight">+67%</td></tr>
+<tr><td>Rural</td><td>7.5%</td><td class="highlight">11.2%</td><td class="highlight">+49%</td></tr>
+<tr><td>Urban</td><td>1.6%</td><td>3.0%</td><td>+88%</td></tr>
+</tbody></table>
+<h3>ZYN MRTP Application Timeline</h3>
+<table class="data-table"><thead><tr><th>Date</th><th>Event</th><th>Status</th></tr></thead><tbody>
+<tr><td>Jan 2025</td><td>FDA authorized 20 ZYN products via PMTA</td><td><span class="badge badge-green">Authorized</span></td></tr>
+<tr><td>Jun 2025</td><td>MRTP applications filed for modified risk claims</td><td><span class="badge badge-amber">Under Review</span></td></tr>
+<tr><td>Jan 2026</td><td>TPSAC advisory committee meeting</td><td><span class="badge badge-amber">Completed</span></td></tr>
+<tr><td>Mar 2026</td><td>Public comment period closed</td><td><span class="badge badge-red">Closed</span></td></tr>
+</tbody></table>
+<div class="callout callout-warn"><strong>ZYN's proposed claim:</strong> "Using ZYN instead of cigarettes puts you at lower risk of mouth cancer, heart disease, lung cancer, stroke, emphysema and chronic bronchitis." FDA evaluates: (1) individual risk reduction, (2) population-level health impact, (3) youth initiation risk, (4) switching vs dual-use patterns.</div>
+<h3>FDA MRTP Evaluation Framework</h3>
+<table class="data-table"><thead><tr><th>Criterion</th><th>Data Required</th><th>Key Question</th></tr></thead><tbody>
+<tr><td>Individual Risk</td><td>Biomarker studies (BOE/BOPH)</td><td>Does switching to NP reduce exposure to harmful constituents?</td></tr>
+<tr><td>Population Impact</td><td>Epidemiological modeling</td><td>Do more smokers switch than non-users initiate?</td></tr>
+<tr><td>Consumer Perception</td><td>Perception &amp; intention studies</td><td>Do consumers correctly understand "modified risk"?</td></tr>
+<tr><td>Youth Uptake</td><td>NYTS + PATH data</td><td>Will MRTP marketing increase youth NP initiation?</td></tr>
+<tr><td>Dual Use</td><td>PATH longitudinal data</td><td>Do switchers fully quit smoking or dual-use?</td></tr>
+</tbody></table>
+</div>
+
+<!-- SEC 3: Adult Smoking -->
+<div class="section" id="s3">
+<h2>Adult Smoking Prevalence — Global Comparison</h2>
+<div class="section-sub">WHO GHO · Current smoking prevalence · Key PMTA/MRTP markets · 2000–2024</div>
+<div class="stats-row" id="adultStats"></div>
+<div class="chart-grid">
+  <div class="chart-card full"><h3>Adult Smoking Prevalence Trend (2000–2024) <span class="source-tag">WHO GHO</span></h3><div class="chart-wrap tall"><canvas id="c3a"></canvas></div></div>
+  <div class="chart-card"><h3>Gender Gap — Latest Available <span class="source-tag">WHO GHO</span></h3><div class="chart-wrap"><canvas id="c3b"></canvas></div></div>
+  <div class="chart-card"><h3>Cross-Country (Both Sexes, Latest) <span class="source-tag">WHO GHO</span></h3><div class="chart-wrap"><canvas id="c3c"></canvas></div></div>
+</div>
+</div>
+
+<!-- SEC 4: Disease Burden & Switching -->
+<div class="section" id="s4">
+<h2>Tobacco-Attributed Disease Burden &amp; Switching Simulator</h2>
+<div class="section-sub">Population health impact modeling for PMTA/MRTP evidence</div>
+<div class="chart-grid">
+  <div class="chart-card"><h3>Tobacco PAF by Disease <span class="source-tag">GBD 2019</span></h3><div class="chart-wrap tall"><canvas id="c4a"></canvas></div></div>
+  <div class="chart-card"><h3>Attributed DALYs per 100K <span class="source-tag">Literature</span></h3><div class="chart-wrap tall"><canvas id="c4b"></canvas></div></div>
+</div>
+<h3>Population Switching Impact Simulator</h3>
+<div class="callout callout-err"><strong>⚠ Model limitations:</strong> Simplified illustrative model. Not for regulatory submission. Real PMTA/MRTP requires dynamic population models with age-structured cohorts, time-varying parameters, sensitivity analyses.</div>
+<div class="sim-controls">
+  <div class="sim-field"><label>Target Market</label>
+    <select id="simM" onchange="upSim()" style="padding:10px 14px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-family:var(--sans);font-size:13px;width:100%;box-shadow:var(--shadow)">
+      <option value="USA">🇺🇸 United States (330M)</option><option value="GBR">🇬🇧 United Kingdom (67M)</option><option value="DEU">🇩🇪 Germany (83M)</option><option value="JPN">🇯🇵 Japan (125M)</option>
+    </select></div>
+  <div class="sim-field"><label>Switching Rate (%)</label><div class="slider-row"><input type="range" min="1" max="30" value="10" id="simS" oninput="upSim()"><div class="slider-val" id="svS">10%</div></div></div>
+  <div class="sim-field"><div class="harm-box"><div class="warn-label">⚠ CLIENT-PROVIDED — Tool does NOT supply this value</div><label>Relative Harm (0=harmless · 1=same as cigarettes)</label><div class="slider-row"><input type="range" min="0" max="100" value="5" id="simH" oninput="upSim()"><div class="slider-val" id="svH">0.05</div></div></div></div>
+  <div class="sim-field"><label>Time Horizon</label><div class="slider-row"><input type="range" min="1" max="20" value="10" id="simT" oninput="upSim()"><div class="slider-val" id="svT">10 yr</div></div></div>
+</div>
+<div class="stats-row" id="simSt"></div>
+<div class="chart-card full" style="margin-bottom:20px"><h3>Projected Avoided DALYs by Disease (Cumulative)</h3><div id="simW"></div></div>
+</div>
+
+<!-- SEC 5: Data Sources -->
+<div class="section" id="s5">
+<h2>Data Sources &amp; Methodology</h2>
+<div class="section-sub">All data sourced from official, publicly available datasets</div>
+<table class="data-table"><thead><tr><th>Dataset</th><th>Provider</th><th>Coverage</th><th>License</th><th>Used For</th></tr></thead><tbody>
+<tr><td>NYTS 2024</td><td>CDC / FDA CTP</td><td>U.S. grades 6-12</td><td><span class="badge badge-green">Public</span></td><td>Youth prevalence, products, brands, flavors</td></tr>
+<tr><td>NYTS Historical</td><td>CDC / FDA CTP</td><td>2013-2023</td><td><span class="badge badge-green">Public</span></td><td>Trend analysis, demographic patterns</td></tr>
+<tr><td>PATH Study (W1-7)</td><td>NIH NIDA / FDA CTP</td><td>49K adults+youth, longitudinal</td><td><span class="badge badge-green">Public-Use</span></td><td>Switching, dual use, cessation</td></tr>
+<tr><td>WHO GHO</td><td>WHO</td><td>194 countries, 2000–2024</td><td><span class="badge badge-green">Open</span></td><td>Adult smoking by country/gender</td></tr>
+<tr><td>GBD 2019</td><td>IHME</td><td>204 countries, PAF</td><td><span class="badge badge-amber">Commercial License</span></td><td>Disease burden (literature values)</td></tr>
+<tr><td>ZYN MRTP Docket</td><td>FDA</td><td>20 products, Jun 2025</td><td><span class="badge badge-green">Public</span></td><td>MRTP regulatory timeline</td></tr>
+<tr><td>openFDA Tobacco AE</td><td>FDA</td><td>All tobacco AE reports</td><td><span class="badge badge-green">Open API</span></td><td>Safety signals (future)</td></tr>
+</tbody></table>
+<div class="callout callout-info"><strong>Production roadmap:</strong> Full platform integrates live WHO GHO API, CDC WONDER, openFDA, SEER. PATH public-use microdata enables custom cross-tabs. GBD requires IHME commercial license.</div>
+</div>
+
+</div>
+<div class="site-footer">TobaccoEpi — 深圳循证智康科技有限公司 · Data: NYTS (CDC/FDA), PATH (NIH/FDA), WHO GHO<br>Demo v0.2 · For research and internal decision-making only</div>
+
+<script>
+/* ═══ WHO GHO Embedded Data [country,year,sex,value,low,high] ═══ */
+const SR=[["JPN",2005,"MLE",44.1,37.7,50.5],["DEU",2010,"FMLE",22.3,19.0,25.6],["GBR",2010,"MLE",25.1,20.8,29.4],["FRA",2007,"FMLE",26.5,21.6,31.3],["ITA",2020,"MLE",25.2,20.9,29.6],["JPN",2022,"BTSX",16.3,13.5,19.1],["USA",2020,"MLE",19.6,15.9,23.2],["GBR",2007,"MLE",28.4,24.0,32.9],["DEU",2024,"MLE",22.1,18.0,26.2],["DEU",2005,"MLE",34.1,28.1,40.1],["GBR",2005,"BTSX",28.6,23.6,33.7],["GBR",2000,"FMLE",34.4,27.0,41.7],["FRA",2010,"BTSX",30.2,25.4,35.1],["DEU",2010,"MLE",30.2,25.8,34.7],["JPN",2015,"FMLE",8.9,7.4,10.3],["JPN",2020,"FMLE",7.8,6.3,9.2],["GBR",2015,"BTSX",18.0,15.0,21.0],["USA",2007,"MLE",30.5,24.0,36.9],["ESP",2022,"BTSX",24.9,20.2,29.5],["GBR",2022,"MLE",14.8,12.3,17.4],["USA",2024,"BTSX",14.1,11.2,17.0],["USA",2015,"MLE",23.2,19.4,27.1],["DEU",2007,"BTSX",27.9,23.4,32.4],["JPN",2010,"FMLE",10.1,8.5,11.7],["GBR",2022,"BTSX",13.0,10.8,15.2],["FRA",2005,"BTSX",31.0,25.8,36.2],["JPN",2007,"BTSX",25.6,21.3,29.8],["GBR",2020,"BTSX",14.3,11.7,16.8],["USA",2010,"BTSX",23.4,19.3,27.6],["GBR",2005,"FMLE",26.6,22.2,30.9],["GBR",2005,"MLE",30.9,25.0,36.8],["DEU",2005,"BTSX",29.2,24.5,33.9],["USA",2000,"MLE",38.8,30.0,47.5],["GBR",2007,"BTSX",26.2,22.0,30.4],["JPN",2024,"BTSX",14.8,12.2,17.3],["GBR",2000,"MLE",40.5,31.7,49.3],["JPN",2024,"FMLE",6.2,5.0,7.5],["FRA",2015,"BTSX",29.2,24.4,34.0],["USA",2000,"BTSX",30.7,25.3,36.1],["FRA",2020,"FMLE",25.7,21.2,30.2],["DEU",2020,"MLE",24.4,20.2,28.5],["FRA",2000,"BTSX",32.5,27.0,38.0],["JPN",2000,"MLE",49.3,41.0,57.5],["JPN",2000,"FMLE",12.7,10.8,14.7],["USA",2005,"BTSX",25.3,21.6,29.0],["DEU",2020,"FMLE",17.3,14.1,20.5],["JPN",2010,"BTSX",22.7,18.9,26.6],["JPN",2010,"MLE",36.0,29.8,42.2],["USA",2000,"FMLE",23.5,19.3,27.7],["USA",2022,"BTSX",15.0,11.9,18.2],["JPN",2022,"MLE",25.8,21.2,30.4],["USA",2020,"BTSX",16.9,13.7,20.2],["DEU",2015,"MLE",26.7,22.4,31.0],["USA",2022,"FMLE",11.3,8.8,13.7],["DEU",2000,"FMLE",25.2,21.1,29.3],["USA",2007,"BTSX",25.7,21.1,30.3],["USA",2015,"BTSX",19.4,16.3,22.5],["JPN",2020,"MLE",25.4,20.9,30.0],["FRA",2020,"BTSX",28.8,23.8,33.8],["GBR",2010,"BTSX",22.2,18.3,26.1],["GBR",2015,"MLE",19.9,16.3,23.6],["DEU",2024,"FMLE",17.0,13.8,20.2],["GBR",2020,"MLE",17.1,13.8,20.5],["FRA",2020,"MLE",32.1,26.6,37.5],["GBR",2000,"BTSX",37.3,30.9,43.7],["USA",2005,"MLE",28.2,23.0,33.4],["GBR",2024,"BTSX",12.3,10.2,14.4],["DEU",2000,"MLE",36.3,30.0,42.6],["DEU",2022,"MLE",23.5,19.1,27.8],["USA",2015,"FMLE",15.8,13.3,18.3],["JPN",2000,"BTSX",30.1,25.2,35.0],["GBR",2015,"FMLE",16.2,13.5,19.0],["JPN",2005,"FMLE",10.0,8.5,11.5],["JPN",2015,"MLE",30.1,24.6,35.5],["DEU",2024,"BTSX",19.5,15.8,23.1],["JPN",2022,"FMLE",7.0,5.6,8.3],["DEU",2010,"BTSX",26.2,22.3,30.1],["GBR",2024,"FMLE",10.0,8.3,11.7],["JPN",2007,"MLE",40.1,33.5,46.8],["USA",2010,"MLE",28.5,22.3,34.7],["JPN",2005,"BTSX",26.1,22.0,30.3],["DEU",2000,"BTSX",30.7,25.7,35.6],["DEU",2015,"BTSX",22.0,18.3,25.7],["USA",2024,"MLE",17.3,13.7,20.9],["USA",2024,"FMLE",11.1,8.9,13.4],["GBR",2024,"MLE",14.7,12.2,17.3],["DEU",2022,"BTSX",20.3,16.5,24.0],["DEU",2020,"BTSX",20.7,17.0,24.5],["USA",2022,"MLE",18.9,14.9,22.9],["JPN",2024,"MLE",23.5,19.4,27.6],["GBR",2007,"FMLE",24.1,20.3,27.9],["FRA",2000,"MLE",36.2,29.4,42.9],["FRA",2015,"MLE",33.0,27.0,38.9],["JPN",2020,"BTSX",16.7,13.7,19.7],["USA",2010,"FMLE",18.6,15.4,21.8],["GBR",2020,"FMLE",11.6,9.5,13.8],["FRA",2024,"BTSX",28.2,23.2,33.1],["JPN",2015,"BTSX",19.0,15.7,22.3],["FRA",2022,"BTSX",28.4,23.5,33.3],["FRA",2024,"MLE",31.5,25.5,37.4],["FRA",2024,"FMLE",25.1,20.5,29.7],["DEU",2015,"FMLE",17.6,14.5,20.8],["FRA",2005,"MLE",35.3,28.8,41.8],["FRA",2023,"BTSX",28.1,23.2,33.0],["GBR",2010,"FMLE",19.5,16.3,22.7],["GBR",2023,"BTSX",12.6,10.4,14.8],["GBR",2023,"MLE",15.6,12.9,18.3],["GBR",2023,"FMLE",9.7,8.0,11.3],["JPN",2023,"BTSX",15.5,12.8,18.2],["JPN",2023,"MLE",24.6,20.3,29.0],["JPN",2023,"FMLE",6.6,5.3,7.8],["USA",2023,"BTSX",14.5,11.5,17.5],["USA",2023,"MLE",18.1,14.3,21.9],["USA",2023,"FMLE",11.2,8.7,13.6],["USA",2005,"FMLE",22.6,18.1,27.2],["DEU",2007,"MLE",32.4,26.9,37.8],["DEU",2022,"FMLE",17.3,14.2,20.4],["FRA",2007,"MLE",35.2,28.8,41.6],["DEU",2005,"FMLE",24.5,20.4,28.5],["DEU",2007,"FMLE",23.6,19.6,27.5],["FRA",2010,"MLE",34.5,28.9,40.1],["FRA",2010,"FMLE",26.2,21.7,30.7],["FRA",2015,"FMLE",25.7,21.4,30.1],["FRA",2022,"MLE",31.5,25.9,37.0],["FRA",2023,"MLE",31.0,25.2,36.7],["FRA",2023,"FMLE",25.4,20.9,29.9],["FRA",2022,"FMLE",25.5,20.9,30.2],["FRA",2000,"FMLE",29.3,23.5,35.1]];
+
+/* ═══ NYTS Data ═══ */
+const YR=[2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024];
+const AT=[17.7,18.1,17.0,15.2,13.2,17.1,22.5,16.0,11.0,11.3,10.0,8.1];
+const EC=[3.1,9.3,11.3,8.3,7.9,13.9,20.2,13.3,7.5,9.4,7.7,5.9];
+const CI=[5.6,4.6,4.3,3.4,2.8,3.0,2.3,1.8,1.5,1.6,1.6,1.4];
+const AY=[2013,2014,2015,2016,2017,2018,2019,2020,2021,2022];
+const EA_Y=[0.6,2.3,3.3,2.7,2.5,2.8,5.8,2.6,1.9,2.1];
+const EA_M=[2.4,7.7,9.3,7.0,6.5,10.6,18.1,10.7,5.2,6.8];
+const EA_O=[5.2,14.9,17.9,12.8,12.8,23.7,30.1,22.7,13.5,17.0];
+
+const CL={a:'#d97706',r:'#dc2626',g:'#16a34a',b:'#2563eb',t:'#0d9488',p:'#7c3aed',pk:'#db2777',o:'#ea580c'};
+const CC=['#d97706','#2563eb','#dc2626','#16a34a','#7c3aed','#db2777','#0d9488'];
+const CN={USA:'United States',GBR:'United Kingdom',DEU:'Germany',FRA:'France',JPN:'Japan'};
+const CP={USA:330e6,GBR:67e6,DEU:83e6,JPN:125e6};
+const MK=['USA','GBR','DEU','JPN'];
+
+/* ═══ Nav ═══ */
+function sw(i,b){document.querySelectorAll('.nav-tab').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.querySelectorAll('.section').forEach(x=>x.classList.remove('active'));document.getElementById('s'+i).classList.add('active')}
+
+/* ═══ Chart defaults ═══ */
+Chart.defaults.color='#6b7294';Chart.defaults.borderColor='#e2e5ef';Chart.defaults.font.family="'Inter',sans-serif";Chart.defaults.font.size=11;
+
+function mkLine(el,labels,ds,yLbl){return new Chart(el,{type:'line',data:{labels,datasets:ds},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#6b7294',font:{size:11}}}},scales:{x:{ticks:{color:'#6b7294'},grid:{color:'#e2e5ef66'}},y:{ticks:{color:'#6b7294',callback:v=>v+'%'},grid:{color:'#e2e5ef'},title:yLbl?{display:true,text:yLbl,color:'#6b7294'}:undefined}},interaction:{mode:'index',intersect:false}}})}
+
+/* ═══ SEC 0 ═══ */
+mkLine(document.getElementById('c0a'),YR,[
+  {label:'Any Tobacco',data:AT,borderColor:CL.a,backgroundColor:CL.a+'15',tension:.3,pointRadius:4,fill:true},
+  {label:'E-Cigarettes',data:EC,borderColor:CL.b,tension:.3,pointRadius:3},
+  {label:'Cigarettes',data:CI,borderColor:CL.r,tension:.3,pointRadius:3}
+],'Current Use (%)');
+
+new Chart(document.getElementById('c0b'),{type:'bar',data:{labels:['E-Cigs','Nic Pouch','Cigarettes','Cigars','Smokeless','Other Oral','Heated','Hookah','Pipe'],datasets:[{data:[5.9,1.8,1.4,1.2,1.2,1.2,0.8,0.7,0.5],backgroundColor:[CL.b+'90',CL.a+'90',CL.r+'90',CL.p+'90',CL.t+'90',CL.o+'90',CL.pk+'90','#6b728090','#47556990'],borderColor:[CL.b,CL.a,CL.r,CL.p,CL.t,CL.o,CL.pk,'#6b7280','#475569'],borderWidth:1}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{callback:v=>v+'%'},grid:{color:'#e2e5ef'}},y:{ticks:{color:'#6b7294',font:{size:11}},grid:{display:false}}}}});
+
+new Chart(document.getElementById('c0c'),{type:'bar',data:{labels:['Any Tobacco','E-Cigs','Nic Pouch','Cigarettes'],datasets:[{label:'High School',data:[10.1,7.8,2.4,1.7],backgroundColor:CL.a+'80',borderColor:CL.a,borderWidth:1},{label:'Middle School',data:[5.4,3.5,1.0,1.1],backgroundColor:CL.b+'80',borderColor:CL.b,borderWidth:1}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#6b7294'}}},scales:{x:{ticks:{color:'#6b7294'},grid:{display:false}},y:{ticks:{callback:v=>v+'%'},grid:{color:'#e2e5ef'}}}}});
+
+/* ═══ SEC 1 ═══ */
+mkLine(document.getElementById('c1a'),AY,[
+  {label:'Ages 16-18',data:EA_O,borderColor:CL.r,tension:.3,pointRadius:3},
+  {label:'Ages 13-15',data:EA_M,borderColor:CL.a,tension:.3,pointRadius:3},
+  {label:'Ages 9-12',data:EA_Y,borderColor:CL.g,tension:.3,pointRadius:3}
+],'E-Cigarette Use (%)');
+
+new Chart(document.getElementById('c1b'),{type:'doughnut',data:{labels:['Elf Bar','Breeze','Mr. Fog','Vuse','JUUL','Other'],datasets:[{data:[36.1,19.9,15.8,13.7,12.6,1.9],backgroundColor:[CL.a,CL.b,CL.r,CL.g,CL.p,CL.t],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{color:'#6b7294',font:{size:11},padding:12}}}}});
+
+new Chart(document.getElementById('c1c'),{type:'bar',data:{labels:['Fruit','Ice/Iced','Candy/Dessert','Mint','Concept','Menthol','Tobacco'],datasets:[{data:[62.8,54.6,33.3,25.1,20.4,8.2,4.8],backgroundColor:CL.a+'70',borderColor:CL.a,borderWidth:1}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{callback:v=>v+'%'},grid:{color:'#e2e5ef'},max:80},y:{ticks:{color:'#6b7294'},grid:{display:false}}}}});
+
+/* ═══ SEC 2: NP Trend Chart ═══ */
+mkLine(document.getElementById('c2np'),[2023,2024,2025],[
+  {label:'12th Grade (MTF)',data:[1.4,2.6,4.4],borderColor:CL.r,backgroundColor:CL.r+'15',tension:.3,pointRadius:5,fill:true,borderWidth:3},
+  {label:'Lifetime 10th+12th (MTF)',data:[3.0,5.4,null],borderColor:CL.a,tension:.3,pointRadius:4,borderDash:[5,5]},
+  {label:'All Youth NYTS',data:[1.5,1.8,null],borderColor:CL.b,tension:.3,pointRadius:4},
+],'Nicotine Pouch Use (%)');
+
+/* ═══ SEC 2: Brand + Flavor ═══ */
+new Chart(document.getElementById('c2a'),{type:'doughnut',data:{labels:['ZYN','on!','Rogue','Velo','Juice Head','Other'],datasets:[{data:[68.7,14.2,13.6,10.7,9.8,3.0],backgroundColor:[CL.a,CL.b,CL.r,CL.g,CL.p,CL.t],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{color:'#6b7294',font:{size:11},padding:12}}}}});
+
+new Chart(document.getElementById('c2b'),{type:'bar',data:{labels:['Mint','Ice/Iced','Fruit','Menthol','Concept','Tobacco'],datasets:[{data:[53.3,23.3,22.4,19.3,11.4,6.8],backgroundColor:CL.b+'70',borderColor:CL.b,borderWidth:1}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{callback:v=>v+'%'},grid:{color:'#e2e5ef'},max:70},y:{ticks:{color:'#6b7294'},grid:{display:false}}}}});
+
+/* ═══ SEC 3: Adult WHO ═══ */
+const SD=SR.map(r=>({c:r[0],y:r[1],s:r[2],v:r[3],l:r[4],h:r[5]}));
+const LB={};MK.forEach(m=>{const d=SD.filter(r=>r.c===m&&r.s==='BTSX').sort((a,b)=>b.y-a.y);if(d.length)LB[m]=d[0]});
+document.getElementById('adultStats').innerHTML=MK.map(m=>{const d=LB[m];return`<div class="stat-card"><div class="stat-label">${CN[m]}</div><div class="stat-value">${d?d.v.toFixed(1)+'%':'N/A'}</div><div class="stat-detail">${d?d.y+' · Both sexes':''}</div></div>`}).join('');
+
+const yrs=[...new Set(SD.filter(r=>r.s==='BTSX'&&MK.includes(r.c)).map(r=>r.y))].sort();
+mkLine(document.getElementById('c3a'),yrs,MK.map((m,i)=>({label:CN[m],data:yrs.map(y=>{const r=SD.find(d=>d.c===m&&d.y===y&&d.s==='BTSX');return r?r.v:null}),borderColor:CC[i],tension:.3,pointRadius:3,spanGaps:true})),'Smoking Prevalence (%)');
+
+new Chart(document.getElementById('c3b'),{type:'bar',data:{labels:MK.map(m=>CN[m]),datasets:[{label:'Male',data:MK.map(m=>{const r=SD.filter(d=>d.c===m&&d.s==='MLE').sort((a,b)=>b.y-a.y);return r[0]?r[0].v:0}),backgroundColor:CL.b+'80',borderColor:CL.b,borderWidth:1},{label:'Female',data:MK.map(m=>{const r=SD.filter(d=>d.c===m&&d.s==='FMLE').sort((a,b)=>b.y-a.y);return r[0]?r[0].v:0}),backgroundColor:CL.pk+'80',borderColor:CL.pk,borderWidth:1}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#6b7294'}}},scales:{x:{ticks:{color:'#6b7294'},grid:{display:false}},y:{ticks:{callback:v=>v+'%'},grid:{color:'#e2e5ef'}}}}});
+
+new Chart(document.getElementById('c3c'),{type:'bar',data:{labels:MK.map(m=>CN[m]),datasets:[{data:MK.map(m=>LB[m]?LB[m].v:0),backgroundColor:MK.map((_,i)=>CC[i]+'80'),borderColor:MK.map((_,i)=>CC[i]),borderWidth:1}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:'#6b7294'},grid:{display:false}},y:{ticks:{callback:v=>v+'%'},grid:{color:'#e2e5ef'}}}}});
+
+/* ═══ SEC 4: Disease Burden ═══ */
+const PF={'Lung Cancer':{p:.85,d:480,cl:'#ef4444'},'COPD':{p:.75,d:360,cl:'#f59e0b'},'Ischaemic Heart':{p:.25,d:280,cl:'#3b82f6'},'Stroke':{p:.18,d:210,cl:'#a855f7'},'Esophageal Ca.':{p:.52,d:45,cl:'#14b8a6'},'Bladder Ca.':{p:.45,d:35,cl:'#ec4899'}};
+const PK=Object.keys(PF),PV=Object.values(PF);
+
+new Chart(document.getElementById('c4a'),{type:'bar',data:{labels:PK,datasets:[{data:PV.map(d=>d.p*100),backgroundColor:PV.map(d=>d.cl+'80'),borderColor:PV.map(d=>d.cl),borderWidth:1}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{callback:v=>v+'%'},grid:{color:'#e2e5ef'},max:100},y:{ticks:{color:'#6b7294',font:{size:12}},grid:{display:false}}}}});
+
+new Chart(document.getElementById('c4b'),{type:'bar',data:{labels:PK,datasets:[{data:PV.map(d=>d.d),backgroundColor:PV.map(d=>d.cl+'80'),borderColor:PV.map(d=>d.cl),borderWidth:1}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{color:'#e2e5ef'}},y:{ticks:{color:'#6b7294',font:{size:12}},grid:{display:false}}}}});
+
+function upSim(){
+  const m=document.getElementById('simM').value;
+  const sr=+document.getElementById('simS').value/100;
+  const rh=+document.getElementById('simH').value/100;
+  const hz=+document.getElementById('simT').value;
+  document.getElementById('svS').textContent=(sr*100).toFixed(0)+'%';
+  document.getElementById('svH').textContent=rh.toFixed(2);
+  document.getElementById('svT').textContent=hz+' yr';
+  const pop=CP[m],rate=LB[m]?LB[m].v:15,smk=Math.round(pop*rate/100),swi=Math.round(smk*sr);
+  let tot=0;const res={};
+  for(const[c,d]of Object.entries(PF)){const a=smk*sr*d.p*(1-rh),cu=a*hz;res[c]={a:Math.round(a),cu:Math.round(cu),cl:d.cl};tot+=cu}
+  const L=typeof curLang!=='undefined'?curLang:'en';
+  const t=k=>I&&I[k]?I[k][L]||I[k].en:k;
+  document.getElementById('simSt').innerHTML=`
+    <div class="stat-card"><div class="stat-label">${t('simSl0')}</div><div class="stat-value">${fm(smk)}</div><div class="stat-detail">${rate.toFixed(1)}% of ${fm(pop)}</div></div>
+    <div class="stat-card"><div class="stat-label">${t('simSl1')}</div><div class="stat-value">${fm(swi)}</div><div class="stat-detail">${(sr*100).toFixed(0)}% ${t('simSd0r')}</div></div>
+    <div class="stat-card"><div class="stat-label">${t('simSl2')}</div><div class="stat-value green">${fm(Math.round(tot))}</div><div class="stat-detail">${hz}${t('simSd2')}</div></div>
+    <div class="stat-card"><div class="stat-label">${t('simSl3')}</div><div class="stat-value">${((1-rh)*100).toFixed(0)}%</div><div class="stat-detail">${t('simSd3')}</div></div>`;
+  const mx=Math.max(...Object.values(res).map(r=>r.cu));
+  document.getElementById('simW').innerHTML=Object.entries(res).map(([c,r])=>{
+    const p=mx>0?(r.cu/mx*100):0;
+    return`<div class="waterfall-item"><div class="waterfall-label">${c}</div><div class="waterfall-bar-wrap"><div class="waterfall-bar" style="width:${p}%;background:linear-gradient(90deg,${r.cl},${r.cl}80)"></div></div><div class="waterfall-val">${fm(r.cu)}</div></div>`}).join('')}
+function fm(n){return n>=1e9?(n/1e9).toFixed(1)+'B':n>=1e6?(n/1e6).toFixed(1)+'M':n>=1e3?(n/1e3).toFixed(1)+'K':n.toString()}
+upSim();
+
+/* ══════════════════════════════════════════════════════════════
+   i18n — Chinese / English toggle
+   ══════════════════════════════════════════════════════════════ */
+let curLang='en';
+const I={
+  // Header & nav
+  company:{en:'Shenzhen Evidence-Based HealthTech · EpiDataKit Demo v0.2',zh:'深圳循证智康科技有限公司 · EpiDataKit Demo v0.2'},
+  disclaimer:{en:'⚠ <strong>Legal Disclaimer:</strong> Data for scientific research and internal decision-making only. Not for regulatory submission. FDA states tobacco AE reports cannot alone estimate risk or compare products.',zh:'⚠ <strong>法律免责声明：</strong>本工具数据仅供科学研究和内部决策参考，不构成 FDA PMTA/MRTP 申请的正式证据。FDA 明确声明烟草不良事件报告不能单独用于估计风险或比较产品。'},
+  nav0:{en:'Youth Tobacco (NYTS)',zh:'青少年烟草 (NYTS)'},
+  nav1:{en:'E-Cigarette Deep Dive',zh:'电子烟深度分析'},
+  nav2:{en:'Nicotine Pouches & MRTP',zh:'尼古丁袋 & MRTP'},
+  nav3:{en:'Adult Smoking (WHO)',zh:'成人吸烟率 (WHO)'},
+  nav4:{en:'Disease Burden & Switching',zh:'疾病负担 & 切换模拟'},
+  nav5:{en:'Data Sources',zh:'数据来源'},
+  // SEC 0
+  s0_h2:{en:'U.S. Youth Tobacco Use — NYTS 2024',zh:'美国青少年烟草使用 — NYTS 2024'},
+  s0_sub:{en:'National Youth Tobacco Survey · CDC/FDA · Grades 6–12 · n ≈ 29,000',zh:'全国青少年烟草调查 · CDC/FDA · 6-12年级 · 样本量 ≈ 29,000'},
+  s0_sl0:{en:'Any Tobacco Use',zh:'任何烟草产品'},s0_sd0:{en:'2.25M students · 25-year low',zh:'225万学生 · 25年最低'},
+  s0_sl1:{en:'E-Cigarettes (#1)',zh:'电子烟 (#1)'},s0_sd1:{en:'1.63M · ↓ from 7.7% in 2023',zh:'163万 · ↓ 较2023年7.7%下降'},
+  s0_sl2:{en:'Nicotine Pouches (#2)',zh:'尼古丁袋 (#2)'},s0_sd2:{en:'480K · emerging product',zh:'48万 · 新兴产品'},
+  s0_sl3:{en:'Cigarettes',zh:'卷烟'},s0_sd3:{en:'380K · all-time record low',zh:'38万 · 史上最低'},
+  s0_sl4:{en:'Combustible Products',zh:'可燃烟草产品'},s0_sd4:{en:'760K students',zh:'76万学生'},
+  s0_sl5:{en:'Multi-Product Use',zh:'多产品同时使用'},s0_sd5:{en:'840K · ≥2 products',zh:'84万 · ≥2种产品'},
+  s0_ch0:{en:'Youth Tobacco Product Use Trend (2013–2024)',zh:'青少年烟草使用趋势 (2013–2024)'},
+  s0_ch1:{en:'Current Use by Product — 2024',zh:'2024年各产品当前使用率'},
+  s0_ch2:{en:'High School vs Middle School',zh:'高中 vs 初中'},
+  s0_th:{en:'Current Use by Race/Ethnicity — 2024',zh:'2024年各种族/民族当前使用率'},
+  s0_thg:{en:'Group',zh:'群体'},s0_that:{en:'Any Tobacco',zh:'任何烟草'},s0_thec:{en:'E-Cigarettes',zh:'电子烟'},s0_thnp:{en:'Nic Pouches',zh:'尼古丁袋'},s0_thmp:{en:'Multi-Product',zh:'多产品'},
+  s0_callout:{en:'<strong>FDA Focus:</strong> AI/AN youth show 2× higher tobacco use vs national average. Disparities persist despite overall declines — informing FDA\'s equity-focused regulatory priorities.',zh:'<strong>FDA关注：</strong>美国原住民/阿拉斯加原住民青少年烟草使用率是全国平均水平的2倍。尽管整体下降，差异仍然存在——这影响着FDA以公平为导向的监管优先事项。'},
+  // SEC 1
+  s1_h2:{en:'E-Cigarette Use — Detailed Analysis',zh:'电子烟使用 — 详细分析'},
+  s1_sub:{en:'NYTS 2013–2024 · Youth e-cigarette use patterns, brands, flavors, frequency',zh:'NYTS 2013–2024 · 青少年电子烟使用模式、品牌、口味、频率'},
+  s1_sl0:{en:'2019 Peak',zh:'2019年峰值'},s1_sd0:{en:'5.4M students · crisis point',zh:'540万学生 · 危机峰值'},
+  s1_sl1:{en:'2024 Current',zh:'2024年当前'},s1_sd1:{en:'1.63M · 71% decline from peak',zh:'163万 · 较峰值下降71%'},
+  s1_sl2:{en:'Daily Users',zh:'每日使用者'},s1_sd2:{en:'of current e-cig users',zh:'占当前电子烟用户比例'},
+  s1_sl3:{en:'Flavored Use',zh:'调味产品使用'},s1_sd3:{en:'of users use flavored products',zh:'的用户使用调味产品'},
+  s1_ch0:{en:'E-Cigarette Use by Age Group (2013–2022)',zh:'电子烟使用率按年龄组 (2013–2022)'},
+  s1_ch1:{en:'E-Cigarette Brands — 2024',zh:'电子烟品牌 — 2024'},
+  s1_ch2:{en:'Flavor Preferences — 2024',zh:'口味偏好 — 2024'},
+  s1_dth:{en:'Device Types — 2024',zh:'设备类型 — 2024'},
+  s1_dt0:{en:'Device Type',zh:'设备类型'},s1_dt1:{en:'Share',zh:'占比'},s1_dt2:{en:'Regulatory Note',zh:'监管备注'},
+  s1_dtr0:{en:'FDA enforcement priority — most unauthorized',zh:'FDA执法重点 — 多数未获授权'},
+  s1_dtr1:{en:'Includes PMTA-authorized (Vuse, JUUL)',zh:'含PMTA已授权产品（Vuse, JUUL）'},
+  s1_dtr2:{en:'Open systems — harder to regulate',zh:'开放系统 — 较难监管'},
+  s1_dtr3:{en:'Reflects product proliferation',zh:'反映产品泛滥'},
+  s1_callout:{en:'<strong>Key finding for PMTA:</strong> 87.6% of youth e-cig users consume flavored products. Fruit (62.8%) and candy/dessert (33.3%) dominate. FDA\'s flavor policy directly targets this — any PMTA for flavored products must demonstrate net population benefit despite youth appeal.',zh:'<strong>PMTA关键发现：</strong>87.6%的青少年电子烟用户使用调味产品。水果味（62.8%）和糖果/甜品味（33.3%）占主导。FDA的口味政策直接针对这一点——任何调味产品的PMTA申请必须证明尽管对青少年有吸引力，仍有净人群健康收益。'},
+  // SEC 2
+  s2_h2:{en:'Nicotine Pouches — ZYN & MRTP Landscape',zh:'尼古丁袋 — ZYN & MRTP 监管动态'},
+  s2_sub:{en:'NYTS 2024 + FDA MRTP Review · Swedish Match/ZYN · Docket FDA-2025-N-0835',zh:'NYTS 2024 + FDA MRTP审评 · Swedish Match/ZYN · 案卷号 FDA-2025-N-0835'},
+  s2_sl0:{en:'Youth NP Use',zh:'青少年NP使用率'},s2_sd0:{en:'480K students · 2024',zh:'48万学生 · 2024'},
+  s2_sl1:{en:'ZYN Market Share',zh:'ZYN市场份额'},s2_sd1:{en:'Among youth NP users',zh:'青少年NP用户中'},
+  s2_sl2:{en:'Daily NP Users',zh:'每日NP使用者'},s2_sd2:{en:'of current NP users',zh:'占当前NP用户比例'},
+  s2_sl3:{en:'MRTP Filed',zh:'MRTP已提交'},s2_sd3:{en:'20 ZYN products under review',zh:'20个ZYN产品审评中'},
+  s2_ch0:{en:'NP Brand Market Share — Youth',zh:'NP品牌市场份额 — 青少年'},
+  s2_ch1:{en:'NP Flavor Preferences',zh:'NP口味偏好'},
+  s2_timeline:{en:'ZYN MRTP Application Timeline',zh:'ZYN MRTP申请时间线'},
+  s2_tl0:{en:'FDA authorized 20 ZYN products via PMTA',zh:'FDA通过PMTA授权20个ZYN产品'},
+  s2_tl1:{en:'MRTP applications filed for modified risk claims',zh:'提交修改风险声明的MRTP申请'},
+  s2_tl2:{en:'TPSAC advisory committee meeting',zh:'TPSAC咨询委员会会议'},
+  s2_tl3:{en:'Public comment period closed',zh:'公众评论期结束'},
+  s2_callout:{en:'<strong>ZYN\'s proposed claim:</strong> "Using ZYN instead of cigarettes puts you at lower risk of mouth cancer, heart disease, lung cancer, stroke, emphysema and chronic bronchitis." FDA evaluates: (1) individual risk reduction, (2) population-level health impact, (3) youth initiation risk, (4) switching vs dual-use patterns.',zh:'<strong>ZYN拟议声明：</strong>"使用ZYN代替卷烟可降低口腔癌、心脏病、肺癌、中风、肺气肿和慢性支气管炎的风险。" FDA评估：(1) 个体风险降低证据，(2) 人群健康影响，(3) 青少年启动风险，(4) 转换 vs 双重使用模式。'},
+  s2_fwk:{en:'FDA MRTP Evaluation Framework',zh:'FDA MRTP评估框架'},
+  s2_fw0:{en:'Criterion',zh:'评估维度'},s2_fw1:{en:'Data Required',zh:'所需数据'},s2_fw2:{en:'Key Question',zh:'核心问题'},
+  s2_fwr0a:{en:'Individual Risk',zh:'个体风险'},s2_fwr0b:{en:'Biomarker studies (BOE/BOPH)',zh:'生物标志物研究（BOE/BOPH）'},s2_fwr0c:{en:'Does switching to NP reduce exposure to harmful constituents?',zh:'转用NP是否降低有害成分暴露？'},
+  s2_fwr1a:{en:'Population Impact',zh:'人群影响'},s2_fwr1b:{en:'Epidemiological modeling',zh:'流行病学建模'},s2_fwr1c:{en:'Do more smokers switch than non-users initiate?',zh:'转换的吸烟者是否多于新启动的非使用者？'},
+  s2_fwr2a:{en:'Consumer Perception',zh:'消费者认知'},s2_fwr2b:{en:'Perception & intention studies',zh:'认知与意向研究'},s2_fwr2c:{en:'Do consumers correctly understand "modified risk"?',zh:'消费者是否正确理解"修改风险"？'},
+  s2_fwr3a:{en:'Youth Uptake',zh:'青少年摄取'},s2_fwr3b:{en:'NYTS + PATH data',zh:'NYTS + PATH数据'},s2_fwr3c:{en:'Will MRTP marketing increase youth NP initiation?',zh:'MRTP营销是否会增加青少年NP启动？'},
+  s2_fwr4a:{en:'Dual Use',zh:'双重使用'},s2_fwr4b:{en:'PATH longitudinal data',zh:'PATH纵向数据'},s2_fwr4c:{en:'Do switchers fully quit smoking or dual-use?',zh:'转换者是否完全戒烟还是双重使用？'},
+  // SEC 3
+  s3_h2:{en:'Adult Smoking Prevalence — Global Comparison',zh:'成人吸烟率 — 全球比较'},
+  s3_sub:{en:'WHO GHO · Current smoking prevalence · Key PMTA/MRTP markets · 2000–2024',zh:'WHO GHO · 当前吸烟率 · PMTA/MRTP关键市场 · 2000–2024'},
+  s3_ch0:{en:'Adult Smoking Prevalence Trend (2000–2024)',zh:'成人吸烟率趋势 (2000–2024)'},
+  s3_ch1:{en:'Gender Gap — Latest Available',zh:'性别差异 — 最新数据'},
+  s3_ch2:{en:'Cross-Country (Both Sexes, Latest)',zh:'跨国对比（两性合计，最新）'},
+  // SEC 4
+  s4_h2:{en:'Tobacco-Attributed Disease Burden & Switching Simulator',zh:'烟草归因疾病负担 & 切换模拟器'},
+  s4_sub:{en:'Population health impact modeling for PMTA/MRTP evidence',zh:'用于PMTA/MRTP证据的人群健康影响建模'},
+  s4_ch0:{en:'Tobacco PAF by Disease',zh:'各疾病烟草归因分数 (PAF)'},
+  s4_ch1:{en:'Attributed DALYs per 100K',zh:'归因DALYs/10万人'},
+  s4_sim:{en:'Population Switching Impact Simulator',zh:'人群切换影响模拟器'},
+  s4_callout:{en:'<strong>⚠ Model limitations:</strong> Simplified illustrative model. Not for regulatory submission. Real PMTA/MRTP requires dynamic population models with age-structured cohorts, time-varying parameters, sensitivity analyses.',zh:'<strong>⚠ 模型局限性：</strong>简化示意模型，不可用于监管提交。真正的PMTA/MRTP需要动态人群模型，含年龄分层队列、时变参数和敏感性分析。'},
+  s4_lm:{en:'Target Market',zh:'目标市场'},
+  s4_ls:{en:'Switching Rate (% of smokers switching to reduced-risk product)',zh:'切换率（%的吸烟者转向减害产品）'},
+  s4_lh:{en:'Relative Harm (0=harmless · 1=same as cigarettes)',zh:'相对危害（0=无害 · 1=等同卷烟）'},
+  s4_lt:{en:'Time Horizon',zh:'时间跨度'},
+  s4_hwarn:{en:'⚠ CLIENT-PROVIDED — Tool does NOT supply this value',zh:'⚠ 客户自填 — 本工具不提供此参数'},
+  s4_wh:{en:'Projected Avoided DALYs by Disease (Cumulative)',zh:'各疾病预计避免的DALYs（累计）'},
+  simSl0:{en:'Smoker Pop.',zh:'吸烟人口'},simSl1:{en:'Switching',zh:'切换人数'},simSl2:{en:'Avoided DALYs',zh:'避免的DALYs'},simSl3:{en:'Harm Reduction',zh:'危害降低'},
+  simSd0r:{en:'rate',zh:'切换率'},simSd2:{en:'-yr cumulative',zh:'年累计'},simSd3:{en:'vs smoking',zh:'相对吸烟'},
+  // SEC 5
+  s5_h2:{en:'Data Sources & Methodology',zh:'数据来源与方法'},
+  s5_sub:{en:'All data sourced from official, publicly available datasets',zh:'所有数据来自官方公开数据集'},
+  s5_th0:{en:'Dataset',zh:'数据集'},s5_th1:{en:'Provider',zh:'提供方'},s5_th2:{en:'Coverage',zh:'覆盖范围'},s5_th3:{en:'License',zh:'授权'},s5_th4:{en:'Used For',zh:'用途'},
+  s5_r0:{en:'Youth prevalence, products, brands, flavors',zh:'青少年使用率、产品、品牌、口味'},
+  s5_r1:{en:'Trend analysis, demographic patterns',zh:'趋势分析、人口统计学模式'},
+  s5_r2:{en:'Switching, dual use, cessation',zh:'转换、双重使用、戒烟'},
+  s5_r3:{en:'Adult smoking by country/gender',zh:'各国/各性别成人吸烟率'},
+  s5_r4:{en:'Disease burden (literature values)',zh:'疾病负担（文献数值）'},
+  s5_r5:{en:'MRTP regulatory timeline',zh:'MRTP监管时间线'},
+  s5_r6:{en:'Safety signals (future)',zh:'安全信号（未来集成）'},
+  s5_callout:{en:'<strong>Production roadmap:</strong> Full platform integrates live WHO GHO API, CDC WONDER, openFDA, SEER. PATH public-use microdata enables custom cross-tabs. GBD requires IHME commercial license.',zh:'<strong>产品路线图：</strong>完整平台将集成实时WHO GHO API、CDC WONDER、openFDA、SEER。PATH公开微数据支持自定义交叉表。GBD数据需IHME商业授权。'},
+  // Footer
+  footer:{en:'TobaccoEpi — Shenzhen Evidence-Based HealthTech · Data: NYTS (CDC/FDA), PATH (NIH/FDA), WHO GHO<br>Demo v0.2 · For research and internal decision-making only',zh:'TobaccoEpi — 深圳循证智康科技有限公司 · 数据来源: NYTS (CDC/FDA), PATH (NIH/FDA), WHO GHO<br>Demo v0.2 · 仅供研究和内部决策使用'},
+};
+
+function toggleLang(){
+  curLang=curLang==='en'?'zh':'en';
+  document.getElementById('langBtn').textContent=curLang==='en'?'中文':'EN';
+  applyLang();
+  upSim();
+}
+function t(k){return I[k]?I[k][curLang]||I[k].en:k}
+function applyLang(){
+  // Text content updates (selector → i18n key)
+  const M=[
+    // Nav already has data-i18n from HTML
+    // SEC 0
+    ['#s0>h2','s0_h2'],['#s0>.section-sub','s0_sub'],
+    // SEC 1
+    ['#s1>h2','s1_h2'],['#s1>.section-sub','s1_sub'],
+    // SEC 2
+    ['#s2>h2','s2_h2'],['#s2>.section-sub','s2_sub'],
+    // SEC 3
+    ['#s3>h2','s3_h2'],['#s3>.section-sub','s3_sub'],
+    // SEC 4
+    ['#s4>h2','s4_h2'],['#s4>.section-sub','s4_sub'],
+    // SEC 5
+    ['#s5>h2','s5_h2'],['#s5>.section-sub','s5_sub'],
+  ];
+  M.forEach(([sel,key])=>{const el=document.querySelector(sel);if(el)el.textContent=t(key)});
+  // Nav tabs
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k=el.getAttribute('data-i18n');if(I[k])el.textContent=I[k][curLang];
+  });
+  // HTML content updates (callouts, disclaimer, footer)
+  const H=[
+    ['.disclaimer','disclaimer'],
+    ['#s0 .callout','s0_callout'],
+    ['#s1 .callout','s1_callout'],
+    ['#s2 .callout-warn','s2_callout'],
+    ['#s4 .callout-err','s4_callout'],
+    ['#s5 .callout','s5_callout'],
+    ['.site-footer','footer'],
+  ];
+  H.forEach(([sel,key])=>{const el=document.querySelector(sel);if(el)el.innerHTML=t(key)});
+  // Stat cards — by section, nth-child
+  const stats={
+    s0:[['s0_sl0','s0_sd0'],['s0_sl1','s0_sd1'],['s0_sl2','s0_sd2'],['s0_sl3','s0_sd3'],['s0_sl4','s0_sd4'],['s0_sl5','s0_sd5']],
+    s1:[['s1_sl0','s1_sd0'],['s1_sl1','s1_sd1'],['s1_sl2','s1_sd2'],['s1_sl3','s1_sd3']],
+    s2:[['s2_sl0','s2_sd0'],['s2_sl1','s2_sd1'],['s2_sl2','s2_sd2'],['s2_sl3','s2_sd3']],
+  };
+  Object.entries(stats).forEach(([sec,cards])=>{
+    const els=document.querySelectorAll('#'+sec+' .stats-row .stat-card');
+    cards.forEach(([lk,dk],i)=>{
+      if(els[i]){
+        const lb=els[i].querySelector('.stat-label');if(lb)lb.textContent=t(lk);
+        const dt=els[i].querySelector('.stat-detail');if(dt)dt.textContent=t(dk);
+      }
+    });
+  });
+  // Chart card h3 titles (preserve source-tag spans)
+  const ch3={
+    s0:['s0_ch0','s0_ch1','s0_ch2','s0_th'],
+    s1:['s1_ch0','s1_ch1','s1_ch2','s1_dth'],
+    s2:['s2_ch0','s2_ch1',null,'s2_timeline','s2_fwk'],
+    s3:['s3_ch0','s3_ch1','s3_ch2'],
+    s4:['s4_ch0','s4_ch1',null,'s4_sim',null,'s4_wh'],
+  };
+  Object.entries(ch3).forEach(([sec,keys])=>{
+    const h3s=document.querySelectorAll('#'+sec+' h3');
+    keys.forEach((k,i)=>{
+      if(k&&h3s[i]){
+        const span=h3s[i].querySelector('.source-tag');
+        h3s[i].textContent=t(k)+' ';
+        if(span)h3s[i].appendChild(span);
+      }
+    });
+  });
+  // SEC 2 tables — MRTP timeline
+  const tl=document.querySelectorAll('#s2 .data-table');
+  if(tl[0]){
+    const rows=tl[0].querySelectorAll('tbody tr');
+    ['s2_tl0','s2_tl1','s2_tl2','s2_tl3'].forEach((k,i)=>{
+      if(rows[i]){const td=rows[i].querySelectorAll('td');if(td[1])td[1].textContent=t(k)}
+    });
+  }
+  // MRTP framework table
+  if(tl[1]){
+    const th=tl[1].querySelectorAll('th');
+    if(th[0])th[0].textContent=t('s2_fw0');if(th[1])th[1].textContent=t('s2_fw1');if(th[2])th[2].textContent=t('s2_fw2');
+    const rows=tl[1].querySelectorAll('tbody tr');
+    [['s2_fwr0a','s2_fwr0b','s2_fwr0c'],['s2_fwr1a','s2_fwr1b','s2_fwr1c'],['s2_fwr2a','s2_fwr2b','s2_fwr2c'],['s2_fwr3a','s2_fwr3b','s2_fwr3c'],['s2_fwr4a','s2_fwr4b','s2_fwr4c']].forEach((ks,i)=>{
+      if(rows[i]){const td=rows[i].querySelectorAll('td');ks.forEach((k,j)=>{if(td[j])td[j].textContent=t(k)})}
+    });
+  }
+  // SEC 1 device table
+  const dt1=document.querySelectorAll('#s1 .data-table');
+  if(dt1[0]){
+    const th=dt1[0].querySelectorAll('th');
+    if(th[0])th[0].textContent=t('s1_dt0');if(th[1])th[1].textContent=t('s1_dt1');if(th[2])th[2].textContent=t('s1_dt2');
+    const rows=dt1[0].querySelectorAll('tbody tr');
+    ['s1_dtr0','s1_dtr1','s1_dtr2','s1_dtr3'].forEach((k,i)=>{
+      if(rows[i]){const td=rows[i].querySelectorAll('td');if(td[2])td[2].textContent=t(k)}
+    });
+  }
+  // SEC 0 race table headers
+  const dt0=document.querySelectorAll('#s0 .data-table');
+  if(dt0[0]){
+    const th=dt0[0].querySelectorAll('th');
+    if(th[0])th[0].textContent=t('s0_thg');if(th[1])th[1].textContent=t('s0_that');
+    if(th[2])th[2].textContent=t('s0_thec');if(th[3])th[3].textContent=t('s0_thnp');if(th[4])th[4].textContent=t('s0_thmp');
+  }
+  // SEC 5 data sources table
+  const dt5=document.querySelectorAll('#s5 .data-table');
+  if(dt5[0]){
+    const th=dt5[0].querySelectorAll('th');
+    ['s5_th0','s5_th1','s5_th2','s5_th3','s5_th4'].forEach((k,i)=>{if(th[i])th[i].textContent=t(k)});
+    const rows=dt5[0].querySelectorAll('tbody tr');
+    ['s5_r0','s5_r1','s5_r2','s5_r3','s5_r4','s5_r5','s5_r6'].forEach((k,i)=>{
+      if(rows[i]){const td=rows[i].querySelectorAll('td');if(td[4])td[4].textContent=t(k)}
+    });
+  }
+  // SEC 4 simulator labels
+  const simLabels=document.querySelectorAll('#s4 .sim-field label');
+  const simKeys=['s4_lm','s4_ls','s4_lh','s4_lt'];
+  simLabels.forEach((el,i)=>{if(simKeys[i])el.textContent=t(simKeys[i])});
+  const hw=document.querySelector('#s4 .harm-box .warn-label');
+  if(hw)hw.textContent=t('s4_hwarn');
+}
+</script>
+</body>
+</html>
