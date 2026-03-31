@@ -13,7 +13,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14
 a{color:var(--blue);text-decoration:none}
 
 /* Header */
-.disclaimer{background:var(--red-light);border-bottom:1px solid #fecaca;padding:6px 32px;font-size:11px;color:#991b1b;text-align:center}
+.disclaimer{background:#f0f2f7;border-bottom:1px solid #e2e5ef;color:#6b7294;font-size:10px;padding:6px 32px;text-align:center}
 .site-header{display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:60px;border-bottom:1px solid var(--border);background:var(--bg2);box-shadow:var(--shadow);flex-wrap:wrap;gap:8px}
 .hdr-left{display:flex;align-items:center;gap:16px}
 .logo{font-weight:700;font-size:18px;color:var(--amber);letter-spacing:-.3px}
@@ -113,6 +113,14 @@ h3{font-size:14px;font-weight:600;margin-bottom:12px}
  .stats-row{grid-template-columns:repeat(2,1fr)}
  .footer-grid{grid-template-columns:1fr}
 }
+.cta-bar{display:flex;align-items:center;justify-content:center;gap:16px;padding:10px 32px;background:linear-gradient(90deg,#fffbeb,#eff6ff);border-bottom:1px solid var(--border);flex-wrap:wrap}
+.cta-text{font-size:13px;font-weight:500;color:var(--text)}
+.cta-btn{padding:7px 20px;background:var(--amber);color:white;border-radius:6px;font-size:12px;font-weight:600;text-decoration:none;font-family:var(--sans);transition:all .15s}
+.cta-btn:hover{background:#b45309}
+.cta-link{font-size:12px;color:var(--blue);text-decoration:underline}
+.about-section{max-width:800px;margin:0 auto;padding:32px;text-align:center}
+.about-section h3{font-size:16px;margin-bottom:8px}
+.about-section p{font-size:13px;color:var(--muted);line-height:1.7}
 </style>
 </head>
 <body>
@@ -133,6 +141,12 @@ h3{font-size:14px;font-weight:600;margin-bottom:12px}
   <button class="lang-btn" onclick="toggleLang()" id="langBtn">中文</button>
  </div>
 </header>
+
+<div class="cta-bar">
+  <span class="cta-text" data-i="cta_text"></span>
+  <a href="mailto:nana@epidatakit.com" class="cta-btn" data-i="cta_btn"></a>
+  <a href="https://www.linkedin.com/in/xiaona-nana-liu/" class="cta-link" data-i="cta_linkedin"></a>
+</div>
 
 <!-- Section Nav -->
 <nav class="section-nav">
@@ -481,6 +495,14 @@ h3{font-size:14px;font-weight:600;margin-bottom:12px}
   <tr><td>WHO GHO</td><td>WHO</td><td data-i="ds_who_cov"></td><td data-i="ds_public"></td></tr>
  </tbody>
 </table>
+<div style="margin-top:16px;padding:14px 18px;background:var(--blue-light);border-left:3px solid var(--blue);border-radius:10px;font-size:13px;color:#1e40af;line-height:1.7">
+  <strong>NYTS 2025 Methodology:</strong> For detailed documentation of our weighted analysis methodology, variable definitions, and cross-validation results, see the <a href="methodology.html" style="font-weight:600">Methodology Report &rarr;</a>
+</div>
+</div>
+
+<div class="about-section">
+  <h3 data-i="about_title"></h3>
+  <p data-i="about_text"></p>
 </div>
 
 <!-- Footer -->
@@ -526,7 +548,7 @@ var I={
  b2_usecase:{en:'<strong>Enterprise Question:</strong> How does my drug\'s GI tolerability compare head-to-head with competitors? Which AEs should I highlight (or minimize) in marketing materials and KOL discussions?<br><strong>How to use:</strong> Use the radar chart for a visual competitive positioning. If your drug has lower nausea/vomiting rates, emphasize this in promotional materials. If higher, prepare medical affairs talking points explaining the clinical significance.',zh:'<strong>企业问题：</strong>我的药物GI耐受性与竞品头对头比较如何？在营销材料和KOL讨论中应强调（或淡化）哪些AE？<br><strong>使用方法：</strong>使用雷达图进行可视化竞争定位。如果您的药物恶心/呕吐率较低，在推广材料中强调。如果较高，准备医学事务部门的沟通要点，解释临床意义。'},
  b3_usecase:{en:'<strong>Enterprise Question:</strong> Are there quality issues or recalls in my therapeutic area? Is my supply chain at risk? What is the FDA enforcement trend for my product category?<br><strong>How to use:</strong> Monitor Class I recalls (most severe) in your therapeutic area. A competitor recall creates both risk (regulatory scrutiny across the class) and opportunity (market share capture). Track yearly trends to anticipate FDA inspection priorities.',zh:'<strong>企业问题：</strong>我的治疗领域是否存在质量问题或召回？我的供应链是否有风险？我的产品品类FDA执法趋势如何？<br><strong>使用方法：</strong>监控您的治疗领域中的Class I召回（最严重）。竞品召回既带来风险（整个品类的监管审查加强）也带来机会（市场份额获取）。追踪年度趋势以预判FDA检查重点。'},
  b4_usecase:{en:'<strong>Enterprise Question:</strong> How many 510(k) clearances are issued in my device category annually? What is the competitive intensity? Which categories are growing fastest?<br><strong>How to use:</strong> Track your device category\'s 510(k) volume trend. Rising clearance numbers indicate increasing competition. Use category benchmarks to set realistic expectations for your regulatory timeline and market entry strategy.',zh:'<strong>企业问题：</strong>我的器械品类每年发放多少510(k)许可？竞争强度如何？哪些品类增长最快？<br><strong>使用方法：</strong>追踪您的器械品类510(k)数量趋势。许可数量增加表明竞争加剧。使用品类基准为您的监管时间线和市场进入策略设定合理预期。'},
- a1_hist_title:{en:'Historical Brand Rankings — Youth E-Cigarette Users (2020-2024)',zh:'历年品牌排行 — 青少年电子烟用户 (2020-2024)'},
+ a1_hist_title:{en:'Historical Brand Rankings — Youth E-Cigarette Users (2020-2025)',zh:'历年品牌排行 — 青少年电子烟用户 (2020-2025)'},
  a1_brand_insight:{en:'<strong>Key Insight — 2025 NYTS Altria/ALCS Weighted Analysis:</strong> The e-cigarette youth market has undergone 4 regime changes in 6 years: JUUL (2019-2020) → Puff Bar (2021-2022) → Elf Bar (2023-2024) → <strong>Geek Bar (2025, 64.1% contact rate)</strong>. Geek Bar was not even in the 2024 top 5, yet captured 64.1% of youth users in 2025 — the fastest brand takeover in NYTS history. Elf Bar continues declining (56.7% → 36.1% → 21.5%). New entrants Lost Mary (19.8%) and Raz (19.4%) also surged. Only 2 of the 2025 top 10 (Vuse #5, JUUL #9) hold FDA PMTA authorization. Disposables now account for 66.3% of e-cig device types (↑10.7pp from 2024). Daily use: 27.5%; frequent use (20-30 days): 41.2%.',zh:'<strong>核心洞察 — 2025 NYTS Altria/ALCS加权分析：</strong>青少年电子烟市场6年内经历4次格局变化：JUUL（2019-2020）→ Puff Bar（2021-2022）→ Elf Bar（2023-2024）→ <strong>Geek Bar（2025，64.1%接触率）</strong>。Geek Bar在2024年甚至未进前5，2025年即以64.1%占据青少年用户首位——NYTS历史上最快的品牌颠覆。Elf Bar持续下滑（56.7%→36.1%→21.5%）。新进入者Lost Mary（19.8%）和Raz（19.4%）也大幅增长。2025前10中仅2个品牌（Vuse #5, JUUL #9）持有FDA PMTA授权。一次性设备占电子烟设备类型的66.3%（较2024年↑10.7pp）。每日使用：27.5%；频繁使用（20-30天）：41.2%。'},
  /* A1 */
  a1_title:{en:'Brand Surveillance',zh:'品牌监测'},
@@ -649,7 +671,12 @@ var I={
  ft_sources_title:{en:'Data Sources',zh:'数据来源'},
  ft_contact_title:{en:'Contact',zh:'联系方式'},
  ft_contact_text:{en:'Shenzhen Evidence-Based Smart Health Technology Co., Ltd.',zh:'深圳循证智康科技有限公司'},
- ft_legal:{en:'This platform is provided for informational and research purposes only. All data sourced from publicly available government databases. Not intended as medical, legal, or regulatory advice. Use at your own risk.',zh:'本平台仅供信息和研究用途。所有数据来源于公开政府数据库。不构成医学、法律或监管建议。使用者自行承担风险。'}
+ ft_legal:{en:'This platform is provided for informational and research purposes only. All data sourced from publicly available government databases. Not intended as medical, legal, or regulatory advice. Use at your own risk.',zh:'本平台仅供信息和研究用途。所有数据来源于公开政府数据库。不构成医学、法律或监管建议。使用者自行承担风险。'},
+ cta_text:{en:'Regulatory Intelligence Platform — Independent NYTS 2025 Weighted Analysis Available',zh:'监管情报平台 — NYTS 2025独立加权分析已发布'},
+ cta_btn:{en:'Request Demo',zh:'申请演示'},
+ cta_linkedin:{en:'About the Founder',zh:'关于创始人'},
+ about_title:{en:'Built by Epidemiologists',zh:'由流行病学家构建'},
+ about_text:{en:'EpiDataKit is developed by Dr. Nana Liu (PhD, Erasmus MC), a Chief Scientist with expertise in epidemiology, biostatistics, and regulatory science. All analyses use survey-weighted methodologies validated against official sources. Contact: nana@epidatakit.com',zh:'EpiDataKit由刘晓娜博士（鹿特丹Erasmus MC流行病学博士）开发，她是一位在流行病学、生物统计学和监管科学领域具有专业背景的首席科学家。所有分析使用经官方数据源交叉验证的调查加权方法。联系：nana@epidatakit.com'}
 };
 
 function toggleLang(){
@@ -740,7 +767,7 @@ function buildAllCharts(){
  charts.a1compare=new Chart(document.getElementById('c-a1-compare'),{type:'bar',data:{
   labels:['Geek Bar','Elf Bar','Lost Mary','Raz','Vuse','Breeze','Juicy Bar','Mr Fog','JUUL'],
   datasets:[
-   {label:'2024',data:[null,36.1,null,null,13.7,19.9,null,15.8,12.6],backgroundColor:amberL,borderColor:amber,borderWidth:1},
+   {label:'2024',data:[0,36.1,0,0,13.7,19.9,0,15.8,12.6],backgroundColor:amberL,borderColor:amber,borderWidth:1},
    {label:'2025',data:[64.1,21.5,19.8,19.4,15.8,14.4,11.6,10.6,9.8],backgroundColor:'rgba(37,99,235,.15)',borderColor:blue,borderWidth:1}
   ]
  },options:{responsive:true,maintainAspectRatio:false,scales:{y:{beginAtZero:true,title:{display:true,text:'% contact rate'}}}}});
@@ -786,10 +813,10 @@ function buildAllCharts(){
  },options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{beginAtZero:true,title:{display:true,text:'%'}}}}});
 
  /* A2: E-Cig Device Type — 2025 weighted */
- var devLabels=curLang==='zh'?['一次性','烟弹/烟弹仓','大烟雾/储油仓']:['Disposables','Pods/Cartridges','Tanks/Mods'];
+ var devLabels=curLang==='zh'?['一次性','烟弹/烟弹仓','大烟雾/储油仓','不知道类型']:['Disposables','Pods/Cartridges','Tanks/Mods','Don\'t know type'];
  charts.a2device=new Chart(document.getElementById('c-a2-device'),{type:'doughnut',data:{
   labels:devLabels,
-  datasets:[{data:[66.3,12.0,5.4],backgroundColor:[amber,blue,'#94a3b8'],borderWidth:0}]
+  datasets:[{data:[66.3,12.0,5.4,16.3],backgroundColor:[amber,blue,'#94a3b8','#cbd5e1'],borderWidth:0}]
  },options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right'},subtitle:{display:true,text:curLang==='zh'?'一次性↑10.7pp (vs 2024); 日使用27.5%; 频繁使用41.2%':'Disposables ↑10.7pp (vs 2024); Daily use 27.5%; Frequent use 41.2%',font:{size:11}}}}});
 
  /* A3: AE by year */
@@ -847,7 +874,7 @@ function buildAllCharts(){
    {label:'Ozempic',data:[5182,2294,2470,3528],backgroundColor:'rgba(37,99,235,.7)',borderRadius:4},
    {label:'Mounjaro',data:[6791,3988,3530,5114],backgroundColor:'rgba(217,119,6,.7)',borderRadius:4},
    {label:'Wegovy',data:[2150,1120,985,680],backgroundColor:'rgba(13,148,136,.7)',borderRadius:4},
-   {label:'Jardiance',data:[1640,null,1420,null],backgroundColor:'rgba(148,163,184,.7)',borderRadius:4}
+   {label:'Jardiance',data:[1640,0,1420,0],backgroundColor:'rgba(148,163,184,.7)',borderRadius:4}
   ]
  },options:{responsive:true,maintainAspectRatio:false,scales:{y:{beginAtZero:true}}}});
 
