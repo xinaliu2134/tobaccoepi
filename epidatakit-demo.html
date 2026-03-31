@@ -260,7 +260,12 @@ const MK=['USA','GBR','DEU','JPN'];
 /* ═══ Nav ═══ */
 function sw(i,b){document.querySelectorAll('.nav-tab').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.querySelectorAll('.section').forEach(x=>x.classList.remove('active'));document.getElementById('s'+i).classList.add('active')}
 
-/* ═══ Chart defaults ═══ */
+/* ═══ i18n state (must be before initCharts which calls upSim) ═══ */
+let curLang='en';
+
+/* ═══ Chart init — wait for Chart.js to load ═══ */
+function initCharts(){
+if(typeof Chart==='undefined'){setTimeout(initCharts,200);return;}
 Chart.defaults.color='#6b7294';Chart.defaults.borderColor='#e2e5ef';Chart.defaults.font.family="'Inter',sans-serif";Chart.defaults.font.size=11;
 
 function mkLine(el,labels,ds,yLbl){return new Chart(el,{type:'line',data:{labels,datasets:ds},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#6b7294',font:{size:11}}}},scales:{x:{ticks:{color:'#6b7294'},grid:{color:'#e2e5ef66'}},y:{ticks:{color:'#6b7294',callback:v=>v+'%'},grid:{color:'#e2e5ef'},title:yLbl?{display:true,text:yLbl,color:'#6b7294'}:undefined}},interaction:{mode:'index',intersect:false}}})}
@@ -343,11 +348,12 @@ function upSim(){
     return`<div class="waterfall-item"><div class="waterfall-label">${c}</div><div class="waterfall-bar-wrap"><div class="waterfall-bar" style="width:${p}%;background:linear-gradient(90deg,${r.cl},${r.cl}80)"></div></div><div class="waterfall-val">${fm(r.cu)}</div></div>`}).join('')}
 function fm(n){return n>=1e9?(n/1e9).toFixed(1)+'B':n>=1e6?(n/1e6).toFixed(1)+'M':n>=1e3?(n/1e3).toFixed(1)+'K':n.toString()}
 upSim();
+} // end initCharts
+setTimeout(initCharts, 100); // defer to ensure i18n dict is defined first
 
 /* ══════════════════════════════════════════════════════════════
    i18n — Chinese / English toggle
    ══════════════════════════════════════════════════════════════ */
-let curLang='en';
 const I={
   // Header & nav
   company:{en:'Shenzhen Evidence-Based HealthTech · EpiDataKit Demo v0.2',zh:'深圳循证智康科技有限公司 · EpiDataKit Demo v0.2'},

@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EpiDataKit — Dev Spec v1.0</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #0f1117;
+    --bg2: #161b27;
+    --bg3: #1e2535;
+    --border: #2a3348;
+    --text: #e2e8f0;
+    --muted: #64748b;
+    --blue: #3b82f6;
+    --blue-dim: #1d3a6e;
+    --teal: #14b8a6;
+    --teal-dim: #0d4a42;
+    --amber: #f59e0b;
+    --amber-dim: #4a2e08;
+    --red: #ef4444;
+    --red-dim: #4a1515;
+    --green: #22c55e;
+    --green-dim: #0f3320;
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'IBM Plex Sans', sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  /* ── Layout ── */
+  .layout { display: flex; min-height: 100vh; }
+
+  nav {
+    width: 240px;
+    flex-shrink: 0;
+    background: var(--bg2);
+    border-right: 1px solid var(--border);
+    padding: 24px 0;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+  }
+
+  nav .logo {
+    padding: 0 20px 20px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 16px;
+  }
+  nav .logo .name { font-weight: 600; font-size: 15px; color: var(--text); }
+  nav .logo .ver { font-size: 11px; color: var(--muted); font-family: var(--mono); }
+
+  nav a {
+    display: block;
+    padding: 6px 20px;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 13px;
+    transition: color .15s;
+    border-left: 2px solid transparent;
+  }
+  nav a:hover { color: var(--text); }
+  nav a.active { color: var(--blue); border-left-color: var(--blue); background: rgba(59,130,246,.07); }
+  nav .section-label {
+    padding: 16px 20px 4px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .1em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  main {
+    flex: 1;
+    max-width: 900px;
+    padding: 40px 48px;
+    overflow-x: hidden;
+  }
+
+  /* ── Typography ── */
+  h1 { font-size: 28px; font-weight: 600; margin-bottom: 8px; }
+  h2 { font-size: 20px; font-weight: 600; margin: 48px 0 16px; padding-top: 48px; border-top: 1px solid var(--border); }
+  h3 { font-size: 15px; font-weight: 600; margin: 28px 0 10px; color: var(--text); }
+  p { color: #94a3b8; margin-bottom: 12px; }
+  strong { color: var(--text); font-weight: 600; }
+
+  /* ── Hero ── */
+  .hero {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 28px 32px;
+    margin-bottom: 40px;
+  }
+  .hero .subtitle { color: var(--muted); font-size: 14px; margin-top: 4px; }
+  .hero-meta { display: flex; gap: 24px; margin-top: 20px; flex-wrap: wrap; }
+  .meta-item { font-family: var(--mono); font-size: 12px; }
+  .meta-item .label { color: var(--muted); }
+  .meta-item .val { color: var(--text); }
+
+  /* ── Product cards ── */
+  .demo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0 32px; }
+  .demo-card {
+    border-radius: 8px;
+    padding: 20px;
+    border: 1px solid var(--border);
+  }
+  .demo-card.bioepi { border-top: 3px solid var(--blue); }
+  .demo-card.tobaccoepi { border-top: 3px solid var(--amber); }
+  .demo-card .demo-name { font-weight: 600; font-size: 16px; margin-bottom: 4px; }
+  .demo-card.bioepi .demo-name { color: var(--blue); }
+  .demo-card.tobaccoepi .demo-name { color: var(--amber); }
+  .demo-card .demo-sub { color: var(--muted); font-size: 12px; margin-bottom: 14px; }
+  .demo-card ul { list-style: none; }
+  .demo-card ul li { font-size: 13px; color: #94a3b8; padding: 3px 0; }
+  .demo-card ul li::before { content: "→ "; color: var(--muted); }
+
+  /* ── Code blocks ── */
+  pre {
+    background: #090d14;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    overflow-x: auto;
+    font-family: var(--mono);
+    font-size: 13px;
+    line-height: 1.6;
+    margin: 12px 0 20px;
+  }
+  pre .c { color: #4a5568; }   /* comment */
+  pre .k { color: #7dd3fc; }   /* keyword */
+  pre .s { color: #86efac; }   /* string */
+  pre .n { color: #fbbf24; }   /* number */
+  pre .f { color: #c084fc; }   /* function */
+  pre .t { color: #67e8f9; }   /* type */
+  pre .p { color: #94a3b8; }   /* punctuation */
+  pre .kw { color: #fb923c; }  /* key warning */
+
+  /* ── Tables ── */
+  .table-wrap { overflow-x: auto; margin: 12px 0 24px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    text-align: left;
+    padding: 10px 14px;
+    background: var(--bg3);
+    color: var(--muted);
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+  }
+  td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    color: #94a3b8;
+    vertical-align: top;
+  }
+  td:first-child { color: var(--text); font-family: var(--mono); font-size: 12px; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(255,255,255,.02); }
+
+  /* ── Badges / tags ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    font-family: var(--mono);
+  }
+  .badge-blue { background: var(--blue-dim); color: var(--blue); }
+  .badge-amber { background: var(--amber-dim); color: var(--amber); }
+  .badge-green { background: var(--green-dim); color: var(--green); }
+  .badge-red { background: var(--red-dim); color: var(--red); }
+  .badge-teal { background: var(--teal-dim); color: var(--teal); }
+  .badge-muted { background: var(--bg3); color: var(--muted); }
+
+  /* ── Callouts ── */
+  .callout {
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 16px 0;
+    font-size: 13px;
+    border-left: 3px solid;
+  }
+  .callout-warn { background: rgba(245,158,11,.08); border-color: var(--amber); color: #fcd34d; }
+  .callout-err  { background: rgba(239,68,68,.08);  border-color: var(--red);   color: #fca5a5; }
+  .callout-info { background: rgba(59,130,246,.08); border-color: var(--blue);  color: #93c5fd; }
+  .callout-ok   { background: rgba(34,197,94,.08);  border-color: var(--green); color: #86efac; }
+  .callout strong { font-weight: 700; }
+
+  /* ── Inline code ── */
+  code {
+    font-family: var(--mono);
+    font-size: 12px;
+    background: var(--bg3);
+    padding: 1px 6px;
+    border-radius: 3px;
+    color: #e2e8f0;
+  }
+
+  /* ── Step list ── */
+  .steps { counter-reset: step; margin: 16px 0; }
+  .step {
+    display: flex;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .step:last-child { border-bottom: none; }
+  .step-num {
+    counter-increment: step;
+    width: 28px;
+    height: 28px;
+    background: var(--bg3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--blue);
+    flex-shrink: 0;
+    font-family: var(--mono);
+  }
+  .step-content .step-title { font-weight: 600; margin-bottom: 4px; }
+  .step-content .step-desc { color: var(--muted); font-size: 13px; }
+
+  /* ── Flow diagram ── */
+  .flow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 16px 0;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+  }
+  .flow-box {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 8px 14px;
+    font-size: 12px;
+    font-family: var(--mono);
+    white-space: nowrap;
+    color: var(--text);
+    flex-shrink: 0;
+  }
+  .flow-box.blue { border-color: var(--blue); color: var(--blue); }
+  .flow-box.amber { border-color: var(--amber); color: var(--amber); }
+  .flow-arrow { color: var(--muted); font-size: 16px; flex-shrink: 0; }
+  .flow-label { font-size: 11px; color: var(--muted); text-align: center; margin-top: 4px; }
+
+  /* ── Milestone timeline ── */
+  .timeline { margin: 20px 0; }
+  .milestone {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 16px;
+    margin-bottom: 4px;
+  }
+  .ms-week {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    padding-top: 12px;
+    text-align: right;
+  }
+  .ms-body {
+    border-left: 2px solid var(--border);
+    padding: 12px 0 12px 20px;
+    position: relative;
+  }
+  .ms-body::before {
+    content: '';
+    position: absolute;
+    left: -5px;
+    top: 18px;
+    width: 8px;
+    height: 8px;
+    background: var(--blue);
+    border-radius: 50%;
+  }
+  .ms-title { font-weight: 600; margin-bottom: 6px; }
+  .ms-tasks { list-style: none; }
+  .ms-tasks li { font-size: 13px; color: var(--muted); padding: 2px 0; }
+  .ms-tasks li::before { content: "· "; }
+  .ms-deliver {
+    margin-top: 8px;
+    font-size: 12px;
+    font-family: var(--mono);
+    color: var(--green);
+    background: var(--green-dim);
+    padding: 4px 10px;
+    border-radius: 4px;
+    display: inline-block;
+  }
+
+  /* ── Section anchor offset ── */
+  [id] { scroll-margin-top: 24px; }
+
+  /* ── Separator ── */
+  .sep { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+  /* ── Two-col ── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+
+  @media (max-width: 700px) {
+    .demo-grid, .two-col { grid-template-columns: 1fr; }
+    nav { display: none; }
+    main { padding: 24px 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- ── Sidebar ── -->
+<nav>
+  <div class="logo">
+    <div class="name">EpiDataKit</div>
+    <div class="ver">dev-spec v1.0 · 2026-03-30</div>
+  </div>
+  <div class="section-label">Overview</div>
+  <a href="#overview">项目概览</a>
+  <a href="#stack">技术栈</a>
+  <a href="#data-sources">数据源总览</a>
+
+  <div class="section-label">Demo A · BioEpi</div>
+  <a href="#bioepi-flow">用户流程</a>
+  <a href="#bioepi-api">API 规范</a>
+  <a href="#bioepi-pipeline">数据管道</a>
+  <a href="#bioepi-ai">AI 生成</a>
+  <a href="#bioepi-ui">前端 UI</a>
+
+  <div class="section-label">Demo B · TobaccoEpi</div>
+  <a href="#tobacco-flow">用户流程</a>
+  <a href="#tobacco-api">API 规范</a>
+  <a href="#tobacco-pipeline">数据管道</a>
+  <a href="#tobacco-simulator">切换模拟器</a>
+  <a href="#tobacco-ui">前端 UI</a>
+
+  <div class="section-label">Engineering</div>
+  <a href="#milestones">开发里程碑</a>
+  <a href="#licenses">数据授权红线</a>
+  <a href="#perf">性能要求</a>
+  <a href="#tests">验收测试</a>
+</nav>
+
+<!-- ── Main content ── -->
+<main>
+
+<!-- Hero -->
+<div class="hero" id="overview">
+  <h1>EpiDataKit — Dev Spec</h1>
+  <div class="subtitle">疾病流行病学数据聚合平台 · 两个独立 Demo 的完整技术规格</div>
+  <div class="hero-meta">
+    <div class="meta-item"><span class="label">Phase: </span><span class="val">Demo MVP</span></div>
+    <div class="meta-item"><span class="label">Timeline: </span><span class="val">8 weeks</span></div>
+    <div class="meta-item"><span class="label">Demos: </span><span class="val">BioEpi + TobaccoEpi</span></div>
+    <div class="meta-item"><span class="label">Shared infra: </span><span class="val">Yes (separate brand)</span></div>
+  </div>
+</div>
+
+<!-- 两个 demo 对比 -->
+<div class="demo-grid">
+  <div class="demo-card bioepi">
+    <div class="demo-name">Demo A · BioEpi</div>
+    <div class="demo-sub">生物医药 &amp; 医疗器械</div>
+    <ul>
+      <li>客户：Biotech 市场准入团队</li>
+      <li>场景：NICE STA / EU JCA / CADTH 档案</li>
+      <li>输入：疾病名称 / ICD-10</li>
+      <li>输出：HTA 格式流行病学章节草稿</li>
+      <li>品牌色：蓝色系 <code>#1B4F72</code></li>
+    </ul>
+  </div>
+  <div class="demo-card tobaccoepi">
+    <div class="demo-name">Demo B · TobaccoEpi</div>
+    <div class="demo-sub">烟草 &amp; 尼古丁产品（独立品牌）</div>
+    <ul>
+      <li>客户：电子烟 / 尼古丁袋公司监管团队</li>
+      <li>场景：FDA PMTA / MRTP 申请</li>
+      <li>输入：市场 + 产品类型 + 监管路径</li>
+      <li>输出：吸烟率 + 归因疾病负担 + 切换模拟</li>
+      <li>品牌色：琥珀色系 <code>#784212</code></li>
+    </ul>
+  </div>
+</div>
+
+<div class="callout callout-err">
+  <strong>⚠️ 品牌隔离强制要求：</strong>两个 Demo 不得共用 Logo、主色、域名。前端路由 <code>/bioepi/*</code> 与 <code>/tobaccoepi/*</code> 完全独立，页面之间无跳转链接。TobaccoEpi 每页必须展示法律免责声明 Banner。
+</div>
+
+<!-- ── Tech Stack ── -->
+<h2 id="stack">技术栈</h2>
+<div class="two-col">
+  <div>
+    <h3>后端</h3>
+    <table>
+      <tr><td>Runtime</td><td>Python 3.11+</td></tr>
+      <tr><td>框架</td><td>FastAPI (async)</td></tr>
+      <tr><td>HTTP client</td><td>httpx (async)</td></tr>
+      <tr><td>数据处理</td><td>pandas / polars</td></tr>
+      <tr><td>缓存</td><td>Redis — TTL 24h</td></tr>
+      <tr><td>任务队列</td><td>Celery + Redis</td></tr>
+      <tr><td>数据库</td><td>PostgreSQL (meta) + S3 (files)</td></tr>
+      <tr><td>AI</td><td>Anthropic API <code>claude-sonnet-4-6</code></td></tr>
+      <tr><td>DOCX 生成</td><td>python-docx</td></tr>
+      <tr><td>XLSX 生成</td><td>openpyxl</td></tr>
+    </table>
+  </div>
+  <div>
+    <h3>前端</h3>
+    <table>
+      <tr><td>框架</td><td>React 18 + TypeScript</td></tr>
+      <tr><td>UI</td><td>shadcn/ui + Tailwind CSS</td></tr>
+      <tr><td>图表</td><td>Recharts (趋势) + D3 (地图)</td></tr>
+      <tr><td>状态</td><td>Zustand</td></tr>
+      <tr><td>数据请求</td><td>TanStack Query</td></tr>
+      <tr><td>表单</td><td>React Hook Form</td></tr>
+      <tr><td>路由</td><td>/bioepi/* 和 /tobaccoepi/*</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ── Data Sources ── -->
+<h2 id="data-sources">数据源总览</h2>
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr>
+      <th>数据源</th>
+      <th>内容</th>
+      <th>访问方式</th>
+      <th>更新频率</th>
+      <th>商业授权</th>
+      <th>用于</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>IHME GBD 2023</td>
+      <td>204国 患病率/发病率/DALYs 1990–2023</td>
+      <td>CSV 下载</td>
+      <td>年度</td>
+      <td><span class="badge badge-amber">⚠️ 商业需授权</span></td>
+      <td>BioEpi + TobaccoEpi</td>
+    </tr>
+    <tr>
+      <td>WHO GHO</td>
+      <td>1000+ 健康指标含烟草专项</td>
+      <td><code>ghoapi.azureedge.net/api/</code> OData</td>
+      <td>双周</td>
+      <td><span class="badge badge-green">✅ 开放</span></td>
+      <td>BioEpi + TobaccoEpi</td>
+    </tr>
+    <tr>
+      <td>Eurostat</td>
+      <td>欧洲死亡率/疾病/人口统计</td>
+      <td>REST API JSON</td>
+      <td>日更</td>
+      <td><span class="badge badge-green">✅ 开放</span></td>
+      <td>BioEpi</td>
+    </tr>
+    <tr>
+      <td>SEER (NCI)</td>
+      <td>美国癌症发病率/生存率</td>
+      <td>REST API (需免费 API Key)</td>
+      <td>年度</td>
+      <td><span class="badge badge-green">✅ 公有领域</span></td>
+      <td>BioEpi (US 癌症)</td>
+    </tr>
+    <tr>
+      <td>CDC WONDER</td>
+      <td>美国死亡率/发病率</td>
+      <td>REST API</td>
+      <td>年度</td>
+      <td><span class="badge badge-green">✅ 公有领域</span></td>
+      <td>BioEpi (US)</td>
+    </tr>
+    <tr>
+      <td>ECIS (EU)</td>
+      <td>欧洲癌症发病率/患病率</td>
+      <td>REST API</td>
+      <td>年度</td>
+      <td><span class="badge badge-green">✅ 开放</span></td>
+      <td>BioEpi (EU 癌症)</td>
+    </tr>
+    <tr>
+      <td>WHO GATS/GYTS</td>
+      <td>全球烟草使用率调查</td>
+      <td>WHO GHO API（聚合数据）</td>
+      <td>不定期</td>
+      <td><span class="badge badge-amber">⚠️ 原始数据非公开，GHO聚合可用</span></td>
+      <td>TobaccoEpi</td>
+    </tr>
+    <tr>
+      <td>FDA AEMS</td>
+      <td>全产品线不良事件（药物/器械/烟草）</td>
+      <td>openFDA API（2026年3月统一）</td>
+      <td>实时</td>
+      <td><span class="badge badge-green">✅ 完全开放</span></td>
+      <td>TobaccoEpi 监管背景</td>
+    </tr>
+    <tr>
+      <td>WHO 死亡率数据库</td>
+      <td>ICD 编码死因数据</td>
+      <td>CSV 下载</td>
+      <td>年度</td>
+      <td><span class="badge badge-red">❌ 禁止商业用途</span></td>
+      <td>用 Eurostat 替代</td>
+    </tr>
+    <tr>
+      <td>UN Comtrade</td>
+      <td>烟草贸易数据 (HS code 24)</td>
+      <td>API v2</td>
+      <td>年度</td>
+      <td><span class="badge badge-green">✅ 开放</span></td>
+      <td>TobaccoEpi</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="callout callout-warn">
+  <strong>Demo 阶段数据策略：</strong>优先使用 WHO GHO + Eurostat + CDC WONDER（三者无商业限制）。IHME GBD 的丰富数据在产品验证后联系 <code>ihme@uw.edu</code> 申请商业授权再集成。
+</div>
+
+<!-- ═══════════════ DEMO A · BIOEPI ═══════════════ -->
+<h2 id="bioepi-flow" style="border-top-color:#1d3a6e;color:#3b82f6">Demo A · BioEpi — 用户流程</h2>
+
+<div class="flow">
+  <div>
+    <div class="flow-box blue">① 输入疾病</div>
+    <div class="flow-label">ICD-10 / 名称搜索</div>
+  </div>
+  <div class="flow-arrow">→</div>
+  <div>
+    <div class="flow-box blue">② 选目标市场</div>
+    <div class="flow-label">US / UK / EU5 / JP</div>
+  </div>
+  <div class="flow-arrow">→</div>
+  <div>
+    <div class="flow-box blue">③ 选 HTA 模板</div>
+    <div class="flow-label">NICE / JCA / CADTH</div>
+  </div>
+  <div class="flow-arrow">→</div>
+  <div>
+    <div class="flow-box blue">④ 并发拉取数据</div>
+    <div class="flow-label">4个数据源 &lt;8s</div>
+  </div>
+  <div class="flow-arrow">→</div>
+  <div>
+    <div class="flow-box blue">⑤ Claude 生成文本</div>
+    <div class="flow-label">HTA 格式草稿</div>
+  </div>
+  <div class="flow-arrow">→</div>
+  <div>
+    <div class="flow-box blue">⑥ 预览 + 导出</div>
+    <div class="flow-label">DOCX / XLSX</div>
+  </div>
+</div>
+
+<!-- BioEpi API -->
+<h2 id="bioepi-api">BioEpi — API 规范</h2>
+
+<h3>POST /api/v1/report/bioepi</h3>
+<p>异步任务，立即返回 <code>job_id</code>，轮询状态端点获取结果。</p>
+
+<pre><span class="c">// Request Body</span>
+{
+  <span class="s">"disease_query"</span>:   <span class="s">"type 2 diabetes"</span>,  <span class="c">// 疾病名 或 ICD-10 代码 (e.g. "E11")</span>
+  <span class="s">"target_markets"</span>:  [<span class="s">"US"</span>, <span class="s">"UK"</span>, <span class="s">"DE"</span>],   <span class="c">// EU5 = DE+FR+IT+ES+UK</span>
+  <span class="s">"hta_template"</span>:    <span class="s">"NICE_STA"</span>,            <span class="c">// NICE_STA | EU_JCA | CADTH | ICER | INTERNAL</span>
+  <span class="s">"year_range"</span>:      [<span class="n">2013</span>, <span class="n">2023</span>],          <span class="c">// 可选，默认 [2013, 2023]</span>
+  <span class="s">"output_format"</span>:   [<span class="s">"DOCX"</span>, <span class="s">"XLSX"</span>]       <span class="c">// 可选，默认两者都输出</span>
+}
+
+<span class="c">// Response 202 Accepted</span>
+{
+  <span class="s">"job_id"</span>:              <span class="s">"bio_abc123"</span>,
+  <span class="s">"status"</span>:              <span class="s">"queued"</span>,
+  <span class="s">"estimated_seconds"</span>:   <span class="n">12</span>
+}</pre>
+
+<h3>GET /api/v1/report/{job_id}/status</h3>
+<pre><span class="c">// 轮询直到 status === "completed"</span>
+{
+  <span class="s">"status"</span>:  <span class="s">"completed"</span>,  <span class="c">// queued | processing | completed | failed</span>
+  <span class="s">"results"</span>: {
+    <span class="s">"docx_url"</span>:     <span class="s">"https://s3.../bioepi_t2dm_US_UK_DE_20260330.docx"</span>,
+    <span class="s">"xlsx_url"</span>:     <span class="s">"https://s3.../bioepi_t2dm_US_UK_DE_20260330.xlsx"</span>,
+    <span class="s">"preview_data"</span>: { <span class="c">/* 图表所需的标准化数据，见下方 NormalizedRecord */</span> }
+  }
+}</pre>
+
+<!-- BioEpi Pipeline -->
+<h2 id="bioepi-pipeline">BioEpi — 数据管道实现</h2>
+
+<h3>Step 1 · ICD-10 映射</h3>
+<pre><span class="c"># 优先本地词库 fuzzy match，fallback 到 WHO ICD API</span>
+
+<span class="c"># 1a. 本地匹配（推荐：预下载 ICD-10 CM CSV）</span>
+icd_codes = <span class="f">icd_search</span>(query)  <span class="c"># 返回 ['E11', 'E11.9', ...]</span>
+
+<span class="c"># 1b. Fallback: WHO ICD-11 API</span>
+GET <span class="s">https://id.who.int/icd/release/11/2024-01/mms/search?q={query}</span>
+
+<span class="c"># 1c. GBD cause_id 映射（预建静态映射表）</span>
+cause_ids = <span class="f">icd_to_gbd_cause</span>(icd_codes)  <span class="c"># e.g. [587] for type 2 diabetes</span></pre>
+
+<h3>Step 2 · 并发数据拉取</h3>
+<pre><span class="k">async def</span> <span class="f">fetch_bioepi_data</span>(cause_ids, markets, year_range):
+    tasks = [
+        <span class="f">fetch_gbd_csv</span>(cause_ids, markets, year_range),   <span class="c"># 本地缓存的 CSV</span>
+        <span class="f">fetch_who_gho</span>(icd_codes, markets),                <span class="c"># OData API</span>
+        <span class="f">fetch_eurostat</span>(icd_codes, markets),               <span class="c"># REST API</span>
+        <span class="f">fetch_seer</span>(icd_codes) <span class="k">if</span> <span class="s">"US"</span> <span class="k">in</span> markets <span class="k">else</span> <span class="k">None</span>,
+    ]
+    results = <span class="k">await</span> asyncio.<span class="f">gather</span>(*[t <span class="k">for</span> t <span class="k">in</span> tasks <span class="k">if</span> t])
+    <span class="k">return</span> <span class="f">merge_and_normalize</span>(results)
+
+<span class="c"># WHO GHO OData — 患病率指标示例</span>
+GET <span class="s">https://ghoapi.azureedge.net/api/NCD_GLUC_04</span>
+    <span class="s">?$filter=SpatialDim eq 'USA' and TimeDim ge 2015 and TimeDim le 2023</span>
+    <span class="s">&$select=SpatialDim,TimeDim,Dim1,NumericValue,Low,High</span>
+
+<span class="c"># Eurostat — 死亡原因</span>
+GET <span class="s">https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/hlth_cd_aro</span>
+    <span class="s">?geo=DE&icd10=E10-E14&time=2022&format=JSON</span></pre>
+
+<h3>Step 3 · 标准化数据结构</h3>
+<pre><span class="c"># 所有数据源统一输出此结构，前端只需处理一种格式</span>
+<span class="t">NormalizedRecord</span> = {
+    <span class="s">"disease"</span>:    <span class="t">str</span>,    <span class="c"># "type 2 diabetes"</span>
+    <span class="s">"icd_code"</span>:   <span class="t">str</span>,    <span class="c"># "E11"</span>
+    <span class="s">"metric"</span>:     <span class="t">str</span>,    <span class="c"># prevalence | incidence | daly_rate | mortality</span>
+    <span class="s">"value"</span>:      <span class="t">float</span>,
+    <span class="s">"unit"</span>:       <span class="t">str</span>,    <span class="c"># per_100k | absolute | percentage</span>
+    <span class="s">"country"</span>:    <span class="t">str</span>,    <span class="c"># ISO3: "USA", "GBR", "DEU"</span>
+    <span class="s">"year"</span>:       <span class="t">int</span>,
+    <span class="s">"age_group"</span>:  <span class="t">str</span>,    <span class="c"># "all_ages" | "15-49" | "50+"</span>
+    <span class="s">"sex"</span>:        <span class="t">str</span>,    <span class="c"># "both" | "male" | "female"</span>
+    <span class="s">"source"</span>:     <span class="t">str</span>,    <span class="c"># "GBD2023" | "WHO_GHO" | "Eurostat" | "SEER"</span>
+    <span class="s">"ui_lower"</span>:   <span class="t">float</span>,  <span class="c"># 95% UI，GBD 专有，其他来源可为 null</span>
+    <span class="s">"ui_upper"</span>:   <span class="t">float</span>,
+    <span class="s">"citation"</span>:   <span class="t">str</span>,    <span class="c"># 已格式化的引用字符串</span>
+}</pre>
+
+<!-- BioEpi AI -->
+<h2 id="bioepi-ai">BioEpi — Claude API 文本生成</h2>
+
+<pre><span class="c"># 调用参数</span>
+model      = <span class="s">"claude-sonnet-4-6"</span>
+max_tokens = <span class="n">2000</span>
+
+<span class="c"># System Prompt（NICE STA 示例）</span>
+system = <span class="s">"""
+你是一名专业流行病学分析师，专门为制药公司准备 NICE STA 档案。
+将提供的流行病学数据转化为符合 NICE 格式要求的背景章节草稿。
+
+格式要求：
+- 第三人称学术语气
+- 每个数据点必须附括号内来源引用
+- 数字格式：千位分隔符，2位有效数字（如 3.42 million）
+- 包含 95% 不确定区间（如有）
+- 段落结构：患病率 → 发病率 → 趋势 → 地区差异 → DALYs
+- 长度 200–350 字
+- 不得添加数据中未出现的数字
+"""</span>
+
+<span class="c"># User Prompt（动态注入数据）</span>
+user = <span class="f">f</span><span class="s">"""
+疾病：{disease_name}（ICD-10: {icd_code}）
+目标市场：{', '.join(markets)}
+报告用途：{hta_template}
+
+数据摘要：
+{json.dumps(data_summary, ensure_ascii=False, indent=2)}
+
+请生成流行病学背景章节草稿。
+"""</span></pre>
+
+<!-- BioEpi UI -->
+<h2 id="bioepi-ui">BioEpi — 前端 UI 规格</h2>
+<p>三步向导，线性流程，不允许跳步。</p>
+
+<div class="table-wrap">
+<table>
+  <thead><tr><th>步骤</th><th>组件名</th><th>行为说明</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>Step 1<br>输入疾病</td>
+      <td><code>DiseaseSearchCombobox</code></td>
+      <td>输入关键词实时搜索本地 ICD-10 词库，展示 ICD 代码 + 疾病名匹配列表。选中后展示蓝色 tag，显示 ICD 代码和疾病全名。</td>
+    </tr>
+    <tr>
+      <td>Step 2<br>配置</td>
+      <td><code>MarketCheckboxGroup</code><br><code>TemplateRadioGroup</code><br><code>YearRangePicker</code></td>
+      <td>市场复选框（EU5 一键勾选 5 国）。HTA 模板单选。年份范围滑块，默认 2013–2023。步骤完成才能解锁 Step 3 按钮。</td>
+    </tr>
+    <tr>
+      <td>Step 3<br>结果</td>
+      <td><code>TrendLineChart</code><br><code>GeoMap</code><br><code>AITextEditor</code><br><code>ExportToolbar</code></td>
+      <td>左侧图表区（趋势折线 + 地图）。右侧 AI 草稿（可直接编辑 contenteditable）。底部 DOCX / XLSX 导出按钮。加载中显示 skeleton + 进度条。</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h3>输出文件规范</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>文件</th><th>命名规则</th><th>内容</th></tr></thead>
+  <tbody>
+    <tr><td>DOCX</td><td><code>bioepi_{disease}_{markets}_{date}.docx</code></td><td>AI 生成的 HTA 格式流行病学章节，含引用列表</td></tr>
+    <tr><td>XLSX</td><td><code>bioepi_{disease}_{markets}_{date}.xlsx</code></td><td>Sheet1: 患病率原始数据 / Sheet2: 发病率DALYs / Sheet3: 引用列表</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ═══════════════ DEMO B · TOBACCOEPI ═══════════════ -->
+<h2 id="tobacco-flow" style="border-top-color:#4a2e08;color:#f59e0b">Demo B · TobaccoEpi — 用户流程</h2>
+
+<div class="callout callout-err">
+  <strong>法律免责声明（每个页面 Header 必须展示）：</strong>本工具提供的数据仅供科学研究和内部决策参考，不构成 FDA PMTA/MRTP 申请的正式证据。FDA 明确声明烟草不良事件报告不能单独用于估计风险或比较产品。
+</div>
+
+<div class="flow">
+  <div>
+    <div class="flow-box amber">① 选市场</div>
+    <div class="flow-label">US / UK / EU5</div>
+  </div>
+  <div class="flow-arrow">→</div>
+  <div>
+    <div class="flow-box amber">② 产品类型</div>
+    <div class="flow-label">ENDS / NP / HTP</div>
+  </div>
+  <div class="flow-arrow">→</div>
+  <div>
+    <div class="flow-box amber">③ 监管路径</div>
+    <div class="flow-label">PMTA / MRTP / SE</div>
+  </div>
+  <div class="flow-arrow">→</div>
+  <div>
+    <div class="flow-box amber">④ 拉取烟草数据</div>
+    <div class="flow-label">吸烟率 + 归因DALYs</div>
+  </div>
+  <div class="flow-arrow">→</div>
+  <div>
+    <div class="flow-box amber">⑤ 切换模拟（可选）</div>
+    <div class="flow-label">客户填 relative_harm</div>
+  </div>
+  <div class="flow-arrow">→</div>
+  <div>
+    <div class="flow-box amber">⑥ 导出报告</div>
+    <div class="flow-label">含免责声明</div>
+  </div>
+</div>
+
+<!-- TobaccoEpi API -->
+<h2 id="tobacco-api">TobaccoEpi — API 规范</h2>
+
+<h3>POST /api/v1/report/tobaccoepi</h3>
+<pre><span class="c">// Request Body</span>
+{
+  <span class="s">"target_markets"</span>:       [<span class="s">"US"</span>],
+  <span class="s">"product_type"</span>:          <span class="s">"NP"</span>,          <span class="c">// ENDS | NP | HTP | SMOKELESS</span>
+  <span class="s">"regulatory_pathway"</span>:    <span class="s">"MRTP"</span>,        <span class="c">// PMTA | MRTP | SE_REPORT</span>
+  <span class="s">"include_attribution"</span>:   <span class="k">true</span>,          <span class="c">// 是否纳入烟草归因疾病负担</span>
+  <span class="s">"switching_scenario"</span>:    {             <span class="c">// 可选</span>
+    <span class="s">"switch_rate"</span>:     <span class="n">0.10</span>,
+    <span class="kw">"relative_harm"</span>:   <span class="n">0.05</span>,           <span class="c">// ⚠️ 客户自填，工具不提供</span>
+    <span class="s">"horizon_years"</span>:   <span class="n">10</span>
+  },
+  <span class="s">"age_group_focus"</span>:  <span class="s">"adult"</span>,         <span class="c">// adult | youth | both</span>
+  <span class="s">"year_range"</span>:       [<span class="n">2015</span>, <span class="n">2024</span>]
+}
+
+<span class="c">// Response 202 Accepted</span>
+{
+  <span class="s">"job_id"</span>:      <span class="s">"tob_xyz789"</span>,
+  <span class="s">"status"</span>:      <span class="s">"queued"</span>,
+  <span class="s">"disclaimer"</span>:  <span class="s">"Data for research purposes only. Not for regulatory submission."</span>,
+  <span class="s">"estimated_seconds"</span>: <span class="n">14</span>
+}</pre>
+
+<!-- TobaccoEpi Pipeline -->
+<h2 id="tobacco-pipeline">TobaccoEpi — 数据管道</h2>
+
+<h3>模块 A · 吸烟率数据（WHO GHO）</h3>
+<pre><span class="c"># 核心 WHO GHO 烟草指标代码</span>
+M_Est_smk_curr          <span class="c"># 当前吸烟率（按性别）</span>
+TOBACCO_0000000192      <span class="c"># 15岁以上年龄标准化吸烟率</span>
+TOBSMOKEDAILY           <span class="c"># 每日吸烟率</span>
+TOBACCO_0000000194      <span class="c"># 青少年（13-15岁）吸烟率</span>
+TOBCESSATION            <span class="c"># 戒烟服务可及性</span>
+
+<span class="c"># API 调用示例</span>
+GET <span class="s">https://ghoapi.azureedge.net/api/M_Est_smk_curr</span>
+    <span class="s">?$filter=SpatialDim eq 'USA' and TimeDim ge 2015 and TimeDim le 2024</span>
+    <span class="s">&$select=SpatialDim,TimeDim,Dim1,NumericValue,Low,High</span>
+
+<span class="c"># 返回字段：</span>
+<span class="c"># Dim1         = SEX: MLE(男) / FMLE(女) / BTSX(合计)</span>
+<span class="c"># NumericValue = 吸烟率 %</span>
+<span class="c"># Low / High   = 95% CI</span></pre>
+
+<h3>模块 B · 烟草归因疾病负担（PAF 计算）</h3>
+<pre><span class="c"># GBD 2023 烟草风险因子 REI ID = 99 (smoking)</span>
+<span class="c"># 关注疾病（与 PMTA/MRTP 核心关切对应）：</span>
+TOBACCO_ATTRIBUTED_CAUSES = {
+    <span class="s">"C33-C34"</span>: <span class="s">"lung_cancer"</span>,        <span class="c"># cause_id = 426</span>
+    <span class="s">"J44"</span>:     <span class="s">"COPD"</span>,               <span class="c"># cause_id = 509</span>
+    <span class="s">"I20-I25"</span>: <span class="s">"ischemic_heart"</span>,    <span class="c"># cause_id = 493</span>
+    <span class="s">"I60-I69"</span>: <span class="s">"stroke"</span>,             <span class="c"># cause_id = 494</span>
+    <span class="s">"C15"</span>:     <span class="s">"esophageal_cancer"</span>, <span class="c"># cause_id = 411</span>
+}
+
+<span class="c"># PAF（人群归因分数）计算</span>
+<span class="k">def</span> <span class="f">calc_paf</span>(smoking_dalys: float, total_dalys: float) -> float:
+    <span class="k">return</span> smoking_dalys / total_dalys <span class="k">if</span> total_dalys > <span class="n">0</span> <span class="k">else</span> <span class="n">0</span>
+
+<span class="c"># GBD CSV 字段：location / year / cause / sex / age / measure / val / upper / lower</span>
+<span class="c"># measure = "DALYs" 或 "Deaths"，按 rei="smoking" 筛选</span></pre>
+
+<!-- Simulator -->
+<h2 id="tobacco-simulator">TobaccoEpi — 切换收益模拟器</h2>
+
+<div class="callout callout-warn">
+  <strong>⚠️ relative_harm 不由本工具提供。</strong>此参数必须由客户基于自有毒理学/生物标志物研究填写，并在 UI 中以红色边框 + 警告文字标注。工具只提供计算框架。
+</div>
+
+<pre><span class="c"># 核心公式（简化版，Demo 阶段）</span>
+<span class="c"># 避免的 DALYs = 吸烟人数 × 切换率 × PAF × (1 - 相对危害系数) × 年份权重</span>
+
+<span class="k">def</span> <span class="f">switching_impact</span>(
+    smoker_population: <span class="t">int</span>,    <span class="c"># 目标市场当前吸烟人数（来自模块A）</span>
+    switch_rate:       <span class="t">float</span>,  <span class="c"># 切换率 0.0–1.0，用户拖滑块输入</span>
+    paf_dict:          <span class="t">dict</span>,   <span class="c"># 各疾病 PAF（来自模块B）</span>
+    relative_harm:     <span class="t">float</span>,  <span class="c"># ⚠️ 客户自填：0.0=无害，1.0=等同香烟</span>
+    horizon_years:     <span class="t">int</span> = <span class="n">10</span>
+) -> <span class="t">dict</span>:
+    avoided = {}
+    <span class="k">for</span> cause, paf <span class="k">in</span> paf_dict.items():
+        annual = smoker_population * switch_rate * paf * (<span class="n">1</span> - relative_harm)
+        avoided[cause] = {
+            <span class="s">"annual_avoided_dalys"</span>:      <span class="f">round</span>(annual),
+            <span class="s">"cumulative_10yr_dalys"</span>:     <span class="f">round</span>(annual * horizon_years),
+            <span class="s">"note"</span>: <span class="s">"Simplified model. Not for regulatory submission."</span>
+        }
+    <span class="k">return</span> avoided</pre>
+
+<!-- TobaccoEpi UI -->
+<h2 id="tobacco-ui">TobaccoEpi — 前端 UI 规格</h2>
+
+<div class="table-wrap">
+<table>
+  <thead><tr><th>标签页</th><th>组件</th><th>说明</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>Tab 1<br>吸烟率概览</td>
+      <td><code>CountrySelector</code><br><code>TrendLineChart</code><br><code>AgeGenderPyramid</code></td>
+      <td>选择国家展示过去 10 年吸烟率趋势（分男/女折线）。当前年份的年龄-性别金字塔图（d3-bar）。</td>
+    </tr>
+    <tr>
+      <td>Tab 2<br>疾病归因负担</td>
+      <td><code>CauseMultiSelect</code><br><code>BurdenBarChart</code><br><code>PafGaugeChart</code></td>
+      <td>多选疾病类型，展示各疾病烟草归因 DALYs 和 PAF。Gauge 直观显示归因比例（0–100%）。</td>
+    </tr>
+    <tr>
+      <td>Tab 3<br>切换模拟</td>
+      <td><code>SwitchRateSlider</code><br><code>RelativeHarmInput</code><br><code>ImpactWaterfallChart</code><br><code>DisclaimerBanner</code></td>
+      <td>滑块调切换率（5–30%）。<code>RelativeHarmInput</code> 红色边框 + 警告图标，tooltip 写"请基于您的研究填写"。瀑布图实时更新各疾病避免 DALYs。顶部固定免责声明 Banner。</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ═══════════════ MILESTONES ═══════════════ -->
+<h2 id="milestones">开发里程碑</h2>
+
+<div class="timeline">
+  <div class="milestone">
+    <div class="ms-week">W1–W2</div>
+    <div class="ms-body">
+      <div class="ms-title">M1 · 基础架构</div>
+      <ul class="ms-tasks">
+        <li>搭建 FastAPI 项目骨架 + Docker Compose（app + redis + postgres）</li>
+        <li>实现 WHO GHO OData API 调用 + Eurostat REST API 调用</li>
+        <li>定义 <code>NormalizedRecord</code> 数据结构</li>
+        <li>Redis 缓存层（key: <code>{disease}_{market}_{year}</code>，TTL 24h）</li>
+        <li>React + Tailwind 项目初始化，建立 <code>/bioepi/*</code> 和 <code>/tobaccoepi/*</code> 路由</li>
+      </ul>
+      <span class="ms-deliver">✓ 可运行的后端 + 前端空壳</span>
+    </div>
+  </div>
+  <div class="milestone">
+    <div class="ms-week">W3–W4</div>
+    <div class="ms-body">
+      <div class="ms-title">M2 · BioEpi Demo</div>
+      <ul class="ms-tasks">
+        <li>ICD-10 本地词库 + WHO ICD API fallback</li>
+        <li>GBD CSV 解析 + SEER API 集成</li>
+        <li>Claude API 集成（NICE STA 模板 system prompt）</li>
+        <li>三步向导 UI + 趋势折线图 + 简易地图</li>
+        <li>DOCX + XLSX 导出</li>
+      </ul>
+      <span class="ms-deliver">✓ BioEpi 可完整演示</span>
+    </div>
+  </div>
+  <div class="milestone">
+    <div class="ms-week">W5–W6</div>
+    <div class="ms-body">
+      <div class="ms-title">M3 · TobaccoEpi Demo</div>
+      <ul class="ms-tasks">
+        <li>WHO GHO 烟草指标抓取（10 个核心指标代码）</li>
+        <li>GBD 烟草归因数据解析 + PAF 计算逻辑</li>
+        <li>切换收益模拟器（公式实现 + relative_harm 用户输入）</li>
+        <li>Claude API 集成（PMTA 格式 system prompt）</li>
+        <li>三标签页 UI + 免责声明 Banner 组件</li>
+      </ul>
+      <span class="ms-deliver">✓ TobaccoEpi 可完整演示</span>
+    </div>
+  </div>
+  <div class="milestone">
+    <div class="ms-week">W7–W8</div>
+    <div class="ms-body">
+      <div class="ms-title">M4 · 打磨 &amp; 测试</div>
+      <ul class="ms-tasks">
+        <li>端到端测试（5 个真实疾病 / 3 个烟草产品场景）</li>
+        <li>性能优化：并发拉取 &lt;8s，报告生成 &lt;15s</li>
+        <li>错误处理 + Loading skeleton 状态</li>
+        <li>法律声明文案最终确认</li>
+      </ul>
+      <span class="ms-deliver">✓ 两个 Demo 均可向客户演示</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ LICENSES ═══════════════ -->
+<h2 id="licenses">数据授权红线</h2>
+<div class="callout callout-err">
+  <strong>开发前必读。</strong>违反授权条款会导致产品无法商业化。
+</div>
+
+<div class="table-wrap">
+<table>
+  <thead><tr><th>数据源</th><th>限制</th><th>Demo 阶段处理</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>IHME GBD</td>
+      <td><span class="badge badge-amber">商业须授权</span></td>
+      <td>Demo 阶段用 WHO GHO 替代。产品验证后联系 <code>ihme@uw.edu</code> 申请商业授权。</td>
+    </tr>
+    <tr>
+      <td>WHO 死亡率数据库</td>
+      <td><span class="badge badge-red">禁止商业使用</span></td>
+      <td>全部替换为 Eurostat 死亡率数据（欧洲覆盖等效，开放授权）。</td>
+    </tr>
+    <tr>
+      <td>GATS 原始微观数据</td>
+      <td><span class="badge badge-amber">非公开，需申请</span></td>
+      <td>使用 WHO GHO API 的国家级聚合烟草指标（商业可用）。</td>
+    </tr>
+    <tr>
+      <td>FDA AEMS</td>
+      <td><span class="badge badge-green">完全开放</span></td>
+      <td>直接调用 openFDA API，无限制。</td>
+    </tr>
+    <tr>
+      <td>Eurostat / CDC / SEER / UN Comtrade</td>
+      <td><span class="badge badge-green">完全开放</span></td>
+      <td>直接使用，无任何限制。</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ═══════════════ PERFORMANCE ═══════════════ -->
+<h2 id="perf">性能要求</h2>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>指标</th><th>目标</th><th>实现方式</th></tr></thead>
+  <tbody>
+    <tr><td>API 响应时间</td><td><code>&lt; 8s</code></td><td><code>asyncio.gather</code> 并发调所有数据源。GBD CSV 预下载本地，避免远程 IO。</td></tr>
+    <tr><td>报告生成时间</td><td><code>&lt; 15s</code></td><td>Claude API ~3–5s + DOCX 生成 ~2s。缓存命中时跳过 API 调用。</td></tr>
+    <tr><td>缓存策略</td><td>TTL 24h</td><td>Redis key: <code>bioepi:{disease_code}:{markets_hash}:{year_range}</code></td></tr>
+    <tr><td>Demo 并发</td><td>≥ 10 用户</td><td>Demo 阶段单机部署，Celery worker 4 进程。</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ═══════════════ TESTS ═══════════════ -->
+<h2 id="tests">验收测试用例</h2>
+
+<h3>BioEpi 测试</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>#</th><th>输入</th><th>验收标准</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>T1</td>
+      <td><code>disease="type 2 diabetes"</code><br><code>markets=[US,UK]</code><br><code>template=NICE_STA</code></td>
+      <td>DOCX 含患病率数字（标注来源）+ 趋势描述 + 引用列表。趋势图显示 2013–2023 折线。</td>
+    </tr>
+    <tr>
+      <td>T2</td>
+      <td><code>disease="E11"</code>（ICD 直接输入）<br><code>markets=[DE,FR,IT]</code></td>
+      <td>正确识别 ICD 代码并映射疾病名。三国数据独立展示，不合并。</td>
+    </tr>
+    <tr>
+      <td>T3</td>
+      <td><code>disease="non-small cell lung cancer"</code><br><code>markets=[US]</code><br><code>template=ICER</code></td>
+      <td>SEER 数据正确集成。ICER 模板的段落结构与 NICE 格式有可见差异。</td>
+    </tr>
+    <tr>
+      <td>T4</td>
+      <td><code>disease="xyzabc123"</code>（无效输入）</td>
+      <td>友好错误提示"未找到匹配疾病"，不 500。建议相似疾病名（可选）。</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h3>TobaccoEpi 测试</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>#</th><th>输入</th><th>验收标准</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>T5</td>
+      <td><code>markets=[US], product=NP</code><br><code>pathway=PMTA</code><br><code>include_attribution=true</code></td>
+      <td>US 当前吸烟率有正确数字（来源 WHO GHO）。含肺癌/COPD/CVD 的烟草归因 DALYs。免责声明在第一页显示。</td>
+    </tr>
+    <tr>
+      <td>T6</td>
+      <td><code>switching={switch_rate:0.1, relative_harm:0.05}</code></td>
+      <td>计算结果为正整数 DALYs。<code>relative_harm</code> 字段旁显示"⚠️ 客户自填"警告。报告封面有免责声明。</td>
+    </tr>
+    <tr>
+      <td>T7</td>
+      <td><code>markets=[UK,DE], product=HTP</code><br><code>pathway=MRTP</code></td>
+      <td>UK 和 DE 吸烟率数据来自正确来源。两国 PAF 数值有差异（不完全相同）。</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<!-- API Quick Ref -->
+<h2 id="api-ref" style="display:none">API 速查</h2>
+
+<h3>外部 API 端点速查表</h3>
+<pre><span class="c"># ── 通用 / BioEpi ──────────────────────────────────────────────</span>
+
+<span class="c"># WHO GHO OData（浏览所有指标）</span>
+GET <span class="s">https://ghoapi.azureedge.net/api/Indicator</span>
+
+<span class="c"># WHO GHO 单指标查询</span>
+GET <span class="s">https://ghoapi.azureedge.net/api/{IndicatorCode}</span>
+    <span class="s">?$filter=SpatialDim eq 'USA' and TimeDim ge 2015</span>
+
+<span class="c"># Eurostat（健康数据集索引）</span>
+GET <span class="s">https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/{dataset_id}</span>
+    <span class="s">?geo=DE&time=2022&format=JSON</span>
+
+<span class="c"># SEER API（癌症，需免费注册 API Key）</span>
+GET <span class="s">https://api.seer.cancer.gov/rest/statistics/...</span>
+
+<span class="c"># CDC WONDER</span>
+GET <span class="s">https://wonder.cdc.gov/controller/datarequest/{database_id}</span>
+
+<span class="c"># openFDA AEMS（统一入口，替代 FAERS/MAUDE/CTPAE）</span>
+GET <span class="s">https://api.fda.gov/drug/event.json?search=...</span>
+GET <span class="s">https://api.fda.gov/device/event.json?search=...</span>
+GET <span class="s">https://api.fda.gov/tobacco/problem.json?search=...</span>
+
+<span class="c"># ── TobaccoEpi 专用 ────────────────────────────────────────────</span>
+
+<span class="c"># 核心烟草 GHO 指标（常用代码）</span>
+<span class="c"># M_Est_smk_curr        当前吸烟率（按性别）</span>
+<span class="c"># TOBACCO_0000000192    15岁以上年龄标准化吸烟率</span>
+<span class="c"># TOBSMOKEDAILY         每日吸烟率</span>
+<span class="c"># TOBACCO_0000000194    青少年吸烟率（13-15岁）</span>
+
+<span class="c"># UN Comtrade v2（烟草贸易，HS code 24）</span>
+GET <span class="s">https://comtradeapi.un.org/data/v1/get/C/A/HS</span>
+    <span class="s">?reporterCode={iso3}&cmdCode=24</span>
+
+<span class="c"># FAOSTAT（烟草生产，item 826）</span>
+GET <span class="s">https://fenixservices.fao.org/faostat/api/v1/en/data/QCL</span>
+    <span class="s">?area_cs={country}&item_cs=826</span>
+
+<span class="c"># FDA PMTA 已授权产品列表（可爬取）</span>
+<span class="s">https://www.accessdata.fda.gov/scripts/fdcc/?set=TobaccoProducts</span></pre>
+
+<div style="height: 80px"></div>
+
+</main>
+</div>
+
+<script>
+  // Active nav highlight on scroll
+  const sections = document.querySelectorAll('[id]');
+  const navLinks = document.querySelectorAll('nav a');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`nav a[href="#${e.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
