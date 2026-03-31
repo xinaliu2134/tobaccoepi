@@ -81,6 +81,8 @@ h3{font-size:14px;font-weight:600;margin-bottom:12px}
 .callout-warn{background:var(--amber-dim);border-color:var(--amber);color:#92400e}
 .callout-err{background:var(--red-light);border-color:var(--red);color:#991b1b}
 .callout-info{background:var(--blue-light);border-color:var(--blue);color:#1e40af}
+.callout-blue{background:var(--blue-light);border-color:var(--blue);color:#1e40af}
+.callout-amber{background:var(--amber-dim);border-color:var(--amber);color:#92400e}
 .callout strong{font-weight:700}
 
 /* Simulator */
@@ -161,6 +163,7 @@ h3{font-size:14px;font-weight:600;margin-bottom:12px}
 <div class="panel active" id="panel-a1">
 <h2 data-i="a1_title"></h2>
 <div class="section-sub" data-i="a1_sub"></div>
+<div class="callout callout-blue" data-ih="a1_usecase"></div>
 <div class="stats-row">
  <div class="stat-card"><div class="stat-label" data-i="a1_s1l"></div><div class="stat-value">12</div></div>
  <div class="stat-card"><div class="stat-label" data-i="a1_s2l"></div><div class="stat-value">36.1%</div><div class="stat-detail">Elf Bar (&#8595; from 56.7%)</div></div>
@@ -184,12 +187,34 @@ h3{font-size:14px;font-weight:600;margin-bottom:12px}
  </tbody>
 </table>
 <span class="source-tag">FDA PMTA Database</span>
+
+<h3 data-i="a1_hist_title"></h3>
+<div style="overflow-x:auto">
+<table class="data-table">
+ <thead><tr><th>Rank</th><th>2020</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th></tr></thead>
+ <tbody>
+  <tr><td>1</td><td>JUUL 25.4%</td><td>Puff Bar 26.0%</td><td>Puff Bar 29.7%</td><td class="hl">Elf Bar 56.7%</td><td class="hl">Elf Bar 36.1%</td></tr>
+  <tr><td>2</td><td>Puff Bar 12.5%</td><td>Vuse 11.0%</td><td>Vuse 23.6%</td><td>Esco Bars 21.6%</td><td>Breeze 19.9%</td></tr>
+  <tr><td>3</td><td>Vuse 8.0%</td><td>JUUL 5.9%</td><td>JUUL 22.0%</td><td>Vuse 20.7%</td><td>Mr Fog 15.8%</td></tr>
+  <tr><td>4</td><td>SMOK 6.0%</td><td>SMOK 5.0%</td><td>SMOK 13.5%</td><td>JUUL 16.5%</td><td>Vuse 13.7%</td></tr>
+  <tr><td>5</td><td>Suorin 4.5%</td><td>Hyde 4.8%</td><td>NJOY 8.3%</td><td>Mr Fog 13.6%</td><td>JUUL 12.6%</td></tr>
+  <tr><td>6</td><td>NJOY 3.2%</td><td>Elf Bar 3.5%</td><td>Hyde 7.3%</td><td>Breeze 10.8%</td><td>Esco Bars 5.2%</td></tr>
+  <tr><td>7</td><td>blu 3.0%</td><td>Breeze 2.8%</td><td>blu 6.5%</td><td>Hyde 6.3%</td><td>Hyde 4.8%</td></tr>
+  <tr><td>8</td><td>Hyde 2.5%</td><td>NJOY 2.5%</td><td>Elf Bar 4.2%</td><td>Flum 4.5%</td><td>NJOY 3.5%</td></tr>
+  <tr><td>9</td><td>Logic 1.8%</td><td>blu 2.0%</td><td>Breeze 3.8%</td><td>Lost Mary 3.8%</td><td>Flum 2.8%</td></tr>
+  <tr><td>10</td><td>SMOK Nord 1.5%</td><td>Mr Fog 1.5%</td><td>Mr Fog 3.1%</td><td>NJOY 3.2%</td><td>Lost Mary 2.5%</td></tr>
+ </tbody>
+</table>
+</div>
+<span class="source-tag">NYTS 2020-2024 / MMWR / CDC</span>
+<div class="callout callout-amber" data-ih="a1_brand_insight"></div>
 </div>
 
 <!-- ===== A2: Youth Prevalence ===== -->
 <div class="panel" id="panel-a2">
 <h2 data-i="a2_title"></h2>
 <div class="section-sub" data-i="a2_sub"></div>
+<div class="callout callout-blue" data-ih="a2_usecase"></div>
 <div class="stats-row">
  <div class="stat-card"><div class="stat-label" data-i="a2_s1l"></div><div class="stat-value">8.1%</div></div>
  <div class="stat-card"><div class="stat-label" data-i="a2_s2l"></div><div class="stat-value">5.9%</div></div>
@@ -221,6 +246,7 @@ h3{font-size:14px;font-weight:600;margin-bottom:12px}
 <div class="panel" id="panel-a3">
 <h2 data-i="a3_title"></h2>
 <div class="section-sub" data-i="a3_sub"></div>
+<div class="callout callout-blue" data-ih="a3_usecase"></div>
 <div class="stats-row">
  <div class="stat-card"><div class="stat-label" data-i="a3_s1l"></div><div class="stat-value">1,337</div></div>
  <div class="stat-card"><div class="stat-label" data-i="a3_s2l"></div><div class="stat-value">810</div><div class="stat-detail">60.6%</div></div>
@@ -239,6 +265,7 @@ h3{font-size:14px;font-weight:600;margin-bottom:12px}
 <div class="panel" id="panel-a4">
 <h2 data-i="a4_title"></h2>
 <div class="section-sub" data-i="a4_sub"></div>
+<div class="callout callout-blue" data-ih="a4_usecase"></div>
 <div class="sim-controls">
  <div class="sim-group">
   <label data-i="a4_market"></label>
@@ -279,6 +306,7 @@ h3{font-size:14px;font-weight:600;margin-bottom:12px}
 <div class="panel" id="panel-a5">
 <h2 data-i="a5_title"></h2>
 <div class="section-sub" data-i="a5_sub"></div>
+<div class="callout callout-blue" data-ih="a5_usecase"></div>
 <div class="stats-row">
  <div class="stat-card"><div class="stat-label" data-i="a5_s1l"></div><div class="stat-value">1.8%</div><div class="stat-detail">NYTS 2024</div></div>
  <div class="stat-card"><div class="stat-label" data-i="a5_s2l"></div><div class="stat-value red">4.4%</div><div class="stat-detail">MTF 2025</div></div>
@@ -318,6 +346,7 @@ h3{font-size:14px;font-weight:600;margin-bottom:12px}
 <div class="panel" id="panel-b1">
 <h2 data-i="b1_title"></h2>
 <div class="section-sub" data-i="b1_sub"></div>
+<div class="callout callout-blue" data-ih="b1_usecase"></div>
 <div class="stats-row">
  <div class="stat-card"><div class="stat-label">Ozempic</div><div class="stat-value blue">59,880</div><div class="stat-detail" data-i="b_ae_reports"></div></div>
  <div class="stat-card"><div class="stat-label">Mounjaro</div><div class="stat-value blue">79,973</div><div class="stat-detail" data-i="b_ae_reports"></div></div>
@@ -373,6 +402,7 @@ h3{font-size:14px;font-weight:600;margin-bottom:12px}
 <div class="panel" id="panel-b2">
 <h2 data-i="b2_title"></h2>
 <div class="section-sub" data-i="b2_sub"></div>
+<div class="callout callout-blue" data-ih="b2_usecase"></div>
 <div class="chart-grid">
  <div class="chart-card full"><h3 data-i="b2_c1t"></h3><div class="chart-wrap tall"><canvas id="c-b2-radar"></canvas></div><span class="source-tag">FDA FAERS</span></div>
 </div>
@@ -394,6 +424,7 @@ h3{font-size:14px;font-weight:600;margin-bottom:12px}
 <div class="panel" id="panel-b3">
 <h2 data-i="b3_title"></h2>
 <div class="section-sub" data-i="b3_sub"></div>
+<div class="callout callout-blue" data-ih="b3_usecase"></div>
 <div class="stats-row">
  <div class="stat-card"><div class="stat-label" data-i="b3_s1l"></div><div class="stat-value blue">765</div></div>
  <div class="stat-card"><div class="stat-label" data-i="b3_s2l"></div><div class="stat-value red">1,723</div></div>
@@ -409,6 +440,7 @@ h3{font-size:14px;font-weight:600;margin-bottom:12px}
 <div class="panel" id="panel-b4">
 <h2 data-i="b4_title"></h2>
 <div class="section-sub" data-i="b4_sub"></div>
+<div class="callout callout-blue" data-ih="b4_usecase"></div>
 <div class="stats-row">
  <div class="stat-card"><div class="stat-label" data-i="b4_s1l"></div><div class="stat-value blue">3,225</div></div>
  <div class="stat-card"><div class="stat-label" data-i="b4_s2l"></div><div class="stat-value blue">18,960</div><div class="stat-detail" data-i="b4_cardio"></div></div>
@@ -472,9 +504,21 @@ var I={
  tab_b2:{en:'Competitive AE Benchmarking',zh:'竞品安全对标'},
  tab_b3:{en:'Recall & Quality',zh:'召回与质量'},
  tab_b4:{en:'Device Intelligence',zh:'器械情报'},
+ /* Use case descriptions */
+ a1_usecase:{en:'<strong>Enterprise Question:</strong> Is my brand appearing in NYTS youth surveillance data? How does my market share trend compare to competitors? Am I on FDA\'s enforcement radar?<br><strong>How to use:</strong> Check your brand\'s rank in the historical table below. If your brand appears in the top 10 among youth AND is not PMTA-authorized, expect FDA enforcement action. Authorized brands (Vuse, JUUL, NJOY) should monitor share trends to demonstrate their products are not disproportionately attracting youth.',zh:'<strong>企业问题：</strong>我的品牌是否出现在NYTS青少年监测数据中？我的市场份额趋势与竞品相比如何？我是否在FDA执法雷达上？<br><strong>使用方法：</strong>在下方历史排行表中查看品牌排名。如果品牌出现在青少年前10且未获PMTA授权，需预期FDA执法行动。已授权品牌（Vuse, JUUL, NJOY）应监测份额趋势，以证明产品未不成比例地吸引青少年。'},
+ a2_usecase:{en:'<strong>Enterprise Question:</strong> What is the overall youth tobacco use trajectory? Is my product category growing or declining among youth? How do demographic disparities affect regulatory risk?<br><strong>How to use:</strong> Track your product category in the trend chart. Rising youth use = higher PMTA denial risk. Use demographic data to understand which populations your product may disproportionately affect — FDA considers equity in authorization decisions.',zh:'<strong>企业问题：</strong>青少年烟草使用的整体趋势如何？我的产品品类在青少年中是增长还是下降？人口统计学差异如何影响监管风险？<br><strong>使用方法：</strong>在趋势图中追踪您的产品品类。青少年使用率上升=PMTA被拒风险增高。利用人口统计数据了解您的产品可能不成比例地影响哪些人群——FDA在授权决策中考虑公平性。'},
+ a3_usecase:{en:'<strong>Enterprise Question:</strong> How many adverse event reports are filed against my product category? Are there emerging safety signals? How does my product\'s AE profile compare to the EVALI baseline?<br><strong>How to use:</strong> Monitor the yearly trend for spikes. A sudden increase in AE reports (like the 2019 EVALI peak) can trigger FDA enforcement sweeps. The health problem breakdown helps identify which AEs to address in your PMTA safety narrative.',zh:'<strong>企业问题：</strong>我的产品品类有多少不良事件报告？是否存在新出现的安全信号？我的产品AE谱与EVALI基线相比如何？<br><strong>使用方法：</strong>监控年度趋势中的峰值。AE报告突然增加（如2019年EVALI高峰）可触发FDA执法行动。健康问题分布有助于确定PMTA安全叙事中需要解决的AE类型。'},
+ a4_usecase:{en:'<strong>Enterprise Question:</strong> What is the population health impact if smokers switch to my product? How do I quantify the benefit for my PMTA/MRTP application?<br><strong>How to use:</strong> Select your target market, set the switching rate from your consumer studies, input the relative harm from your toxicology research, and the simulator projects avoided disease burden. Use these figures as supporting evidence in PMTA Section 5 (Health Risk Assessment) or MRTP population impact modeling.',zh:'<strong>企业问题：</strong>如果吸烟者转用我的产品，人群健康影响有多大？如何量化PMTA/MRTP申请中的收益？<br><strong>使用方法：</strong>选择目标市场，设置消费者研究中的切换率，输入毒理学研究的相对危害值，模拟器将预测避免的疾病负担。这些数据可用于PMTA第5部分（健康风险评估）或MRTP人群影响建模的支撑证据。'},
+ a5_usecase:{en:'<strong>Enterprise Question:</strong> What is the regulatory landscape for nicotine pouches? How is ZYN\'s MRTP progressing and what does it mean for my product strategy? Is youth NP uptake a threat to MRTP approval?<br><strong>How to use:</strong> Track the NP use trend — the 3x surge from 2023-2025 is the single biggest risk to ZYN\'s MRTP. If you are developing a competing NP product, benchmark against ZYN\'s data. Use the FDA evaluation framework table to structure your own MRTP evidence package.',zh:'<strong>企业问题：</strong>尼古丁袋的监管格局如何？ZYN的MRTP进展如何，对我的产品策略意味着什么？青少年NP使用增长是否威胁MRTP审批？<br><strong>使用方法：</strong>追踪NP使用趋势——2023-2025年3倍增长是ZYN MRTP的最大风险。如果您正在开发竞争NP产品，以ZYN数据为基准。使用FDA评估框架表来构建您自己的MRTP证据包。'},
+ b1_usecase:{en:'<strong>Enterprise Question:</strong> What is my drug\'s adverse event profile post-market? Are AE reports increasing? How does my safety profile compare to competitor drugs in the same class?<br><strong>How to use:</strong> Monitor your drug\'s AE trend over time. A steep increase (like Ozempic 2023-2025: 9K→20K) may signal growing off-label use or emerging safety concerns. Compare your top AEs against competitors to identify differentiation opportunities or risks for label updates.',zh:'<strong>企业问题：</strong>我的药物上市后不良事件谱如何？AE报告是否在增加？我的安全性特征与同类竞品相比如何？<br><strong>使用方法：</strong>监控药物AE随时间的趋势。急剧增加（如Ozempic 2023-2025: 9K→20K）可能预示超适应症使用增长或新安全隐患。将您的头号AE与竞品对比，以识别差异化机会或标签更新风险。'},
+ b2_usecase:{en:'<strong>Enterprise Question:</strong> How does my drug\'s GI tolerability compare head-to-head with competitors? Which AEs should I highlight (or minimize) in marketing materials and KOL discussions?<br><strong>How to use:</strong> Use the radar chart for a visual competitive positioning. If your drug has lower nausea/vomiting rates, emphasize this in promotional materials. If higher, prepare medical affairs talking points explaining the clinical significance.',zh:'<strong>企业问题：</strong>我的药物GI耐受性与竞品头对头比较如何？在营销材料和KOL讨论中应强调（或淡化）哪些AE？<br><strong>使用方法：</strong>使用雷达图进行可视化竞争定位。如果您的药物恶心/呕吐率较低，在推广材料中强调。如果较高，准备医学事务部门的沟通要点，解释临床意义。'},
+ b3_usecase:{en:'<strong>Enterprise Question:</strong> Are there quality issues or recalls in my therapeutic area? Is my supply chain at risk? What is the FDA enforcement trend for my product category?<br><strong>How to use:</strong> Monitor Class I recalls (most severe) in your therapeutic area. A competitor recall creates both risk (regulatory scrutiny across the class) and opportunity (market share capture). Track yearly trends to anticipate FDA inspection priorities.',zh:'<strong>企业问题：</strong>我的治疗领域是否存在质量问题或召回？我的供应链是否有风险？我的产品品类FDA执法趋势如何？<br><strong>使用方法：</strong>监控您的治疗领域中的Class I召回（最严重）。竞品召回既带来风险（整个品类的监管审查加强）也带来机会（市场份额获取）。追踪年度趋势以预判FDA检查重点。'},
+ b4_usecase:{en:'<strong>Enterprise Question:</strong> How many 510(k) clearances are issued in my device category annually? What is the competitive intensity? Which categories are growing fastest?<br><strong>How to use:</strong> Track your device category\'s 510(k) volume trend. Rising clearance numbers indicate increasing competition. Use category benchmarks to set realistic expectations for your regulatory timeline and market entry strategy.',zh:'<strong>企业问题：</strong>我的器械品类每年发放多少510(k)许可？竞争强度如何？哪些品类增长最快？<br><strong>使用方法：</strong>追踪您的器械品类510(k)数量趋势。许可数量增加表明竞争加剧。使用品类基准为您的监管时间线和市场进入策略设定合理预期。'},
+ a1_hist_title:{en:'Historical Brand Rankings — Youth E-Cigarette Users (2020-2024)',zh:'历年品牌排行 — 青少年电子烟用户 (2020-2024)'},
+ a1_brand_insight:{en:'<strong>Key Insight:</strong> The e-cigarette youth market has undergone 3 regime changes in 5 years: JUUL dominance (2019-2020) → Puff Bar era (2021-2022) → Elf Bar surge (2023-2024). Each shift was driven by disposable format innovation outpacing FDA enforcement. Only 3 brands in the 2024 top 10 (Vuse #4, JUUL #5, NJOY #8) hold FDA PMTA authorization — the other 7 are unauthorized products that face enforcement action.',zh:'<strong>核心洞察：</strong>青少年电子烟市场在5年内经历了3次格局变化：JUUL主导期（2019-2020）→ Puff Bar时代（2021-2022）→ Elf Bar激增期（2023-2024）。每次变化都由一次性产品创新速度超过FDA执法速度推动。2024年前10中仅3个品牌（Vuse #4, JUUL #5, NJOY #8）持有FDA PMTA授权——其余7个均为未授权产品，面临执法行动。'},
  /* A1 */
  a1_title:{en:'Brand Surveillance',zh:'品牌监测'},
- a1_sub:{en:'E-cigarette brand market share tracking among U.S. youth',zh:'美国青少年电子烟品牌市场份额追踪'},
+ a1_sub:{en:'E-cigarette brand market share tracking among U.S. youth — with historical rankings and PMTA authorization status',zh:'美国青少年电子烟品牌市场份额追踪 — 含历年排行和PMTA授权状态'},
  a1_s1l:{en:'Brands Tracked',zh:'监测品牌数'},
  a1_s2l:{en:'#1 Youth Brand',zh:'青少年首选品牌'},
  a1_s3l:{en:'FDA Authorized',zh:'FDA已授权'},
@@ -606,6 +650,11 @@ function applyLang(){
   var k=el.getAttribute('data-i');
   if(I[k])el.textContent=I[k][curLang]||I[k].en;
  });
+ document.querySelectorAll('[data-ih]').forEach(function(el){
+  var k=el.getAttribute('data-ih');
+  if(I[k])el.innerHTML=I[k][curLang]||I[k].en;
+ });
+ document.documentElement.lang=curLang==='zh'?'zh-CN':'en';
 }
 
 /* ========== Navigation ========== */
