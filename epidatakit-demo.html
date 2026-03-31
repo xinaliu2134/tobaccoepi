@@ -203,6 +203,20 @@ h3{font-size:14px;font-weight:600;margin-bottom:12px;color:var(--text)}
   <div class="chart-card"><h3>Tobacco PAF by Disease <span class="source-tag">GBD 2019</span></h3><div class="chart-wrap tall"><canvas id="c4a"></canvas></div></div>
   <div class="chart-card"><h3>Attributed DALYs per 100K <span class="source-tag">Literature</span></h3><div class="chart-wrap tall"><canvas id="c4b"></canvas></div></div>
 </div>
+
+<h3>FDA Tobacco Adverse Event Reports <span class="source-tag">openFDA API · Live Data</span></h3>
+<div class="stats-row">
+  <div class="stat-card"><div class="stat-label">Total AE Reports</div><div class="stat-value">1,337</div><div class="stat-detail">2017–2025 · openFDA</div></div>
+  <div class="stat-card"><div class="stat-label">E-Cigarette Reports</div><div class="stat-value red">810</div><div class="stat-detail">60.6% of all reports</div></div>
+  <div class="stat-card"><div class="stat-label">2019 Peak</div><div class="stat-value red">623</div><div class="stat-detail">EVALI crisis year</div></div>
+  <div class="stat-card"><div class="stat-label">Top AE: Seizure</div><div class="stat-value">239</div><div class="stat-detail">Seizure + grand mal + tonic-clonic</div></div>
+</div>
+<div class="chart-grid">
+  <div class="chart-card"><h3>AE Reports by Year <span class="source-tag">openFDA 2025</span></h3><div class="chart-wrap"><canvas id="c4ae1"></canvas></div></div>
+  <div class="chart-card"><h3>Top Health Problems Reported <span class="source-tag">openFDA</span></h3><div class="chart-wrap"><canvas id="c4ae2"></canvas></div></div>
+</div>
+<div class="callout callout-warn"><strong>EVALI Context:</strong> The 2019 spike (623 reports) coincided with the E-cigarette/Vaping-Associated Lung Injury (EVALI) outbreak. CDC identified vitamin E acetate in THC-containing products as the primary cause. Reports declined sharply after enforcement actions, but 2025 shows an uptick (87 YTD) warranting monitoring.</div>
+
 <h3>Population Switching Impact Simulator</h3>
 <div class="callout callout-err"><strong>⚠ Model limitations:</strong> Simplified illustrative model. Not for regulatory submission. Real PMTA/MRTP requires dynamic population models with age-structured cohorts, time-varying parameters, sensitivity analyses.</div>
 <div class="sim-controls">
@@ -323,6 +337,11 @@ const PK=Object.keys(PF),PV=Object.values(PF);
 new Chart(document.getElementById('c4a'),{type:'bar',data:{labels:PK,datasets:[{data:PV.map(d=>d.p*100),backgroundColor:PV.map(d=>d.cl+'80'),borderColor:PV.map(d=>d.cl),borderWidth:1}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{callback:v=>v+'%'},grid:{color:'#e2e5ef'},max:100},y:{ticks:{color:'#6b7294',font:{size:12}},grid:{display:false}}}}});
 
 new Chart(document.getElementById('c4b'),{type:'bar',data:{labels:PK,datasets:[{data:PV.map(d=>d.d),backgroundColor:PV.map(d=>d.cl+'80'),borderColor:PV.map(d=>d.cl),borderWidth:1}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{color:'#e2e5ef'}},y:{ticks:{color:'#6b7294',font:{size:12}},grid:{display:false}}}}});
+
+/* ═══ SEC 4: openFDA AE Charts ═══ */
+new Chart(document.getElementById('c4ae1'),{type:'bar',data:{labels:['2017','2018','2019','2020','2021','2022','2023','2024','2025'],datasets:[{data:[117,129,623,141,91,37,53,59,87],backgroundColor:['#6b729480','#6b729480',CL.r+'90','#6b729480','#6b729480','#6b729480','#6b729480','#6b729480',CL.a+'90'],borderColor:['#6b7294','#6b7294',CL.r,'#6b7294','#6b7294','#6b7294','#6b7294','#6b7294',CL.a],borderWidth:1}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false}},y:{grid:{color:'#e2e5ef'}}}}});
+
+new Chart(document.getElementById('c4ae2'),{type:'bar',data:{labels:['Seizure*','SOB','Nausea','Fever','Cough','Chest Pain','Vomiting','Headache'],datasets:[{data:[239,68,46,45,42,37,35,28],backgroundColor:CL.r+'60',borderColor:CL.r,borderWidth:1}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{color:'#e2e5ef'}},y:{ticks:{color:'#6b7294',font:{size:11}},grid:{display:false}}}}});
 
 function upSim(){
   const m=document.getElementById('simM').value;
