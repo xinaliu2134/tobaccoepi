@@ -3,7 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EpiDataKit — Regulatory Intelligence Platform</title>
+<title>NYTS 2025 Youth Tobacco Data | EpiDataKit — E-Cigarette Brand Surveillance & Regulatory Intelligence</title>
+<meta name="description" content="EpiDataKit: Independent weighted analysis of NYTS 2025 youth tobacco data. E-cigarette brand surveillance, nicotine pouch trends, PMTA regulatory intelligence, openFDA adverse events. Cross-validated with Altria and CRST/Rutgers.">
+<meta name="keywords" content="NYTS 2025, youth tobacco use, e-cigarette brands, Geek Bar, nicotine pouch, ZYN MRTP, PMTA data, FDA tobacco, openFDA, tobacco epidemiology">
+<link rel="canonical" href="https://xinaliu2134.github.io/tobaccoepi/">
+<meta property="og:title" content="EpiDataKit — NYTS 2025 Youth Tobacco Data Dashboard">
+<meta property="og:description" content="Independent weighted analysis of NYTS 2025: Geek Bar captures 64.1% of youth e-cig market. 9 modules, 20+ charts, triple cross-validated.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://xinaliu2134.github.io/tobaccoepi/">
+<meta name="twitter:card" content="summary_large_image">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -126,16 +134,16 @@ h3{font-size:14px;font-weight:600;margin-bottom:12px}
 <body>
 
 <!-- Disclaimer -->
-<div class="disclaimer"><strong data-i="disc_strong"></strong> <span data-i="disc_text"></span></div>
+<div class="disclaimer"><strong data-i="disc_strong">Disclaimer</strong> <span data-i="disc_text">This dashboard is for informational purposes only. Data may not reflect real-time values. Not intended as medical or regulatory advice.</span></div>
 
 <!-- Header -->
 <header class="site-header">
  <div class="hdr-left">
   <div>
    <div class="logo">Epi<span>DataKit</span></div>
-   <div class="subtitle" data-i="subtitle"></div>
+   <div class="subtitle" data-i="subtitle">Regulatory Intelligence Platform</div>
   </div>
-  <div class="subtitle" style="font-size:12px;color:var(--muted);" data-i="company"></div>
+  <div class="subtitle" style="font-size:12px;color:var(--muted);" data-i="company">Shenzhen Evidence-Based Smart Health Technology Co., Ltd.</div>
  </div>
  <div class="hdr-right">
   <button class="lang-btn" onclick="toggleLang()" id="langBtn">中文</button>
@@ -143,66 +151,66 @@ h3{font-size:14px;font-weight:600;margin-bottom:12px}
 </header>
 
 <div class="cta-bar">
-  <span class="cta-text" data-i="cta_text"></span>
-  <a href="mailto:nana@epidatakit.com" class="cta-btn" data-i="cta_btn"></a>
-  <a href="https://www.linkedin.com/in/xiaona-nana-liu/" class="cta-link" data-i="cta_linkedin"></a>
+  <span class="cta-text" data-i="cta_text">Regulatory Intelligence Platform — Independent NYTS 2025 Weighted Analysis Available</span>
+  <a href="mailto:nana@epidatakit.com" class="cta-btn" data-i="cta_btn">Request Demo</a>
+  <a href="https://www.linkedin.com/in/xiaona-nana-liu/" class="cta-link" data-i="cta_linkedin">About the Founder</a>
 </div>
 
 <!-- Section Nav -->
 <nav class="section-nav">
- <button class="section-btn active-tobacco" data-section="tobacco" onclick="switchSection('tobacco')" data-i="nav_tobacco"></button>
- <button class="section-btn" data-section="pharma" onclick="switchSection('pharma')" data-i="nav_pharma"></button>
+ <button class="section-btn active-tobacco" data-section="tobacco" onclick="switchSection('tobacco')" data-i="nav_tobacco">TobaccoEpi</button>
+ <button class="section-btn" data-section="pharma" onclick="switchSection('pharma')" data-i="nav_pharma">PharmaEpi</button>
 </nav>
 
 <!-- TOBACCO TABS -->
 <div id="tobacco-tabs" class="tab-nav">
- <button class="tab-btn active t-amber" data-tab="a1" onclick="switchTab('a1','tobacco')" data-i="tab_a1"></button>
- <button class="tab-btn t-amber" data-tab="a2" onclick="switchTab('a2','tobacco')" data-i="tab_a2"></button>
- <button class="tab-btn t-amber" data-tab="a3" onclick="switchTab('a3','tobacco')" data-i="tab_a3"></button>
- <button class="tab-btn t-amber" data-tab="a4" onclick="switchTab('a4','tobacco')" data-i="tab_a4"></button>
- <button class="tab-btn t-amber" data-tab="a5" onclick="switchTab('a5','tobacco')" data-i="tab_a5"></button>
+ <button class="tab-btn active t-amber" data-tab="a1" onclick="switchTab('a1','tobacco')" data-i="tab_a1">Brand Surveillance</button>
+ <button class="tab-btn t-amber" data-tab="a2" onclick="switchTab('a2','tobacco')" data-i="tab_a2">Youth Prevalence</button>
+ <button class="tab-btn t-amber" data-tab="a3" onclick="switchTab('a3','tobacco')" data-i="tab_a3">Adverse Events</button>
+ <button class="tab-btn t-amber" data-tab="a4" onclick="switchTab('a4','tobacco')" data-i="tab_a4">Switching Simulator</button>
+ <button class="tab-btn t-amber" data-tab="a5" onclick="switchTab('a5','tobacco')" data-i="tab_a5">MRTP Intelligence</button>
 </div>
 
 <!-- PHARMA TABS -->
 <div id="pharma-tabs" class="tab-nav" style="display:none">
- <button class="tab-btn active t-blue" data-tab="b1" onclick="switchTab('b1','pharma')" data-i="tab_b1"></button>
- <button class="tab-btn t-blue" data-tab="b2" onclick="switchTab('b2','pharma')" data-i="tab_b2"></button>
- <button class="tab-btn t-blue" data-tab="b3" onclick="switchTab('b3','pharma')" data-i="tab_b3"></button>
- <button class="tab-btn t-blue" data-tab="b4" onclick="switchTab('b4','pharma')" data-i="tab_b4"></button>
+ <button class="tab-btn active t-blue" data-tab="b1" onclick="switchTab('b1','pharma')" data-i="tab_b1">Drug Safety Monitor</button>
+ <button class="tab-btn t-blue" data-tab="b2" onclick="switchTab('b2','pharma')" data-i="tab_b2">Competitive AE Benchmarking</button>
+ <button class="tab-btn t-blue" data-tab="b3" onclick="switchTab('b3','pharma')" data-i="tab_b3">Recall & Quality</button>
+ <button class="tab-btn t-blue" data-tab="b4" onclick="switchTab('b4','pharma')" data-i="tab_b4">Device Intelligence</button>
 </div>
 
 <div class="main">
 
 <!-- ===== A1: Brand Surveillance ===== -->
 <div class="panel active" id="panel-a1">
-<h2 data-i="a1_title"></h2>
-<div class="section-sub" data-i="a1_sub"></div>
-<div class="callout callout-blue" data-ih="a1_usecase"></div>
+<h2 data-i="a1_title">Brand Surveillance</h2>
+<div class="section-sub" data-i="a1_sub">E-cigarette brand market share tracking among U.S. youth — with historical rankings and PMTA authorization status</div>
+<div class="callout callout-blue" data-ih="a1_usecase"><strong>Enterprise Question:</strong> Is my brand appearing in NYTS youth surveillance data? How does my market share trend compare to competitors? Am I on FDA's enforcement radar?<br><strong>How to use:</strong> Check your brand's rank in the historical table below. If your brand appears in the top 10 among youth AND is not PMTA-authorized, expect FDA enforcement action. Authorized brands (Vuse, JUUL, NJOY) should monitor share trends to demonstrate their products are not disproportionately attracting youth.</div>
 <div class="stats-row">
- <div class="stat-card"><div class="stat-label" data-i="a1_s1l"></div><div class="stat-value">12</div></div>
- <div class="stat-card"><div class="stat-label" data-i="a1_s2l"></div><div class="stat-value">64.1%</div><div class="stat-detail">Geek Bar (contact rate, weighted)</div></div>
- <div class="stat-card"><div class="stat-label" data-i="a1_s3l"></div><div class="stat-value green">5</div><div class="stat-detail">Vuse, JUUL, ZYN, NJOY, on!</div></div>
- <div class="stat-card"><div class="stat-label" data-i="a1_s4l"></div><div class="stat-value red">5.2%</div></div>
+ <div class="stat-card"><div class="stat-label" data-i="a1_s1l">Brands Tracked</div><div class="stat-value">12</div></div>
+ <div class="stat-card"><div class="stat-label" data-i="a1_s2l">#1 Youth Brand</div><div class="stat-value">64.1%</div><div class="stat-detail">Geek Bar (contact rate, weighted)</div></div>
+ <div class="stat-card"><div class="stat-label" data-i="a1_s3l">FDA Authorized</div><div class="stat-value green">5</div><div class="stat-detail">Vuse, JUUL, ZYN, NJOY, on!</div></div>
+ <div class="stat-card"><div class="stat-label" data-i="a1_s4l">Youth E-Cig Use</div><div class="stat-value red">5.2%</div></div>
 </div>
 <div class="chart-grid">
- <div class="chart-card"><h3 data-i="a1_c1t"></h3><div class="chart-wrap"><canvas id="c-a1-brand"></canvas></div><div style="font-size:10px;color:var(--muted);margin-top:4px">Multi-select: past 30-day brands used; totals &gt;100%</div><span class="source-tag">NYTS 2025 · FDA CTP PUF weighted analysis · Cross-validated with ALCS</span></div>
- <div class="chart-card"><h3 data-i="a1_c2t"></h3><div class="chart-wrap"><canvas id="c-a1-compare"></canvas></div><span class="source-tag">NYTS 2024-2025 · FDA CTP PUF weighted analysis · Cross-validated with ALCS</span></div>
+ <div class="chart-card"><h3 data-i="a1_c1t">E-Cig Brand Share Among Youth</h3><div class="chart-wrap"><canvas id="c-a1-brand"></canvas></div><div style="font-size:10px;color:var(--muted);margin-top:4px">Multi-select: past 30-day brands used; totals &gt;100%</div><span class="source-tag">NYTS 2025 · FDA CTP PUF weighted analysis · Cross-validated with ALCS</span></div>
+ <div class="chart-card"><h3 data-i="a1_c2t">Brand Contact Rate 2024 vs 2025</h3><div class="chart-wrap"><canvas id="c-a1-compare"></canvas></div><span class="source-tag">NYTS 2024-2025 · FDA CTP PUF weighted analysis · Cross-validated with ALCS</span></div>
 </div>
-<h3 data-i="a1_tbl_title"></h3>
+<h3 data-i="a1_tbl_title">PMTA Authorization Status</h3>
 <table class="data-table">
- <thead><tr><th data-i="th_brand"></th><th data-i="th_status"></th><th data-i="th_date"></th><th data-i="th_products"></th></tr></thead>
+ <thead><tr><th data-i="th_brand">Brand</th><th data-i="th_status">Status</th><th data-i="th_date">Date</th><th data-i="th_products">Products</th></tr></thead>
  <tbody>
-  <tr><td>Vuse</td><td><span class="badge-ok" data-i="authorized"></span></td><td>Oct 2021</td><td data-i="a1_vuse_prod"></td></tr>
-  <tr><td>JUUL</td><td><span class="badge-ok" data-i="authorized"></span></td><td>Jul 2025</td><td data-i="a1_juul_prod"></td></tr>
-  <tr><td>ZYN</td><td><span class="badge-ok" data-i="authorized"></span></td><td>Jan 2025</td><td data-i="a1_zyn_prod"></td></tr>
-  <tr><td>NJOY</td><td><span class="badge-ok" data-i="authorized"></span></td><td>Apr 2024</td><td data-i="a1_njoy_prod"></td></tr>
-  <tr><td>Elf Bar</td><td><span class="badge-no" data-i="not_authorized"></span></td><td>-</td><td data-i="a1_elfbar_prod"></td></tr>
-  <tr><td>Mr Fog</td><td><span class="badge-no" data-i="not_authorized"></span></td><td>-</td><td data-i="a1_mrfog_prod"></td></tr>
+  <tr><td>Vuse</td><td><span class="badge-ok" data-i="authorized">Authorized</span></td><td>Oct 2021</td><td data-i="a1_vuse_prod">Device + Tobacco pods</td></tr>
+  <tr><td>JUUL</td><td><span class="badge-ok" data-i="authorized">Authorized</span></td><td>Jul 2025</td><td data-i="a1_juul_prod">Device + Virginia Tobacco + Menthol</td></tr>
+  <tr><td>ZYN</td><td><span class="badge-ok" data-i="authorized">Authorized</span></td><td>Jan 2025</td><td data-i="a1_zyn_prod">20 nicotine pouch products</td></tr>
+  <tr><td>NJOY</td><td><span class="badge-ok" data-i="authorized">Authorized</span></td><td>Apr 2024</td><td data-i="a1_njoy_prod">Device + Tobacco + Menthol</td></tr>
+  <tr><td>Elf Bar</td><td><span class="badge-no" data-i="not_authorized">Not Authorized</span></td><td>-</td><td data-i="a1_elfbar_prod">Enforcement target</td></tr>
+  <tr><td>Mr Fog</td><td><span class="badge-no" data-i="not_authorized">Not Authorized</span></td><td>-</td><td data-i="a1_mrfog_prod">Enforcement target</td></tr>
  </tbody>
 </table>
 <span class="source-tag">FDA PMTA Database</span>
 
-<h3 data-i="a1_hist_title"></h3>
+<h3 data-i="a1_hist_title">Usual Brand Rankings — Youth E-Cigarette Users (2020-2025)</h3>
 <div style="overflow-x:auto">
 <table class="data-table">
  <thead><tr><th>Rank</th><th>2020</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th style="background:#fef3c7;font-weight:700">2025</th></tr></thead>
@@ -222,163 +230,163 @@ h3{font-size:14px;font-weight:600;margin-bottom:12px}
 </div>
 <div style="font-size:11px;color:var(--muted);margin-top:6px;line-height:1.5">Usual brand = single-select ("What brand do you usually use?"), weighted %. 2020-2021: NYTS/MMWR published data. 2022: NYTS usual brand data. 2023-2024: NYTS MMWR. 2025: FDA CTP PUF weighted analysis, cross-validated.<br>Note: 2023-2024 brand data used multi-select contact rate (totals >100%) as published by CDC. 2025 uses single-select usual brand from FDA CTP PUF weighted analysis (totals ~100%).</div>
 <span class="source-tag">NYTS 2020-2025 · FDA CTP PUF weighted analysis · Cross-validated with ALCS</span>
-<div class="callout callout-amber" data-ih="a1_brand_insight"></div>
+<div class="callout callout-amber" data-ih="a1_brand_insight"><strong>Key Insight — 2025 NYTS FDA CTP PUF Weighted Analysis:</strong> The e-cigarette youth market has undergone 4 regime changes in 6 years: JUUL (2019-2020) → Puff Bar (2021-2022) → Elf Bar (2023-2024) → <strong>Geek Bar (2025, 64.1% contact rate)</strong>. Geek Bar was not even in the 2024 top 5, yet captured 64.1% of youth users in 2025 — the fastest brand takeover in NYTS history. Elf Bar continues declining (56.7% → 36.1% → 21.5%). New entrants Lost Mary (19.8%) and Raz (19.4%) also surged. Only 2 of the 2025 top 10 (Vuse #5, JUUL #9) hold FDA PMTA authorization. Disposables now account for 66.3% of e-cig device types (↑10.7pp from 2024). Daily use: 27.5%; frequent use (20-30 days): 41.2%.</div>
 </div>
 
 <!-- ===== A2: Youth Prevalence ===== -->
 <div class="panel" id="panel-a2">
-<h2 data-i="a2_title"></h2>
-<div class="section-sub" data-i="a2_sub"></div>
-<div class="callout callout-blue" data-ih="a2_usecase"></div>
+<h2 data-i="a2_title">Youth Prevalence</h2>
+<div class="section-sub" data-i="a2_sub">U.S. youth tobacco use trends from NYTS 2011-2025 · FDA CTP PUF weighted analysis</div>
+<div class="callout callout-blue" data-ih="a2_usecase"><strong>Enterprise Question:</strong> What is the overall youth tobacco use trajectory? Is my product category growing or declining among youth? How do demographic disparities affect regulatory risk?<br><strong>How to use:</strong> Track your product category in the trend chart. Rising youth use = higher PMTA denial risk. Use demographic data to understand which populations your product may disproportionately affect — FDA considers equity in authorization decisions.</div>
 <div class="stats-row">
- <div class="stat-card"><div class="stat-label" data-i="a2_s1l"></div><div class="stat-value">7.5%</div><div class="stat-detail">2.02M students · weighted</div></div>
- <div class="stat-card"><div class="stat-label" data-i="a2_s2l"></div><div class="stat-value">5.2%</div><div class="stat-detail">1.45M · ↓ from 5.9% in 2024</div></div>
- <div class="stat-card"><div class="stat-label" data-i="a2_s3l"></div><div class="stat-value">1.7%</div><div class="stat-detail">461K · ↓ from 1.8% in 2024</div></div>
- <div class="stat-card"><div class="stat-label" data-i="a2_s4l"></div><div class="stat-value">1.4%</div><div class="stat-detail">394K · record low maintained</div></div>
+ <div class="stat-card"><div class="stat-label" data-i="a2_s1l">Any Tobacco</div><div class="stat-value">7.5%</div><div class="stat-detail">2.02M students · weighted</div></div>
+ <div class="stat-card"><div class="stat-label" data-i="a2_s2l">E-Cigarettes</div><div class="stat-value">5.2%</div><div class="stat-detail">1.45M · ↓ from 5.9% in 2024</div></div>
+ <div class="stat-card"><div class="stat-label" data-i="a2_s3l">Nic Pouches</div><div class="stat-value">1.7%</div><div class="stat-detail">461K · ↓ from 1.8% in 2024</div></div>
+ <div class="stat-card"><div class="stat-label" data-i="a2_s4l">Cigarettes</div><div class="stat-value">1.4%</div><div class="stat-detail">394K · record low maintained</div></div>
 </div>
 <div class="chart-grid">
- <div class="chart-card full"><h3 data-i="a2_c1t"></h3><div class="chart-wrap tall"><canvas id="c-a2-trend"></canvas></div><span class="source-tag">NYTS 2011-2025 · FDA CTP PUF weighted analysis · Cross-validated with ALCS</span></div>
- <div class="chart-card"><h3 data-i="a2_c2t"></h3><div class="chart-wrap"><canvas id="c-a2-products"></canvas></div><span class="source-tag">NYTS 2025 · FDA CTP PUF weighted analysis · Cross-validated with ALCS</span></div>
- <div class="chart-card"><h3 data-i="a2_c3t"></h3><div class="chart-wrap"><canvas id="c-a2-school"></canvas></div><span class="source-tag">NYTS 2025 · FDA CTP PUF weighted analysis · Cross-validated with ALCS</span></div>
- <div class="chart-card"><h3 data-i="a2_c4t"></h3><div class="chart-wrap"><canvas id="c-a2-flavor"></canvas></div><span class="source-tag">NYTS 2025 · FDA CTP PUF weighted analysis · Cross-validated with ALCS</span></div>
- <div class="chart-card"><h3 data-i="a2_c5t"></h3><div class="chart-wrap"><canvas id="c-a2-device"></canvas></div><span class="source-tag">NYTS 2025 · FDA CTP PUF weighted analysis · Cross-validated with ALCS</span></div>
+ <div class="chart-card full"><h3 data-i="a2_c1t">Youth Tobacco Use Trend 2011-2025 (Weighted)</h3><div class="chart-wrap tall"><canvas id="c-a2-trend"></canvas></div><span class="source-tag">NYTS 2011-2025 · FDA CTP PUF weighted analysis · Cross-validated with ALCS</span></div>
+ <div class="chart-card"><h3 data-i="a2_c2t">Product Breakdown 2025</h3><div class="chart-wrap"><canvas id="c-a2-products"></canvas></div><span class="source-tag">NYTS 2025 · FDA CTP PUF weighted analysis · Cross-validated with ALCS</span></div>
+ <div class="chart-card"><h3 data-i="a2_c3t">High School vs Middle School</h3><div class="chart-wrap"><canvas id="c-a2-school"></canvas></div><span class="source-tag">NYTS 2025 · FDA CTP PUF weighted analysis · Cross-validated with ALCS</span></div>
+ <div class="chart-card"><h3 data-i="a2_c4t">E-Cigarette Flavor Preferences 2025</h3><div class="chart-wrap"><canvas id="c-a2-flavor"></canvas></div><span class="source-tag">NYTS 2025 · FDA CTP PUF weighted analysis · Cross-validated with ALCS</span></div>
+ <div class="chart-card"><h3 data-i="a2_c5t">E-Cigarette Device Type 2025</h3><div class="chart-wrap"><canvas id="c-a2-device"></canvas></div><span class="source-tag">NYTS 2025 · FDA CTP PUF weighted analysis · Cross-validated with ALCS</span></div>
 </div>
-<h3 data-i="a2_tbl_title"></h3>
+<h3 data-i="a2_tbl_title">Race/Ethnicity Breakdown</h3>
 <table class="data-table">
- <thead><tr><th data-i="th_race"></th><th data-i="th_any_tobacco"></th></tr></thead>
+ <thead><tr><th data-i="th_race">Race/Ethnicity</th><th data-i="th_any_tobacco">Any Tobacco Use</th></tr></thead>
  <tbody>
   <tr><td>AI/AN</td><td class="hl">16.3%</td></tr>
   <tr><td>Black</td><td class="hl">10.0%</td></tr>
-  <tr><td data-i="multiracial"></td><td class="hl">9.0%</td></tr>
+  <tr><td data-i="multiracial">Multiracial</td><td class="hl">9.0%</td></tr>
   <tr><td>Hispanic</td><td class="hl">8.4%</td></tr>
   <tr><td>White</td><td class="hl">7.8%</td></tr>
   <tr><td>Asian</td><td class="hl">3.3%</td></tr>
  </tbody>
 </table>
 <span class="source-tag">NYTS 2025 · FDA CTP PUF weighted analysis · Cross-validated with ALCS</span>
-<div class="callout callout-warn"><strong data-i="a2_callout_title"></strong> <span data-i="a2_callout_text"></span></div>
+<div class="callout callout-warn"><strong data-i="a2_callout_title">2025 NYTS/MTF Key Finding:</strong> <span data-i="a2_callout_text">The only statistically significant year-over-year change was the decline in e-cigarette use (5.9% → 5.2%, ↓0.7pp). Other oral nicotine products showed significant decline (1.2% → 0.6%). Nicotine pouch use tripled to 4.4% among 12th graders (MTF). Progress on youth tobacco reduction has otherwise stalled.</span></div>
 </div>
 
 <!-- ===== A3: Adverse Events ===== -->
 <div class="panel" id="panel-a3">
-<h2 data-i="a3_title"></h2>
-<div class="section-sub" data-i="a3_sub"></div>
-<div class="callout callout-blue" data-ih="a3_usecase"></div>
+<h2 data-i="a3_title">Adverse Events</h2>
+<div class="section-sub" data-i="a3_sub">FDA CTP tobacco product adverse event reports via FOIA</div>
+<div class="callout callout-blue" data-ih="a3_usecase"><strong>Enterprise Question:</strong> How many adverse event reports are filed against my product category? Are there emerging safety signals? How does my product's AE profile compare to the EVALI baseline?<br><strong>How to use:</strong> Monitor the yearly trend for spikes. A sudden increase in AE reports (like the 2019 EVALI peak) can trigger FDA enforcement sweeps. The health problem breakdown helps identify which AEs to address in your PMTA safety narrative.</div>
 <div class="stats-row">
- <div class="stat-card"><div class="stat-label" data-i="a3_s1l"></div><div class="stat-value">1,337</div></div>
- <div class="stat-card"><div class="stat-label" data-i="a3_s2l"></div><div class="stat-value">810</div><div class="stat-detail">60.6%</div></div>
- <div class="stat-card"><div class="stat-label" data-i="a3_s3l"></div><div class="stat-value red">623</div><div class="stat-detail">2019</div></div>
- <div class="stat-card"><div class="stat-label" data-i="a3_s4l"></div><div class="stat-value">239</div><div class="stat-detail" data-i="a3_seizure_note"></div></div>
+ <div class="stat-card"><div class="stat-label" data-i="a3_s1l">Total Reports</div><div class="stat-value">1,337</div></div>
+ <div class="stat-card"><div class="stat-label" data-i="a3_s2l">E-Cig Reports</div><div class="stat-value">810</div><div class="stat-detail">60.6%</div></div>
+ <div class="stat-card"><div class="stat-label" data-i="a3_s3l">Peak Year</div><div class="stat-value red">623</div><div class="stat-detail">2019</div></div>
+ <div class="stat-card"><div class="stat-label" data-i="a3_s4l">Top AE: Seizure</div><div class="stat-value">239</div><div class="stat-detail" data-i="a3_seizure_note">*Includes suspected cases</div></div>
 </div>
 <div class="chart-grid">
- <div class="chart-card"><h3 data-i="a3_c1t"></h3><div class="chart-wrap"><canvas id="c-a3-year"></canvas></div><span class="source-tag">FDA CTP FOIA</span></div>
- <div class="chart-card"><h3 data-i="a3_c2t"></h3><div class="chart-wrap"><canvas id="c-a3-health"></canvas></div><span class="source-tag">FDA CTP FOIA</span></div>
- <div class="chart-card"><h3 data-i="a3_c3t"></h3><div class="chart-wrap"><canvas id="c-a3-type"></canvas></div><span class="source-tag">FDA CTP FOIA</span></div>
+ <div class="chart-card"><h3 data-i="a3_c1t">AE Reports by Year</h3><div class="chart-wrap"><canvas id="c-a3-year"></canvas></div><span class="source-tag">FDA CTP FOIA</span></div>
+ <div class="chart-card"><h3 data-i="a3_c2t">Top Health Problems</h3><div class="chart-wrap"><canvas id="c-a3-health"></canvas></div><span class="source-tag">FDA CTP FOIA</span></div>
+ <div class="chart-card"><h3 data-i="a3_c3t">AE by Product Type</h3><div class="chart-wrap"><canvas id="c-a3-type"></canvas></div><span class="source-tag">FDA CTP FOIA</span></div>
 </div>
-<div class="callout callout-err"><strong data-i="a3_callout_title"></strong> <span data-i="a3_callout_text"></span></div>
+<div class="callout callout-err"><strong data-i="a3_callout_title">EVALI Context:</strong> <span data-i="a3_callout_text">The 2019 spike was driven by the EVALI outbreak (Vitamin E acetate in THC cartridges). 2025 shows an uptick — monitoring ongoing.</span></div>
 </div>
 
 <!-- ===== A4: Switching Simulator ===== -->
 <div class="panel" id="panel-a4">
-<h2 data-i="a4_title"></h2>
-<div class="section-sub" data-i="a4_sub"></div>
-<div class="callout callout-blue" data-ih="a4_usecase"></div>
+<h2 data-i="a4_title">Switching Simulator</h2>
+<div class="section-sub" data-i="a4_sub">Model population-level harm reduction from cigarette-to-alternative switching</div>
+<div class="callout callout-blue" data-ih="a4_usecase"><strong>Enterprise Question:</strong> What is the population health impact if smokers switch to my product? How do I quantify the benefit for my PMTA/MRTP application?<br><strong>How to use:</strong> Select your target market, set the switching rate from your consumer studies, input the relative harm from your toxicology research, and the simulator projects avoided disease burden. Use these figures as supporting evidence in PMTA Section 5 (Health Risk Assessment) or MRTP population impact modeling.</div>
 <div class="sim-controls">
  <div class="sim-group">
-  <label data-i="a4_market"></label>
+  <label data-i="a4_market">Market</label>
   <select id="sim-market" onchange="runSim()">
    <option value="USA">United States</option>
    <option value="GBR">United Kingdom</option>
    <option value="DEU">Germany</option>
    <option value="JPN">Japan</option>
   </select>
-  <label data-i="a4_switch_rate"></label>
+  <label data-i="a4_switch_rate">Switch Rate</label>
   <input type="range" id="sim-switch" min="1" max="50" value="10" oninput="runSim()">
   <div class="range-val"><span id="sim-switch-val">10</span>%</div>
-  <label data-i="a4_horizon"></label>
+  <label data-i="a4_horizon">Time Horizon</label>
   <input type="range" id="sim-horizon" min="5" max="30" value="10" oninput="runSim()">
-  <div class="range-val"><span id="sim-horizon-val">10</span> <span data-i="years"></span></div>
+  <div class="range-val"><span id="sim-horizon-val">10</span> <span data-i="years">years</span></div>
  </div>
  <div class="sim-group warn-box">
   <div class="warn-label">CLIENT-PROVIDED</div>
-  <label data-i="a4_rel_harm"></label>
+  <label data-i="a4_rel_harm">Relative Harm (vs. Cigarettes)</label>
   <input type="range" id="sim-harm" min="1" max="50" value="5" oninput="runSim()">
-  <div class="range-val"><span id="sim-harm-val">5</span>% <span data-i="a4_vs_cig"></span></div>
-  <div style="font-size:11px;color:var(--red);margin-top:6px" data-i="a4_harm_warn"></div>
+  <div class="range-val"><span id="sim-harm-val">5</span>% <span data-i="a4_vs_cig">vs. cigarettes</span></div>
+  <div style="font-size:11px;color:var(--red);margin-top:6px" data-i="a4_harm_warn">This value is client-provided and not independently verified. Actual relative harm is subject to ongoing scientific debate.</div>
  </div>
 </div>
 <div class="stats-row" id="sim-stats">
- <div class="stat-card"><div class="stat-label" data-i="a4_pop"></div><div class="stat-value" id="sim-pop">-</div></div>
- <div class="stat-card"><div class="stat-label" data-i="a4_switchers"></div><div class="stat-value green" id="sim-switchers">-</div></div>
- <div class="stat-card"><div class="stat-label" data-i="a4_dalys"></div><div class="stat-value teal" id="sim-dalys">-</div></div>
- <div class="stat-card"><div class="stat-label" data-i="a4_reduction"></div><div class="stat-value green" id="sim-reduction">-</div></div>
+ <div class="stat-card"><div class="stat-label" data-i="a4_pop">Smoker Population</div><div class="stat-value" id="sim-pop">-</div></div>
+ <div class="stat-card"><div class="stat-label" data-i="a4_switchers">Switchers</div><div class="stat-value green" id="sim-switchers">-</div></div>
+ <div class="stat-card"><div class="stat-label" data-i="a4_dalys">Avoided DALYs</div><div class="stat-value teal" id="sim-dalys">-</div></div>
+ <div class="stat-card"><div class="stat-label" data-i="a4_reduction">Harm Reduction</div><div class="stat-value green" id="sim-reduction">-</div></div>
 </div>
 <div class="chart-grid">
- <div class="chart-card"><h3 data-i="a4_c1t"></h3><div class="chart-wrap"><canvas id="c-a4-paf"></canvas></div><span class="source-tag">GBD / WHO</span></div>
- <div class="chart-card"><h3 data-i="a4_c2t"></h3><div class="chart-wrap"><canvas id="c-a4-waterfall"></canvas></div><span class="source-tag">Model Output</span></div>
+ <div class="chart-card"><h3 data-i="a4_c1t">Population Attributable Fraction (PAF)</h3><div class="chart-wrap"><canvas id="c-a4-paf"></canvas></div><span class="source-tag">GBD / WHO</span></div>
+ <div class="chart-card"><h3 data-i="a4_c2t">Avoided DALYs by Disease</h3><div class="chart-wrap"><canvas id="c-a4-waterfall"></canvas></div><span class="source-tag">Model Output</span></div>
 </div>
 </div>
 
 <!-- ===== A5: MRTP Intelligence ===== -->
 <div class="panel" id="panel-a5">
-<h2 data-i="a5_title"></h2>
-<div class="section-sub" data-i="a5_sub"></div>
-<div class="callout callout-blue" data-ih="a5_usecase"></div>
+<h2 data-i="a5_title">MRTP Intelligence</h2>
+<div class="section-sub" data-i="a5_sub">ZYN Modified Risk Tobacco Product application tracking</div>
+<div class="callout callout-blue" data-ih="a5_usecase"><strong>Enterprise Question:</strong> What is the regulatory landscape for nicotine pouches? How is ZYN's MRTP progressing and what does it mean for my product strategy? Is youth NP uptake a threat to MRTP approval?<br><strong>How to use:</strong> Track the NP use trend — the 3x surge from 2023-2025 is the single biggest risk to ZYN's MRTP. If you are developing a competing NP product, benchmark against ZYN's data. Use the FDA evaluation framework table to structure your own MRTP evidence package.</div>
 <div class="stats-row">
- <div class="stat-card"><div class="stat-label" data-i="a5_s1l"></div><div class="stat-value">1.7%</div><div class="stat-detail">NYTS 2025 weighted</div></div>
- <div class="stat-card"><div class="stat-label" data-i="a5_s2l"></div><div class="stat-value red">4.4%</div><div class="stat-detail">MTF 2025</div></div>
- <div class="stat-card"><div class="stat-label" data-i="a5_s3l"></div><div class="stat-value">61.4%</div></div>
- <div class="stat-card"><div class="stat-label" data-i="a5_s4l"></div><div class="stat-value blue">Jun 2025</div></div>
+ <div class="stat-card"><div class="stat-label" data-i="a5_s1l">NP Use (All Youth)</div><div class="stat-value">1.7%</div><div class="stat-detail">NYTS 2025 weighted</div></div>
+ <div class="stat-card"><div class="stat-label" data-i="a5_s2l">12th Grade NP</div><div class="stat-value red">4.4%</div><div class="stat-detail">MTF 2025</div></div>
+ <div class="stat-card"><div class="stat-label" data-i="a5_s3l">ZYN Market Share</div><div class="stat-value">61.4%</div></div>
+ <div class="stat-card"><div class="stat-label" data-i="a5_s4l">MRTP Filed</div><div class="stat-value blue">Jun 2025</div></div>
 </div>
 <div class="chart-grid">
- <div class="chart-card full"><h3 data-i="a5_c1t"></h3><div class="chart-wrap"><canvas id="c-a5-trend"></canvas></div><span class="source-tag">MTF / NYTS</span></div>
- <div class="chart-card"><h3 data-i="a5_c2t"></h3><div class="chart-wrap"><canvas id="c-a5-brand"></canvas></div><span class="source-tag">NYTS 2025 · FDA CTP PUF weighted analysis · Cross-validated with ALCS</span></div>
- <div class="chart-card"><h3 data-i="a5_c3t"></h3><div class="chart-wrap"><canvas id="c-a5-flavor"></canvas></div><span class="source-tag">NYTS 2025 · FDA CTP PUF weighted analysis · Cross-validated with ALCS</span></div>
+ <div class="chart-card full"><h3 data-i="a5_c1t">Nicotine Pouch Trend (MTF/NYTS)</h3><div class="chart-wrap"><canvas id="c-a5-trend"></canvas></div><span class="source-tag">MTF / NYTS</span></div>
+ <div class="chart-card"><h3 data-i="a5_c2t">NP Brand Share</h3><div class="chart-wrap"><canvas id="c-a5-brand"></canvas></div><span class="source-tag">NYTS 2025 · FDA CTP PUF weighted analysis · Cross-validated with ALCS</span></div>
+ <div class="chart-card"><h3 data-i="a5_c3t">NP Flavor Preferences</h3><div class="chart-wrap"><canvas id="c-a5-flavor"></canvas></div><span class="source-tag">NYTS 2025 · FDA CTP PUF weighted analysis · Cross-validated with ALCS</span></div>
 </div>
-<h3 data-i="a5_tbl1_title"></h3>
+<h3 data-i="a5_tbl1_title">MRTP Timeline</h3>
 <table class="data-table">
- <thead><tr><th data-i="th_date"></th><th data-i="th_event"></th></tr></thead>
+ <thead><tr><th data-i="th_date">Date</th><th data-i="th_event">Event</th></tr></thead>
  <tbody>
-  <tr><td>Jan 2025</td><td data-i="a5_evt1"></td></tr>
-  <tr><td>Jun 2025</td><td data-i="a5_evt2"></td></tr>
-  <tr><td>Jan 2026</td><td data-i="a5_evt3"></td></tr>
-  <tr><td>Mar 2026</td><td data-i="a5_evt4"></td></tr>
+  <tr><td>Jan 2025</td><td data-i="a5_evt1">PMTA authorized for 20 ZYN products</td></tr>
+  <tr><td>Jun 2025</td><td data-i="a5_evt2">MRTP application filed by Philip Morris</td></tr>
+  <tr><td>Jan 2026</td><td data-i="a5_evt3">TPSAC review meeting</td></tr>
+  <tr><td>Mar 2026</td><td data-i="a5_evt4">Public comment period closed</td></tr>
  </tbody>
 </table>
 <span class="source-tag">FDA / Philip Morris</span>
-<h3 style="margin-top:20px" data-i="a5_tbl2_title"></h3>
+<h3 style="margin-top:20px" data-i="a5_tbl2_title">FDA MRTP Evaluation Framework</h3>
 <table class="data-table">
- <thead><tr><th>#</th><th data-i="th_criterion"></th></tr></thead>
+ <thead><tr><th>#</th><th data-i="th_criterion">Criterion</th></tr></thead>
  <tbody>
-  <tr><td>1</td><td data-i="a5_crit1"></td></tr>
-  <tr><td>2</td><td data-i="a5_crit2"></td></tr>
-  <tr><td>3</td><td data-i="a5_crit3"></td></tr>
-  <tr><td>4</td><td data-i="a5_crit4"></td></tr>
-  <tr><td>5</td><td data-i="a5_crit5"></td></tr>
+  <tr><td>1</td><td data-i="a5_crit1">Product is appropriate for the protection of public health</td></tr>
+  <tr><td>2</td><td data-i="a5_crit2">Likelihood that current tobacco users will switch</td></tr>
+  <tr><td>3</td><td data-i="a5_crit3">Impact on initiation among non-users (especially youth)</td></tr>
+  <tr><td>4</td><td data-i="a5_crit4">Impact on cessation among current users</td></tr>
+  <tr><td>5</td><td data-i="a5_crit5">Health risks to individual product users</td></tr>
  </tbody>
 </table>
 </div>
 
 <!-- ===== B1: Drug Safety Monitor ===== -->
 <div class="panel" id="panel-b1">
-<h2 data-i="b1_title"></h2>
-<div class="section-sub" data-i="b1_sub"></div>
-<div class="callout callout-blue" data-ih="b1_usecase"></div>
+<h2 data-i="b1_title">Drug Safety Monitor</h2>
+<div class="section-sub" data-i="b1_sub">FDA FAERS adverse event tracking for GLP-1 and metabolic drugs</div>
+<div class="callout callout-blue" data-ih="b1_usecase"><strong>Enterprise Question:</strong> What is my drug's adverse event profile post-market? Are AE reports increasing? How does my safety profile compare to competitor drugs in the same class?<br><strong>How to use:</strong> Monitor your drug's AE trend over time. A steep increase (like Ozempic 2023-2025: 9K→20K) may signal growing off-label use or emerging safety concerns. Compare your top AEs against competitors to identify differentiation opportunities or risks for label updates.</div>
 <div class="stats-row">
- <div class="stat-card"><div class="stat-label">Ozempic</div><div class="stat-value blue">59,880</div><div class="stat-detail" data-i="b_ae_reports"></div></div>
- <div class="stat-card"><div class="stat-label">Mounjaro</div><div class="stat-value blue">79,973</div><div class="stat-detail" data-i="b_ae_reports"></div></div>
- <div class="stat-card"><div class="stat-label">Wegovy</div><div class="stat-value blue">17,958</div><div class="stat-detail" data-i="b_ae_reports"></div></div>
- <div class="stat-card"><div class="stat-label">Jardiance</div><div class="stat-value blue">61,560</div><div class="stat-detail" data-i="b_ae_reports"></div></div>
+ <div class="stat-card"><div class="stat-label">Ozempic</div><div class="stat-value blue">59,880</div><div class="stat-detail" data-i="b_ae_reports">AE Reports</div></div>
+ <div class="stat-card"><div class="stat-label">Mounjaro</div><div class="stat-value blue">79,973</div><div class="stat-detail" data-i="b_ae_reports">AE Reports</div></div>
+ <div class="stat-card"><div class="stat-label">Wegovy</div><div class="stat-value blue">17,958</div><div class="stat-detail" data-i="b_ae_reports">AE Reports</div></div>
+ <div class="stat-card"><div class="stat-label">Jardiance</div><div class="stat-value blue">61,560</div><div class="stat-detail" data-i="b_ae_reports">AE Reports</div></div>
 </div>
 <div class="chart-grid">
- <div class="chart-card full"><h3 data-i="b1_c1t"></h3><div class="chart-wrap tall"><canvas id="c-b1-trend"></canvas></div><span class="source-tag">FDA FAERS</span></div>
- <div class="chart-card full"><h3 data-i="b1_c2t"></h3><div class="chart-wrap tall"><canvas id="c-b1-compare"></canvas></div><span class="source-tag">FDA FAERS</span></div>
+ <div class="chart-card full"><h3 data-i="b1_c1t">Ozempic AE Reports by Year</h3><div class="chart-wrap tall"><canvas id="c-b1-trend"></canvas></div><span class="source-tag">FDA FAERS</span></div>
+ <div class="chart-card full"><h3 data-i="b1_c2t">Top AE Comparison Across Drugs</h3><div class="chart-wrap tall"><canvas id="c-b1-compare"></canvas></div><span class="source-tag">FDA FAERS</span></div>
 </div>
-<h3 data-i="b1_tbl_title"></h3>
+<h3 data-i="b1_tbl_title">Top 8 Adverse Events by Drug</h3>
 <div class="chart-grid">
  <div class="chart-card">
   <h3>Ozempic</h3>
-  <table class="data-table"><thead><tr><th data-i="th_ae"></th><th data-i="th_count"></th></tr></thead><tbody>
+  <table class="data-table"><thead><tr><th data-i="th_ae">Adverse Event</th><th data-i="th_count">Count</th></tr></thead><tbody>
    <tr><td>Nausea</td><td class="hl-blue">5,182</td></tr><tr><td>Diarrhoea</td><td class="hl-blue">2,470</td></tr>
    <tr><td>Vomiting</td><td class="hl-blue">2,294</td></tr><tr><td>Off Label Use</td><td class="hl-blue">3,528</td></tr>
    <tr><td>Product Quality</td><td class="hl-blue">1,990</td></tr><tr><td>Fatigue</td><td class="hl-blue">1,585</td></tr>
@@ -387,7 +395,7 @@ h3{font-size:14px;font-weight:600;margin-bottom:12px}
  </div>
  <div class="chart-card">
   <h3>Mounjaro</h3>
-  <table class="data-table"><thead><tr><th data-i="th_ae"></th><th data-i="th_count"></th></tr></thead><tbody>
+  <table class="data-table"><thead><tr><th data-i="th_ae">Adverse Event</th><th data-i="th_count">Count</th></tr></thead><tbody>
    <tr><td>Nausea</td><td class="hl-blue">6,791</td></tr><tr><td>Diarrhoea</td><td class="hl-blue">3,530</td></tr>
    <tr><td>Vomiting</td><td class="hl-blue">3,988</td></tr><tr><td>Off Label Use</td><td class="hl-blue">5,114</td></tr>
    <tr><td>Constipation</td><td class="hl-blue">2,412</td></tr><tr><td>Fatigue</td><td class="hl-blue">2,010</td></tr>
@@ -396,7 +404,7 @@ h3{font-size:14px;font-weight:600;margin-bottom:12px}
  </div>
  <div class="chart-card">
   <h3>Wegovy</h3>
-  <table class="data-table"><thead><tr><th data-i="th_ae"></th><th data-i="th_count"></th></tr></thead><tbody>
+  <table class="data-table"><thead><tr><th data-i="th_ae">Adverse Event</th><th data-i="th_count">Count</th></tr></thead><tbody>
    <tr><td>Nausea</td><td class="hl-blue">2,150</td></tr><tr><td>Vomiting</td><td class="hl-blue">1,120</td></tr>
    <tr><td>Diarrhoea</td><td class="hl-blue">985</td></tr><tr><td>Headache</td><td class="hl-blue">742</td></tr>
    <tr><td>Constipation</td><td class="hl-blue">630</td></tr><tr><td>Fatigue</td><td class="hl-blue">580</td></tr>
@@ -405,7 +413,7 @@ h3{font-size:14px;font-weight:600;margin-bottom:12px}
  </div>
  <div class="chart-card">
   <h3>Jardiance</h3>
-  <table class="data-table"><thead><tr><th data-i="th_ae"></th><th data-i="th_count"></th></tr></thead><tbody>
+  <table class="data-table"><thead><tr><th data-i="th_ae">Adverse Event</th><th data-i="th_count">Count</th></tr></thead><tbody>
    <tr><td>Urinary Tract Inf.</td><td class="hl-blue">3,210</td></tr><tr><td>Drug Ineffective</td><td class="hl-blue">2,880</td></tr>
    <tr><td>Diabetic Ketoacid.</td><td class="hl-blue">2,115</td></tr><tr><td>Nausea</td><td class="hl-blue">1,640</td></tr>
    <tr><td>Diarrhoea</td><td class="hl-blue">1,420</td></tr><tr><td>Genital Inf. Fungal</td><td class="hl-blue">1,350</td></tr>
@@ -417,15 +425,15 @@ h3{font-size:14px;font-weight:600;margin-bottom:12px}
 
 <!-- ===== B2: Competitive AE Benchmarking ===== -->
 <div class="panel" id="panel-b2">
-<h2 data-i="b2_title"></h2>
-<div class="section-sub" data-i="b2_sub"></div>
-<div class="callout callout-blue" data-ih="b2_usecase"></div>
+<h2 data-i="b2_title">Competitive AE Benchmarking</h2>
+<div class="section-sub" data-i="b2_sub">Head-to-head GI side effect profile comparison</div>
+<div class="callout callout-blue" data-ih="b2_usecase"><strong>Enterprise Question:</strong> How does my drug's GI tolerability compare head-to-head with competitors? Which AEs should I highlight (or minimize) in marketing materials and KOL discussions?<br><strong>How to use:</strong> Use the radar chart for a visual competitive positioning. If your drug has lower nausea/vomiting rates, emphasize this in promotional materials. If higher, prepare medical affairs talking points explaining the clinical significance.</div>
 <div class="chart-grid">
- <div class="chart-card full"><h3 data-i="b2_c1t"></h3><div class="chart-wrap tall"><canvas id="c-b2-radar"></canvas></div><span class="source-tag">FDA FAERS</span></div>
+ <div class="chart-card full"><h3 data-i="b2_c1t">GI AE Profile Comparison (Radar)</h3><div class="chart-wrap tall"><canvas id="c-b2-radar"></canvas></div><span class="source-tag">FDA FAERS</span></div>
 </div>
-<h3 data-i="b2_tbl_title"></h3>
+<h3 data-i="b2_tbl_title">Head-to-Head AE Rates</h3>
 <table class="data-table">
- <thead><tr><th data-i="th_ae"></th><th>Ozempic</th><th>Mounjaro</th><th>Wegovy</th></tr></thead>
+ <thead><tr><th data-i="th_ae">Adverse Event</th><th>Ozempic</th><th>Mounjaro</th><th>Wegovy</th></tr></thead>
  <tbody>
   <tr><td>Nausea</td><td class="hl-blue">5,182</td><td class="hl-blue">6,791</td><td class="hl-blue">2,150</td></tr>
   <tr><td>Vomiting</td><td class="hl-blue">2,294</td><td class="hl-blue">3,988</td><td class="hl-blue">1,120</td></tr>
@@ -439,32 +447,32 @@ h3{font-size:14px;font-weight:600;margin-bottom:12px}
 
 <!-- ===== B3: Recall & Quality ===== -->
 <div class="panel" id="panel-b3">
-<h2 data-i="b3_title"></h2>
-<div class="section-sub" data-i="b3_sub"></div>
-<div class="callout callout-blue" data-ih="b3_usecase"></div>
+<h2 data-i="b3_title">Recall & Quality</h2>
+<div class="section-sub" data-i="b3_sub">FDA drug recall enforcement actions and classification</div>
+<div class="callout callout-blue" data-ih="b3_usecase"><strong>Enterprise Question:</strong> Are there quality issues or recalls in my therapeutic area? Is my supply chain at risk? What is the FDA enforcement trend for my product category?<br><strong>How to use:</strong> Monitor Class I recalls (most severe) in your therapeutic area. A competitor recall creates both risk (regulatory scrutiny across the class) and opportunity (market share capture). Track yearly trends to anticipate FDA inspection priorities.</div>
 <div class="stats-row">
- <div class="stat-card"><div class="stat-label" data-i="b3_s1l"></div><div class="stat-value blue">765</div></div>
- <div class="stat-card"><div class="stat-label" data-i="b3_s2l"></div><div class="stat-value red">1,723</div></div>
- <div class="stat-card"><div class="stat-label" data-i="b3_s3l"></div><div class="stat-value blue">14,128</div></div>
+ <div class="stat-card"><div class="stat-label" data-i="b3_s1l">2025 Recalls</div><div class="stat-value blue">765</div></div>
+ <div class="stat-card"><div class="stat-label" data-i="b3_s2l">Class I (Severe)</div><div class="stat-value red">1,723</div></div>
+ <div class="stat-card"><div class="stat-label" data-i="b3_s3l">Class II</div><div class="stat-value blue">14,128</div></div>
 </div>
 <div class="chart-grid">
- <div class="chart-card"><h3 data-i="b3_c1t"></h3><div class="chart-wrap"><canvas id="c-b3-year"></canvas></div><span class="source-tag">FDA Recalls DB</span></div>
- <div class="chart-card"><h3 data-i="b3_c2t"></h3><div class="chart-wrap"><canvas id="c-b3-class"></canvas></div><span class="source-tag">FDA Recalls DB</span></div>
+ <div class="chart-card"><h3 data-i="b3_c1t">Drug Recalls by Year</h3><div class="chart-wrap"><canvas id="c-b3-year"></canvas></div><span class="source-tag">FDA Recalls DB</span></div>
+ <div class="chart-card"><h3 data-i="b3_c2t">By Classification</h3><div class="chart-wrap"><canvas id="c-b3-class"></canvas></div><span class="source-tag">FDA Recalls DB</span></div>
 </div>
 </div>
 
 <!-- ===== B4: Device Intelligence ===== -->
 <div class="panel" id="panel-b4">
-<h2 data-i="b4_title"></h2>
-<div class="section-sub" data-i="b4_sub"></div>
-<div class="callout callout-blue" data-ih="b4_usecase"></div>
+<h2 data-i="b4_title">Device Intelligence</h2>
+<div class="section-sub" data-i="b4_sub">FDA 510(k) medical device clearance tracking</div>
+<div class="callout callout-blue" data-ih="b4_usecase"><strong>Enterprise Question:</strong> How many 510(k) clearances are issued in my device category annually? What is the competitive intensity? Which categories are growing fastest?<br><strong>How to use:</strong> Track your device category's 510(k) volume trend. Rising clearance numbers indicate increasing competition. Use category benchmarks to set realistic expectations for your regulatory timeline and market entry strategy.</div>
 <div class="stats-row">
- <div class="stat-card"><div class="stat-label" data-i="b4_s1l"></div><div class="stat-value blue">3,225</div></div>
- <div class="stat-card"><div class="stat-label" data-i="b4_s2l"></div><div class="stat-value blue">18,960</div><div class="stat-detail" data-i="b4_cardio"></div></div>
+ <div class="stat-card"><div class="stat-label" data-i="b4_s1l">2025 510(k) Clearances</div><div class="stat-value blue">3,225</div></div>
+ <div class="stat-card"><div class="stat-label" data-i="b4_s2l">Top Category</div><div class="stat-value blue">18,960</div><div class="stat-detail" data-i="b4_cardio">Cardiovascular</div></div>
 </div>
 <div class="chart-grid">
- <div class="chart-card"><h3 data-i="b4_c1t"></h3><div class="chart-wrap"><canvas id="c-b4-year"></canvas></div><span class="source-tag">FDA 510(k) DB</span></div>
- <div class="chart-card"><h3 data-i="b4_c2t"></h3><div class="chart-wrap"><canvas id="c-b4-cat"></canvas></div><span class="source-tag">FDA 510(k) DB</span></div>
+ <div class="chart-card"><h3 data-i="b4_c1t">510(k) Clearances by Year</h3><div class="chart-wrap"><canvas id="c-b4-year"></canvas></div><span class="source-tag">FDA 510(k) DB</span></div>
+ <div class="chart-card"><h3 data-i="b4_c2t">Top 5 Device Categories</h3><div class="chart-wrap"><canvas id="c-b4-cat"></canvas></div><span class="source-tag">FDA 510(k) DB</span></div>
 </div>
 </div>
 
@@ -472,18 +480,18 @@ h3{font-size:14px;font-weight:600;margin-bottom:12px}
 
 <!-- Data Sources -->
 <div class="main" id="data-sources-section">
-<h2 data-i="ds_title"></h2>
-<div class="section-sub" data-i="ds_sub"></div>
+<h2 data-i="ds_title">Data Sources</h2>
+<div class="section-sub" data-i="ds_sub">Primary regulatory and epidemiological data feeds</div>
 <table class="data-table">
- <thead><tr><th data-i="th_source"></th><th data-i="th_provider"></th><th data-i="th_coverage"></th><th data-i="th_license"></th></tr></thead>
+ <thead><tr><th data-i="th_source">Source</th><th data-i="th_provider">Provider</th><th data-i="th_coverage">Coverage</th><th data-i="th_license">License</th></tr></thead>
  <tbody>
-  <tr><td>NYTS</td><td>CDC / FDA</td><td data-i="ds_nyts_cov"></td><td data-i="ds_public"></td></tr>
-  <tr><td>MTF</td><td>NIDA / Univ. Michigan</td><td data-i="ds_mtf_cov"></td><td data-i="ds_public"></td></tr>
-  <tr><td>FDA CTP FOIA</td><td>FDA CTP</td><td data-i="ds_ctp_cov"></td><td data-i="ds_foia"></td></tr>
-  <tr><td>FDA FAERS</td><td>FDA CDER</td><td data-i="ds_faers_cov"></td><td data-i="ds_public"></td></tr>
-  <tr><td>FDA Recalls</td><td>FDA</td><td data-i="ds_recalls_cov"></td><td data-i="ds_public"></td></tr>
-  <tr><td>FDA 510(k)</td><td>FDA CDRH</td><td data-i="ds_510k_cov"></td><td data-i="ds_public"></td></tr>
-  <tr><td>WHO GHO</td><td>WHO</td><td data-i="ds_who_cov"></td><td data-i="ds_public"></td></tr>
+  <tr><td>NYTS</td><td>CDC / FDA</td><td data-i="ds_nyts_cov">U.S. Youth Tobacco, 2011-2025 · FDA CTP PUF weighted</td><td data-i="ds_public">Public</td></tr>
+  <tr><td>MTF</td><td>NIDA / Univ. Michigan</td><td data-i="ds_mtf_cov">U.S. 8th/10th/12th Grade, 1975-2025</td><td data-i="ds_public">Public</td></tr>
+  <tr><td>FDA CTP FOIA</td><td>FDA CTP</td><td data-i="ds_ctp_cov">Tobacco Product AE, 2017-2025</td><td data-i="ds_foia">FOIA</td></tr>
+  <tr><td>FDA FAERS</td><td>FDA CDER</td><td data-i="ds_faers_cov">Drug AE Reports, 2004-present</td><td data-i="ds_public">Public</td></tr>
+  <tr><td>FDA Recalls</td><td>FDA</td><td data-i="ds_recalls_cov">Drug Recalls, 2012-present</td><td data-i="ds_public">Public</td></tr>
+  <tr><td>FDA 510(k)</td><td>FDA CDRH</td><td data-i="ds_510k_cov">510(k) Clearances, 1976-present</td><td data-i="ds_public">Public</td></tr>
+  <tr><td>WHO GHO</td><td>WHO</td><td data-i="ds_who_cov">Global Smoking Prevalence, 2000-2024</td><td data-i="ds_public">Public</td></tr>
  </tbody>
 </table>
 <div style="margin-top:16px;padding:14px 18px;background:var(--blue-light);border-left:3px solid var(--blue);border-radius:10px;font-size:13px;color:#1e40af;line-height:1.7">
@@ -492,21 +500,21 @@ h3{font-size:14px;font-weight:600;margin-bottom:12px}
 </div>
 
 <div class="about-section">
-  <h3 data-i="about_title"></h3>
-  <p data-i="about_text"></p>
+  <h3 data-i="about_title">Built by Epidemiologists</h3>
+  <p data-i="about_text">EpiDataKit is developed by Dr. Nana Liu (PhD, Erasmus MC), a Chief Scientist with expertise in epidemiology, biostatistics, and regulatory science. All analyses use survey-weighted methodologies validated against official sources. Contact: nana@epidatakit.com</p>
 </div>
 
 <!-- Footer -->
 <footer class="site-footer">
 <div class="footer-inner">
  <div class="footer-grid">
-  <div><h4 data-i="ft_about_title"></h4><p data-i="ft_about_text"></p></div>
-  <div><h4 data-i="ft_sources_title"></h4><ul>
+  <div><h4 data-i="ft_about_title">About</h4><p data-i="ft_about_text">EpiDataKit is a regulatory intelligence platform built by Shenzhen Evidence-Based Smart Health Technology Co., Ltd. for tobacco and pharmaceutical epidemiology monitoring.</p></div>
+  <div><h4 data-i="ft_sources_title">Data Sources</h4><ul>
    <li>NYTS (CDC/FDA)</li><li>MTF (NIDA)</li><li>FDA FAERS</li><li>FDA CTP FOIA</li><li>FDA 510(k)</li><li>WHO GHO</li>
   </ul></div>
-  <div><h4 data-i="ft_contact_title"></h4><p data-i="ft_contact_text"></p></div>
+  <div><h4 data-i="ft_contact_title">Contact</h4><p data-i="ft_contact_text">Shenzhen Evidence-Based Smart Health Technology Co., Ltd.</p></div>
  </div>
- <div class="footer-legal" data-i="ft_legal"></div>
+ <div class="footer-legal" data-i="ft_legal">This platform is provided for informational and research purposes only. All data sourced from publicly available government databases. Not intended as medical, legal, or regulatory advice. Use at your own risk.</div>
 </div>
 </footer>
 
