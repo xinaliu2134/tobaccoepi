@@ -2,8 +2,11 @@ name: Fetch openFDA Data
 
 on:
   schedule:
-    - cron: '0 6 * * 1'  # Every Monday 6am UTC
-  workflow_dispatch:  # Manual trigger
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   fetch:
