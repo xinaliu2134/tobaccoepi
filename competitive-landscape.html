@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Competitive Landscape | EpiDataKit — Tobacco Data Intelligence Market Map</title>
+<meta name="description" content="Competitive analysis of tobacco epidemiology data platforms. Compare EpiDataKit with CDC STATE System, FDA CTP, Euromonitor, GlobalData, ECigIntelligence, Tobacco Tactics, and more.">
+<meta name="keywords" content="tobacco data platforms, competitive landscape, PMTA data, FDA CTP, NYTS, tobacco market intelligence, EpiDataKit competitors">
+<link rel="canonical" href="https://xinaliu2134.github.io/tobaccoepi/competitive-landscape.html">
+<meta property="og:title" content="Competitive Landscape — Tobacco Data Intelligence Market Map">
+<meta property="og:description" content="Where EpiDataKit sits in the tobacco intelligence ecosystem: 10 competitors analyzed across pricing, data, features, and regulatory depth.">
+<meta property="og:type" content="website">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f8f9fc;--bg2:#ffffff;--bg3:#f0f2f7;--border:#e2e5ef;--text:#1a1f36;--muted:#6b7294;--sans:'Inter',-apple-system,sans-serif;--mono:'DM Mono',monospace;--amber:#d97706;--amber-light:#fef3c7;--amber-dim:#fffbeb;--blue:#2563eb;--blue-light:#eff6ff;--red:#dc2626;--red-light:#fef2f2;--green:#16a34a;--green-light:#f0fdf4;--teal:#0d9488;--purple:#7c3aed;--purple-light:#f5f3ff;--shadow:0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04);--shadow-lg:0 4px 16px rgba(0,0,0,.08);--shadow-xl:0 8px 30px rgba(0,0,0,.12)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14px;line-height:1.6}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* Header */
+.site-header{display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:60px;border-bottom:1px solid var(--border);background:var(--bg2);box-shadow:var(--shadow);flex-wrap:wrap;gap:8px;position:sticky;top:0;z-index:100}
+.hdr-left{display:flex;align-items:center;gap:16px}
+.logo{font-weight:700;font-size:18px;color:var(--amber);letter-spacing:-.3px}
+.logo span{color:var(--text)}
+.subtitle{font-size:11px;color:var(--muted)}
+.hdr-right{display:flex;align-items:center;gap:12px}
+.nav-link{padding:5px 14px;font-size:12px;font-weight:600;border:1px solid var(--border);border-radius:6px;background:var(--bg2);cursor:pointer;font-family:var(--sans);transition:all .15s;color:var(--muted);text-decoration:none}
+.nav-link:hover{border-color:var(--amber);color:var(--amber);text-decoration:none}
+
+/* Hero */
+.hero{background:linear-gradient(135deg,#1a1f36 0%,#2d1b69 50%,#1e3a5f 100%);color:#fff;padding:60px 32px 50px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+.hero h1{font-size:36px;font-weight:800;margin-bottom:8px;letter-spacing:-.5px;position:relative}
+.hero h1 .zh{font-size:20px;font-weight:600;opacity:.7;display:block;margin-top:4px}
+.hero p{font-size:16px;opacity:.8;max-width:700px;margin:0 auto 24px;position:relative}
+.hero-stats{display:flex;justify-content:center;gap:40px;position:relative}
+.hero-stat{text-align:center}
+.hero-stat-val{font-size:32px;font-weight:800;color:var(--amber);font-family:var(--mono)}
+.hero-stat-label{font-size:11px;opacity:.6;text-transform:uppercase;letter-spacing:.08em}
+
+/* Section Nav */
+.section-nav{display:flex;background:var(--bg2);border-bottom:1px solid var(--border);padding:0 32px;gap:0;overflow-x:auto;position:sticky;top:60px;z-index:99}
+.section-btn{padding:12px 20px;font-size:13px;font-weight:600;color:var(--muted);background:none;border:none;border-bottom:3px solid transparent;cursor:pointer;font-family:var(--sans);transition:all .15s;white-space:nowrap}
+.section-btn:hover{color:var(--text)}
+.section-btn.active{color:var(--amber);border-bottom-color:var(--amber)}
+
+/* Main */
+.main{max-width:1260px;margin:0 auto;padding:28px 32px}
+.section{display:none}.section.active{display:block;animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+h2{font-size:22px;font-weight:700;margin-bottom:4px;letter-spacing:-.3px}
+h2 .zh{font-size:14px;font-weight:500;color:var(--muted);margin-left:8px}
+.section-sub{color:var(--muted);font-size:13px;margin-bottom:24px}
+h3{font-size:15px;font-weight:700;margin-bottom:12px}
+h3 .zh{font-size:12px;font-weight:500;color:var(--muted);margin-left:6px}
+
+/* Competitor Cards */
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px;margin-bottom:32px}
+.comp-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:22px;box-shadow:var(--shadow);transition:all .25s;cursor:pointer;position:relative;overflow:hidden}
+.comp-card:hover{box-shadow:var(--shadow-xl);transform:translateY(-2px)}
+.comp-card.expanded{grid-column:1/-1}
+.comp-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
+.comp-card.tier-free::before{background:var(--green)}
+.comp-card.tier-mid::before{background:var(--blue)}
+.comp-card.tier-premium::before{background:var(--purple)}
+.comp-card.tier-enterprise::before{background:var(--amber)}
+.comp-card.tier-epidatakit::before{background:linear-gradient(90deg,var(--amber),var(--red))}
+.card-header{display:flex;align-items:flex-start;gap:14px;margin-bottom:14px}
+.card-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;flex-shrink:0}
+.card-icon.gov{background:#e0f2fe;color:#0369a1}
+.card-icon.commercial{background:#fef3c7;color:#d97706}
+.card-icon.academic{background:#f0fdf4;color:#16a34a}
+.card-icon.industry{background:#f5f3ff;color:#7c3aed}
+.card-icon.epidatakit{background:linear-gradient(135deg,#fef3c7,#fecaca);color:#d97706}
+.card-title{font-size:16px;font-weight:700;color:var(--text);margin-bottom:2px}
+.card-org{font-size:11px;color:var(--muted);margin-bottom:4px}
+.card-tags{display:flex;flex-wrap:wrap;gap:4px}
+.tag{display:inline-block;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:600;letter-spacing:.03em}
+.tag-free{background:var(--green-light);color:var(--green)}
+.tag-paid{background:var(--amber-light);color:var(--amber)}
+.tag-enterprise{background:var(--purple-light);color:var(--purple)}
+.tag-gov{background:#e0f2fe;color:#0369a1}
+.tag-api{background:var(--blue-light);color:var(--blue)}
+.tag-epi{background:var(--red-light);color:var(--red)}
+.card-desc{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:14px}
+.card-details{display:none;border-top:1px solid var(--border);padding-top:14px;margin-top:14px}
+.comp-card.expanded .card-details{display:block}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.detail-item{font-size:12px}
+.detail-label{font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-size:10px;margin-bottom:2px}
+.detail-val{color:var(--text)}
+.strengths{margin-top:12px}
+.str-item{font-size:12px;color:var(--muted);padding:3px 0;padding-left:16px;position:relative}
+.str-item::before{content:'';position:absolute;left:0;top:9px;width:8px;height:8px;border-radius:50%}
+.str-item.pro::before{background:var(--green)}
+.str-item.con::before{background:var(--red)}
+.expand-hint{font-size:11px;color:var(--blue);font-weight:500;cursor:pointer;display:flex;align-items:center;gap:4px}
+.expand-hint::after{content:'▾';font-size:9px}
+.comp-card.expanded .expand-hint::after{content:'▴'}
+
+/* Comparison Matrix */
+.matrix-wrap{overflow-x:auto;margin-bottom:32px;border:1px solid var(--border);border-radius:14px;background:var(--bg2);box-shadow:var(--shadow)}
+.matrix{width:100%;border-collapse:collapse;font-size:12px;min-width:900px}
+.matrix th{text-align:left;padding:12px 14px;background:var(--bg3);color:var(--muted);font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:2}
+.matrix th:first-child{min-width:160px;position:sticky;left:0;z-index:3;background:var(--bg3)}
+.matrix td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--muted);text-align:center;vertical-align:middle}
+.matrix td:first-child{text-align:left;font-weight:600;color:var(--text);position:sticky;left:0;background:var(--bg2);z-index:1}
+.matrix tr:hover td{background:rgba(217,119,6,.03)}
+.matrix tr:last-child td{border-bottom:none}
+.matrix .check{color:var(--green);font-weight:700;font-size:16px}
+.matrix .cross{color:#d1d5db;font-size:14px}
+.matrix .partial{color:var(--amber);font-weight:600;font-size:12px}
+.matrix .highlight-col{background:var(--amber-dim)!important}
+.matrix th.highlight-col{background:var(--amber-light)!important;color:var(--amber)}
+
+/* Stats cards */
+.stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:24px}
+.stat-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:18px;box-shadow:var(--shadow)}
+.stat-label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;font-weight:600}
+.stat-value{font-size:26px;font-weight:700;font-family:var(--mono);color:var(--amber)}
+.stat-value.blue{color:var(--blue)}.stat-value.green{color:var(--green)}.stat-value.purple{color:var(--purple)}
+.stat-detail{font-size:11px;color:var(--muted);margin-top:4px}
+
+/* Charts */
+.chart-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
+.chart-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:20px;box-shadow:var(--shadow)}
+.chart-card.full{grid-column:1/-1}
+.chart-wrap{position:relative;height:320px}
+.chart-wrap.tall{height:400px}
+
+/* Callout */
+.callout{border-radius:10px;padding:16px 20px;margin:16px 0;font-size:13px;border-left:3px solid;line-height:1.7}
+.callout-amber{background:var(--amber-dim);border-color:var(--amber);color:#92400e}
+.callout-blue{background:var(--blue-light);border-color:var(--blue);color:#1e40af}
+.callout-green{background:var(--green-light);border-color:var(--green);color:#166534}
+.callout-purple{background:var(--purple-light);border-color:var(--purple);color:#5b21b6}
+.callout strong{font-weight:700}
+
+/* Gap cards */
+.gap-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin-bottom:24px}
+.gap-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:18px;box-shadow:var(--shadow);border-left:4px solid var(--green)}
+.gap-card h4{font-size:14px;font-weight:700;margin-bottom:6px}
+.gap-card h4 .zh{font-size:11px;font-weight:500;color:var(--muted);display:block}
+.gap-card p{font-size:12px;color:var(--muted);line-height:1.6}
+.gap-card .opp-tag{display:inline-block;margin-top:8px;padding:3px 10px;border-radius:10px;font-size:10px;font-weight:700;background:var(--green-light);color:var(--green)}
+
+/* Positioning section */
+.pos-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:24px}
+.pos-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:24px;box-shadow:var(--shadow)}
+.pos-card h4{font-size:14px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.pos-list{list-style:none;padding:0}
+.pos-list li{font-size:13px;color:var(--muted);padding:6px 0;padding-left:20px;position:relative;border-bottom:1px solid var(--bg3)}
+.pos-list li:last-child{border-bottom:none}
+.pos-list li::before{content:'→';position:absolute;left:0;color:var(--amber);font-weight:700}
+
+/* Footer */
+.footer{border-top:1px solid var(--border);padding:24px 32px;text-align:center;color:var(--muted);font-size:11px;background:var(--bg2)}
+.footer a{color:var(--amber)}
+
+/* Responsive */
+@media(max-width:768px){
+.hero h1{font-size:24px}
+.hero-stats{flex-direction:column;gap:16px}
+.card-grid{grid-template-columns:1fr}
+.chart-grid{grid-template-columns:1fr}
+.pos-grid{grid-template-columns:1fr}
+.detail-grid{grid-template-columns:1fr}
+.main{padding:20px 16px}
+.site-header{padding:0 16px}
+.section-nav{padding:0 16px}
+.hero{padding:40px 16px 30px}
+.hero-stat-val{font-size:24px}
+}
+@media(max-width:480px){
+.section-btn{padding:10px 12px;font-size:12px}
+.stat-value{font-size:22px}
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="site-header">
+  <div class="hdr-left">
+    <div class="logo">Epi<span>DataKit</span></div>
+    <div class="subtitle">Tobacco Epidemiology Intelligence</div>
+  </div>
+  <div class="hdr-right">
+    <a href="index.html" class="nav-link">← Dashboard</a>
+    <a href="methodology.html" class="nav-link">Methodology</a>
+  </div>
+</header>
+
+<!-- Hero -->
+<div class="hero">
+  <h1>Competitive Landscape<span class="zh">竞争格局分析</span></h1>
+  <p>Mapping the tobacco data intelligence ecosystem — from government surveillance systems to premium commercial platforms. Where does EpiDataKit fit?</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="hero-stat-val">10</div><div class="hero-stat-label">Competitors Analyzed 分析竞争对手</div></div>
+    <div class="hero-stat"><div class="hero-stat-val">4</div><div class="hero-stat-label">Market Segments 市场细分</div></div>
+    <div class="hero-stat"><div class="hero-stat-val">$0–$120K+</div><div class="hero-stat-label">Price Range 价格区间</div></div>
+    <div class="hero-stat"><div class="hero-stat-val">3</div><div class="hero-stat-label">Key Gaps Found 关键空白</div></div>
+  </div>
+</div>
+
+<!-- Section Nav -->
+<nav class="section-nav">
+  <button class="section-btn active" onclick="showSection('overview')">Market Map 市场概览</button>
+  <button class="section-btn" onclick="showSection('competitors')">Competitor Profiles 竞争对手</button>
+  <button class="section-btn" onclick="showSection('matrix')">Feature Matrix 功能矩阵</button>
+  <button class="section-btn" onclick="showSection('pricing')">Pricing 价格对比</button>
+  <button class="section-btn" onclick="showSection('gaps')">Gaps &amp; Opportunities 机会</button>
+  <button class="section-btn" onclick="showSection('positioning')">EpiDataKit Positioning 定位</button>
+</nav>
+
+<!-- Main Content -->
+<div class="main">
+
+<!-- ===================== SECTION: OVERVIEW ===================== -->
+<div id="sec-overview" class="section active">
+  <h2>Market Overview <span class="zh">市场概览</span></h2>
+  <p class="section-sub">The tobacco data intelligence market spans four distinct segments, each serving different stakeholders with varying depth, cost, and regulatory relevance.</p>
+
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-label">Government / Free 政府/免费</div>
+      <div class="stat-value green">4</div>
+      <div class="stat-detail">CDC, FDA CTP, WHO GTSS, STOP</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Academic / Open 学术/开放</div>
+      <div class="stat-value blue">2</div>
+      <div class="stat-detail">Tobacco Tactics, CRST/Rutgers</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Commercial Premium 商业高端</div>
+      <div class="stat-value purple">4</div>
+      <div class="stat-detail">Euromonitor, GlobalData, ECigIntel, TobaccoIntel</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Industry Analytics 行业分析</div>
+      <div class="stat-value" style="color:var(--amber)">1</div>
+      <div class="stat-detail">Circana (formerly IRI/NPD)</div>
+    </div>
+  </div>
+
+  <div class="chart-grid">
+    <div class="chart-card full">
+      <h3>Market Positioning Map <span class="zh">市场定位图</span></h3>
+      <div class="chart-wrap tall">
+        <canvas id="positionChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout callout-amber">
+    <strong>Key Insight 关键发现:</strong> No existing platform combines real-time epidemiological surveillance data (NYTS, PATH, openFDA) with regulatory intelligence (PMTA/MRTP evidence) in a single, affordable SaaS product. Government tools are free but raw; commercial platforms are polished but expensive and lack public health data integration. EpiDataKit occupies a unique "regulatory epidemiology" niche.
+  </div>
+
+  <div class="chart-grid">
+    <div class="chart-card">
+      <h3>Data Source Coverage <span class="zh">数据源覆盖</span></h3>
+      <div class="chart-wrap">
+        <canvas id="dataSourceChart"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <h3>Segment by Target Audience <span class="zh">目标受众分布</span></h3>
+      <div class="chart-wrap">
+        <canvas id="audienceChart"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== SECTION: COMPETITORS ===================== -->
+<div id="sec-competitors" class="section">
+  <h2>Competitor Profiles <span class="zh">竞争对手资料</span></h2>
+  <p class="section-sub">Click any card to expand detailed analysis. Competitors are organized by market segment.</p>
+
+  <h3 style="margin-top:20px">Government & Public Data 政府与公共数据</h3>
+  <div class="card-grid" id="gov-cards">
+
+    <!-- CDC STATE System -->
+    <div class="comp-card tier-free" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="card-icon gov">CDC</div>
+        <div>
+          <div class="card-title">CDC STATE System</div>
+          <div class="card-org">Centers for Disease Control & Prevention</div>
+          <div class="card-tags"><span class="tag tag-free">Free</span><span class="tag tag-gov">Government</span></div>
+        </div>
+      </div>
+      <div class="card-desc">The State Tobacco Activities Tracking and Evaluation System tracks tobacco control data across all 50 US states, DC, and territories. Includes BRFSS integration, quitline data (NQDW), and state policy tracking.</div>
+      <div class="expand-hint">View details</div>
+      <div class="card-details">
+        <div class="detail-grid">
+          <div class="detail-item"><div class="detail-label">Pricing</div><div class="detail-val">Free / Open Access</div></div>
+          <div class="detail-item"><div class="detail-label">Update Frequency</div><div class="detail-val">Annual (some quarterly)</div></div>
+          <div class="detail-item"><div class="detail-label">Data Coverage</div><div class="detail-val">US states — tobacco legislation, taxes, prevention spending, quitline data</div></div>
+          <div class="detail-item"><div class="detail-label">Target Audience</div><div class="detail-val">Public health officials, state programs, researchers</div></div>
+        </div>
+        <div class="strengths">
+          <div class="str-item pro">Authoritative government source, comprehensive state-level policy data</div>
+          <div class="str-item pro">Custom report builder, exportable data</div>
+          <div class="str-item con">No real-time surveillance — annual lag</div>
+          <div class="str-item con">No brand-level or product-level data</div>
+          <div class="str-item con">OSH staff largely dismantled in 2025 — uncertain future</div>
+          <div class="str-item con">No PMTA/MRTP regulatory intelligence</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FDA CTP -->
+    <div class="comp-card tier-free" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="card-icon gov">FDA</div>
+        <div>
+          <div class="card-title">FDA CTP Data Resources</div>
+          <div class="card-org">Center for Tobacco Products, FDA</div>
+          <div class="card-tags"><span class="tag tag-free">Free</span><span class="tag tag-gov">Government</span><span class="tag tag-api">API</span></div>
+        </div>
+      </div>
+      <div class="card-desc">FDA's Center for Tobacco Products provides NYTS data, openFDA APIs for tobacco adverse events, PMTA decision databases, the PATH Study data, and the CRST rapid surveillance center. Core regulatory data source for the US tobacco market.</div>
+      <div class="expand-hint">View details</div>
+      <div class="card-details">
+        <div class="detail-grid">
+          <div class="detail-item"><div class="detail-label">Pricing</div><div class="detail-val">Free — open data, APIs available</div></div>
+          <div class="detail-item"><div class="detail-label">Update Frequency</div><div class="detail-val">NYTS: annual; openFDA: weekly; PATH: ~18-month waves</div></div>
+          <div class="detail-item"><div class="detail-label">Data Coverage</div><div class="detail-val">NYTS (youth), PATH (longitudinal), openFDA AE, PMTA decisions</div></div>
+          <div class="detail-item"><div class="detail-label">Target Audience</div><div class="detail-val">Researchers, tobacco manufacturers, regulatory scientists</div></div>
+        </div>
+        <div class="strengths">
+          <div class="str-item pro">Gold-standard regulatory data — NYTS, PATH, openFDA</div>
+          <div class="str-item pro">Machine-readable APIs (openFDA), public use files</div>
+          <div class="str-item pro">CRST enables rapid surveillance capabilities</div>
+          <div class="str-item con">Raw data — no dashboards, visualization, or cross-dataset analytics</div>
+          <div class="str-item con">Requires SAS/R/Python expertise to analyze</div>
+          <div class="str-item con">No integrated regulatory + epidemiological view</div>
+          <div class="str-item con">PATH data released with 18+ month delay</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WHO GTSS -->
+    <div class="comp-card tier-free" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="card-icon gov">WHO</div>
+        <div>
+          <div class="card-title">WHO Global Tobacco Surveillance</div>
+          <div class="card-org">World Health Organization / CDC</div>
+          <div class="card-tags"><span class="tag tag-free">Free</span><span class="tag tag-gov">International</span></div>
+        </div>
+      </div>
+      <div class="card-desc">The Global Tobacco Surveillance System (GTSS) includes GATS (adult), GYTS (youth), and GHPSS (health professionals) surveys. Covers 180+ countries since 1998. Supports WHO FCTC monitoring and MPOWER implementation.</div>
+      <div class="expand-hint">View details</div>
+      <div class="card-details">
+        <div class="detail-grid">
+          <div class="detail-item"><div class="detail-label">Pricing</div><div class="detail-val">Free / Open Access</div></div>
+          <div class="detail-item"><div class="detail-label">Update Frequency</div><div class="detail-val">Country-dependent, typically 3-5 year cycles</div></div>
+          <div class="detail-item"><div class="detail-label">Data Coverage</div><div class="detail-val">180+ countries, youth & adult prevalence, cessation, exposure</div></div>
+          <div class="detail-item"><div class="detail-label">Target Audience</div><div class="detail-val">Global health policymakers, WHO member states, researchers</div></div>
+        </div>
+        <div class="strengths">
+          <div class="str-item pro">Broadest global coverage of any tobacco surveillance system</div>
+          <div class="str-item pro">Standardized methodology enables cross-country comparison</div>
+          <div class="str-item con">Very slow update cycle (3-5 years between country waves)</div>
+          <div class="str-item con">No brand-level, market, or regulatory data</div>
+          <div class="str-item con">US-specific regulatory context entirely missing</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STOP -->
+    <div class="comp-card tier-free" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="card-icon gov">STP</div>
+        <div>
+          <div class="card-title">STOP — Tobacco Industry Watchdog</div>
+          <div class="card-org">Vital Strategies / Bloomberg</div>
+          <div class="card-tags"><span class="tag tag-free">Free</span><span class="tag tag-gov">Advocacy</span></div>
+        </div>
+      </div>
+      <div class="card-desc">Global tobacco industry watchdog exposing and countering industry tactics. Tracks industry interference with public health policy, provides country-level interference indices, and monitors corporate behavior.</div>
+      <div class="expand-hint">View details</div>
+      <div class="card-details">
+        <div class="detail-grid">
+          <div class="detail-item"><div class="detail-label">Pricing</div><div class="detail-val">Free / Open Access</div></div>
+          <div class="detail-item"><div class="detail-label">Update Frequency</div><div class="detail-val">Ongoing reporting</div></div>
+          <div class="detail-item"><div class="detail-label">Data Coverage</div><div class="detail-val">Global — industry tactics, lobbying, marketing, CSR analysis</div></div>
+          <div class="detail-item"><div class="detail-label">Target Audience</div><div class="detail-val">Advocacy groups, policymakers, journalists</div></div>
+        </div>
+        <div class="strengths">
+          <div class="str-item pro">Unique industry accountability data not found elsewhere</div>
+          <div class="str-item pro">Bloomberg-funded, well-resourced</div>
+          <div class="str-item con">Advocacy-oriented, not designed for regulatory submissions</div>
+          <div class="str-item con">No epidemiological or market data</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:28px">Academic & Research 学术与研究</h3>
+  <div class="card-grid">
+
+    <!-- Tobacco Tactics -->
+    <div class="comp-card tier-free" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="card-icon academic">TT</div>
+        <div>
+          <div class="card-title">Tobacco Tactics</div>
+          <div class="card-org">University of Bath, UK</div>
+          <div class="card-tags"><span class="tag tag-free">Free</span><span class="tag tag-epi">Academic</span></div>
+        </div>
+      </div>
+      <div class="card-desc">Knowledge exchange platform from the Tobacco Control Research Group (TCRG) at the University of Bath. Since 2012, it has profiled tobacco industry strategies, key personnel, organizations, and allies. Includes a whistleblower portal. Over 115,000 annual visitors.</div>
+      <div class="expand-hint">View details</div>
+      <div class="card-details">
+        <div class="detail-grid">
+          <div class="detail-item"><div class="detail-label">Pricing</div><div class="detail-val">Free / Open Access</div></div>
+          <div class="detail-item"><div class="detail-label">Update Frequency</div><div class="detail-val">Regular updates; wiki-style publishing</div></div>
+          <div class="detail-item"><div class="detail-label">Data Coverage</div><div class="detail-val">Global tobacco industry: lobbying, front groups, CSR, FCTC compliance</div></div>
+          <div class="detail-item"><div class="detail-label">Target Audience</div><div class="detail-val">Academics, advocates, journalists, policymakers</div></div>
+        </div>
+        <div class="strengths">
+          <div class="str-item pro">Rigorous academic research on industry interference</div>
+          <div class="str-item pro">TIMRA model adopted by WHO and multiple countries</div>
+          <div class="str-item pro">Unique whistleblower portal</div>
+          <div class="str-item con">Qualitative industry analysis — no quantitative epi data</div>
+          <div class="str-item con">No brand market share, prevalence, or AE data</div>
+          <div class="str-item con">Not useful for PMTA/MRTP evidence packages</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CRST -->
+    <div class="comp-card tier-free" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="card-icon academic">CR</div>
+        <div>
+          <div class="card-title">CRST / CAsToR</div>
+          <div class="card-org">Rutgers University (FDA/NIH funded)</div>
+          <div class="card-tags"><span class="tag tag-free">Free</span><span class="tag tag-epi">Epidemiology</span><span class="tag tag-api">Research</span></div>
+        </div>
+      </div>
+      <div class="card-desc">Center for Rapid Surveillance of Tobacco, funded by FDA/NIH. Enables faster-than-traditional data collection and analysis of tobacco marketplace changes and use patterns. CAsToR provides computational analytics for tobacco regulatory science.</div>
+      <div class="expand-hint">View details</div>
+      <div class="card-details">
+        <div class="detail-grid">
+          <div class="detail-item"><div class="detail-label">Pricing</div><div class="detail-val">Free (publicly funded research)</div></div>
+          <div class="detail-item"><div class="detail-label">Update Frequency</div><div class="detail-val">Rapid surveillance — faster than traditional surveys</div></div>
+          <div class="detail-item"><div class="detail-label">Data Coverage</div><div class="detail-val">US tobacco product landscape, use patterns, marketplace changes</div></div>
+          <div class="detail-item"><div class="detail-label">Target Audience</div><div class="detail-val">FDA/CTP, regulatory scientists, tobacco researchers</div></div>
+        </div>
+        <div class="strengths">
+          <div class="str-item pro">Rapid surveillance fills timeliness gap of traditional surveys</div>
+          <div class="str-item pro">Cross-validation source for NYTS/PATH data</div>
+          <div class="str-item con">Academic output — not a commercial data product</div>
+          <div class="str-item con">Limited public-facing tools or dashboards</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:28px">Commercial Premium 商业高端平台</h3>
+  <div class="card-grid">
+
+    <!-- Euromonitor -->
+    <div class="comp-card tier-enterprise" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="card-icon commercial">EM</div>
+        <div>
+          <div class="card-title">Euromonitor Passport</div>
+          <div class="card-org">Euromonitor International</div>
+          <div class="card-tags"><span class="tag tag-enterprise">$20K–$120K+/yr</span><span class="tag tag-paid">Enterprise</span></div>
+        </div>
+      </div>
+      <div class="card-desc">Passport Tobacco covers 7 major categories (cigarettes, cigars, smokeless, e-vapor, heated, oral nicotine) across 200+ countries. Standardized cross-comparable statistics: market size, company/brand market share, distribution, and industry trends.</div>
+      <div class="expand-hint">View details</div>
+      <div class="card-details">
+        <div class="detail-grid">
+          <div class="detail-item"><div class="detail-label">Pricing</div><div class="detail-val">$20K–$40K/yr (single-country); $50K–$120K+ (enterprise/global)</div></div>
+          <div class="detail-item"><div class="detail-label">Update Frequency</div><div class="detail-val">Quarterly updates; continuous analyst coverage</div></div>
+          <div class="detail-item"><div class="detail-label">Data Coverage</div><div class="detail-val">200+ countries, 7 tobacco categories, market size, share, forecasts</div></div>
+          <div class="detail-item"><div class="detail-label">Target Audience</div><div class="detail-val">Tobacco manufacturers, investors, strategy consultants</div></div>
+        </div>
+        <div class="strengths">
+          <div class="str-item pro">Broadest commercial tobacco market data — 200+ countries</div>
+          <div class="str-item pro">Standardized methodology enables global comparison</div>
+          <div class="str-item pro">Deep brand share and competitive intelligence</div>
+          <div class="str-item con">No epidemiological data (prevalence, youth use, AE)</div>
+          <div class="str-item con">No regulatory intelligence (PMTA, MRTP, FDA decisions)</div>
+          <div class="str-item con">Prohibitively expensive for startups and small firms</div>
+          <div class="str-item con">Market data, not public health data</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GlobalData -->
+    <div class="comp-card tier-enterprise" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="card-icon commercial">GD</div>
+        <div>
+          <div class="card-title">GlobalData Tobacco Intelligence</div>
+          <div class="card-org">GlobalData UK Ltd</div>
+          <div class="card-tags"><span class="tag tag-enterprise">$15K–$80K+/yr</span><span class="tag tag-paid">Enterprise</span></div>
+        </div>
+      </div>
+      <div class="card-desc">Live intelligence dashboard with country-level cigarette market analysis: segments, production, distribution, tax & pricing, competitive landscape, and forecasts. Covers 50+ tobacco markets with company profiles and deal tracking.</div>
+      <div class="expand-hint">View details</div>
+      <div class="card-details">
+        <div class="detail-grid">
+          <div class="detail-item"><div class="detail-label">Pricing</div><div class="detail-val">~$15K–$80K+/yr (module-dependent); per-report from ~$2,500</div></div>
+          <div class="detail-item"><div class="detail-label">Update Frequency</div><div class="detail-val">Real-time dashboard; reports updated annually</div></div>
+          <div class="detail-item"><div class="detail-label">Data Coverage</div><div class="detail-val">50+ countries, segments, production, tax, pricing, deals</div></div>
+          <div class="detail-item"><div class="detail-label">Target Audience</div><div class="detail-val">Consumer goods companies, investors, M&A teams</div></div>
+        </div>
+        <div class="strengths">
+          <div class="str-item pro">Real-time deal coverage and market signals</div>
+          <div class="str-item pro">Strong company and financial profiling</div>
+          <div class="str-item con">No public health or epidemiological datasets</div>
+          <div class="str-item con">Limited regulatory intelligence for FDA submissions</div>
+          <div class="str-item con">High cost, enterprise-only sales model</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ECigIntelligence -->
+    <div class="comp-card tier-premium" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="card-icon industry">EC</div>
+        <div>
+          <div class="card-title">ECigIntelligence</div>
+          <div class="card-org">ECigIntelligence (UK-based)</div>
+          <div class="card-tags"><span class="tag tag-enterprise">~$10K–$30K/yr</span><span class="tag tag-paid">Specialist</span></div>
+        </div>
+      </div>
+      <div class="card-desc">Leading intelligence provider for the e-cigarette sector. Covers 50+ countries with regulatory trackers, pricing databases, brand monitoring across 7 major markets. Includes enforcement tracker and country-level legal analysis. Free 7-day trial available.</div>
+      <div class="expand-hint">View details</div>
+      <div class="card-details">
+        <div class="detail-grid">
+          <div class="detail-item"><div class="detail-label">Pricing</div><div class="detail-val">~$10K–$30K/yr (tiered); individual reports from ~$500</div></div>
+          <div class="detail-item"><div class="detail-label">Update Frequency</div><div class="detail-val">Daily news; quarterly regulatory updates; monthly pricing data</div></div>
+          <div class="detail-item"><div class="detail-label">Data Coverage</div><div class="detail-val">50+ countries, e-cigarette regulation, pricing, brands, enforcement</div></div>
+          <div class="detail-item"><div class="detail-label">Target Audience</div><div class="detail-val">Vaping manufacturers, compliance teams, regulatory affairs</div></div>
+        </div>
+        <div class="strengths">
+          <div class="str-item pro">Deepest e-cigarette regulatory and pricing database</div>
+          <div class="str-item pro">Enforcement tracker — unique compliance tool</div>
+          <div class="str-item pro">7-day free trial, briefings subscription available</div>
+          <div class="str-item con">E-cigarettes only — no combustible, smokeless, or oral nicotine depth</div>
+          <div class="str-item con">No epidemiological data (NYTS, PATH, AE reports)</div>
+          <div class="str-item con">Primarily regulatory/market — not evidence-grade for PMTA</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TobaccoIntelligence -->
+    <div class="comp-card tier-premium" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="card-icon industry">TI</div>
+        <div>
+          <div class="card-title">TobaccoIntelligence</div>
+          <div class="card-org">TobaccoIntelligence (sister of ECigIntel)</div>
+          <div class="card-tags"><span class="tag tag-enterprise">~$10K–$30K/yr</span><span class="tag tag-paid">Specialist</span></div>
+        </div>
+      </div>
+      <div class="card-desc">Broader sibling of ECigIntelligence covering all novel nicotine products (NGPs): heated tobacco, nicotine pouches, combustibles. Regulatory trackers for 100+ markets, daily analysis, API access, and enforcement monitoring. Quarterly US state-level nicotine pouch regulation updates.</div>
+      <div class="expand-hint">View details</div>
+      <div class="card-details">
+        <div class="detail-grid">
+          <div class="detail-item"><div class="detail-label">Pricing</div><div class="detail-val">~$10K–$30K/yr (tiered); custom consultancy available</div></div>
+          <div class="detail-item"><div class="detail-label">Update Frequency</div><div class="detail-val">Daily summaries; quarterly regulatory map updates</div></div>
+          <div class="detail-item"><div class="detail-label">Data Coverage</div><div class="detail-val">100+ markets, all NGP categories, heated tobacco, pouches</div></div>
+          <div class="detail-item"><div class="detail-label">Target Audience</div><div class="detail-val">Policy teams, compliance departments, NGP manufacturers</div></div>
+        </div>
+        <div class="strengths">
+          <div class="str-item pro">100+ market regulatory coverage — broadest for novel nicotine</div>
+          <div class="str-item pro">API integration for enterprise workflows</div>
+          <div class="str-item pro">Heated tobacco + nicotine pouch specialization</div>
+          <div class="str-item con">Regulatory focus only — no health outcome data</div>
+          <div class="str-item con">No PMTA evidence packages or epidemiological analytics</div>
+          <div class="str-item con">Separate from ECigIntelligence — fragmented coverage</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:28px">Industry Data Analytics 行业数据分析</h3>
+  <div class="card-grid">
+
+    <!-- Circana -->
+    <div class="comp-card tier-enterprise" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="card-icon commercial">CI</div>
+        <div>
+          <div class="card-title">Circana Tobacco Analytics</div>
+          <div class="card-org">Circana (formerly IRI + NPD)</div>
+          <div class="card-tags"><span class="tag tag-enterprise">$50K–$200K+/yr</span><span class="tag tag-paid">Enterprise</span></div>
+        </div>
+      </div>
+      <div class="card-desc">Consumer panel and point-of-sale data analytics for the tobacco industry. Liquid Data platform covers pricing & promotion analysis, channel optimization, product innovation insights. The dominant retail data provider for US tobacco brands.</div>
+      <div class="expand-hint">View details</div>
+      <div class="card-details">
+        <div class="detail-grid">
+          <div class="detail-item"><div class="detail-label">Pricing</div><div class="detail-val">$50K–$200K+/yr (enterprise contracts only)</div></div>
+          <div class="detail-item"><div class="detail-label">Update Frequency</div><div class="detail-val">Weekly POS scans; continuous consumer panel</div></div>
+          <div class="detail-item"><div class="detail-label">Data Coverage</div><div class="detail-val">US retail: POS scan data, consumer panels, pricing, promotions</div></div>
+          <div class="detail-item"><div class="detail-label">Target Audience</div><div class="detail-val">Tobacco brand teams, trade marketing, category managers</div></div>
+        </div>
+        <div class="strengths">
+          <div class="str-item pro">Gold-standard retail sales data — granular POS and panel data</div>
+          <div class="str-item pro">Weekly updates — most timely commercial data</div>
+          <div class="str-item con">Extremely expensive — enterprise-only</div>
+          <div class="str-item con">Purely commercial — zero public health data</div>
+          <div class="str-item con">No regulatory, epidemiological, or AE data</div>
+          <div class="str-item con">Not accessible to researchers or small companies</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EpiDataKit card -->
+  <h3 style="margin-top:28px">Our Position 我们的定位</h3>
+  <div class="card-grid">
+    <div class="comp-card tier-epidatakit" onclick="toggleCard(this)" style="border:2px solid var(--amber)">
+      <div class="card-header">
+        <div class="card-icon epidatakit">ED</div>
+        <div>
+          <div class="card-title" style="color:var(--amber)">EpiDataKit</div>
+          <div class="card-org">Dr. Nana Liu — Independent Regulatory Intelligence</div>
+          <div class="card-tags"><span class="tag tag-free">Free Dashboard</span><span class="tag tag-paid">$9,900 DaaS</span><span class="tag tag-epi">Epidemiology</span><span class="tag tag-api">API</span></div>
+        </div>
+      </div>
+      <div class="card-desc">The only platform combining weighted NYTS 2025 analysis, openFDA adverse events, PATH longitudinal data, and CRST cross-validation in a single dashboard — with PMTA/MRTP-grade evidence packages. Triple-validated: EpiDataKit vs Altria ALCS vs CRST/CAsToR.</div>
+      <div class="expand-hint">View details</div>
+      <div class="card-details">
+        <div class="detail-grid">
+          <div class="detail-item"><div class="detail-label">Pricing</div><div class="detail-val">Free dashboard + newsletter; $9,900 per DaaS report</div></div>
+          <div class="detail-item"><div class="detail-label">Update Frequency</div><div class="detail-val">Weekly (openFDA); annual (NYTS); biweekly newsletter</div></div>
+          <div class="detail-item"><div class="detail-label">Data Coverage</div><div class="detail-val">NYTS 2025, openFDA AE, PATH Wave 7, CRST/CAsToR, WHO GHO</div></div>
+          <div class="detail-item"><div class="detail-label">Target Audience</div><div class="detail-val">Regulatory affairs, PMTA applicants, tobacco researchers, public health</div></div>
+        </div>
+        <div class="strengths">
+          <div class="str-item pro">Only platform bridging epidemiology + regulatory intelligence</div>
+          <div class="str-item pro">Triple cross-validation methodology (unique in market)</div>
+          <div class="str-item pro">PMTA/MRTP evidence-grade output — directly usable in submissions</div>
+          <div class="str-item pro">10x–100x cheaper than commercial alternatives</div>
+          <div class="str-item pro">20+ interactive charts, bilingual (EN/CN)</div>
+          <div class="str-item pro">Free tier drives awareness; premium DaaS captures value</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== SECTION: MATRIX ===================== -->
+<div id="sec-matrix" class="section">
+  <h2>Feature Comparison Matrix <span class="zh">功能对比矩阵</span></h2>
+  <p class="section-sub">Side-by-side comparison of capabilities across all platforms. EpiDataKit column highlighted.</p>
+
+  <div class="matrix-wrap">
+    <table class="matrix">
+      <thead>
+        <tr>
+          <th>Feature 功能</th>
+          <th>CDC STATE</th>
+          <th>FDA CTP</th>
+          <th>WHO GTSS</th>
+          <th>Tobacco Tactics</th>
+          <th>Euromonitor</th>
+          <th>GlobalData</th>
+          <th>ECigIntel</th>
+          <th>TobaccoIntel</th>
+          <th>Circana</th>
+          <th class="highlight-col">EpiDataKit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Youth Tobacco Prevalence 青少年烟草流行率</td>
+          <td class="partial">◐</td><td class="check">✓</td><td class="check">✓</td><td class="cross">—</td><td class="cross">—</td><td class="cross">—</td><td class="cross">—</td><td class="cross">—</td><td class="cross">—</td><td class="check highlight-col">✓</td>
+        </tr>
+        <tr>
+          <td>Brand-Level Market Share 品牌市场份额</td>
+          <td class="cross">—</td><td class="cross">—</td><td class="cross">—</td><td class="cross">—</td><td class="check">✓</td><td class="check">✓</td><td class="partial">◐</td><td class="cross">—</td><td class="check">✓</td><td class="check highlight-col">✓</td>
+        </tr>
+        <tr>
+          <td>Adverse Event Data 不良事件数据</td>
+          <td class="cross">—</td><td class="check">✓</td><td class="cross">—</td><td class="cross">—</td><td class="cross">—</td><td class="cross">—</td><td class="cross">—</td><td class="cross">—</td><td class="cross">—</td><td class="check highlight-col">✓</td>
+        </tr>
+        <tr>
+          <td>PMTA/MRTP Intelligence PMTA/MRTP情报</td>
+          <td class="cross">—</td><td class="partial">◐</td><td class="cross">—</td><td class="cross">—</td><td class="cross">—</td><td class="cross">—</td><td class="partial">◐</td><td class="partial">◐</td><td class="cross">—</td><td class="check highlight-col">✓</td>
+        </tr>
+        <tr>
+          <td>Interactive Dashboard 交互式仪表盘</td>
+          <td class="partial">◐</td><td class="cross">—</td><td class="cross">—</td><td class="cross">—</td><td class="check">✓</td><td class="check">✓</td><td class="partial">◐</td><td class="partial">◐</td><td class="check">✓</td><td class="check highlight-col">✓</td>
+        </tr>
+        <tr>
+          <td>Cross-Dataset Validation 交叉数据验证</td>
+          <td class="cross">—</td><td class="cross">—</td><td class="cross">—</td><td class="cross">—</td><td class="cross">—</td><td class="cross">—</td><td class="cross">—</td><td class="cross">—</td><td class="cross">—</td><td class="check highlight-col">✓</td>
+        </tr>
+        <tr>
+          <td>Regulatory Tracker 监管追踪</td>
+          <td class="check">✓</td><td class="check">✓</td><td class="cross">—</td><td class="cross">—</td><td class="cross">—</td><td class="cross">—</td><td class="check">✓</td><td class="check">✓</td><td class="cross">—</td><td class="partial highlight-col">◐</td>
+        </tr>
+        <tr>
+          <td>Global Coverage 全球覆盖</td>
+          <td class="cross">—</td><td class="cross">—</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="cross">—</td><td class="partial highlight-col">◐</td>
+        </tr>
+        <tr>
+          <td>Retail/POS Sales Data 零售销售数据</td>
+          <td class="cross">—</td><td class="cross">—</td><td class="cross">—</td><td class="cross">—</td><td class="check">✓</td><td class="check">✓</td><td class="partial">◐</td><td class="cross">—</td><td class="check">✓</td><td class="cross highlight-col">—</td>
+        </tr>
+        <tr>
+          <td>Free Access Tier 免费访问层</td>
+          <td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="cross">—</td><td class="cross">—</td><td class="partial">◐</td><td class="partial">◐</td><td class="cross">—</td><td class="check highlight-col">✓</td>
+        </tr>
+        <tr>
+          <td>API / Machine-Readable API/机器可读</td>
+          <td class="partial">◐</td><td class="check">✓</td><td class="cross">—</td><td class="cross">—</td><td class="check">✓</td><td class="check">✓</td><td class="cross">—</td><td class="check">✓</td><td class="check">✓</td><td class="partial highlight-col">◐</td>
+        </tr>
+        <tr>
+          <td>Evidence-Grade Reports 证据级别报告</td>
+          <td class="cross">—</td><td class="cross">—</td><td class="cross">—</td><td class="cross">—</td><td class="cross">—</td><td class="cross">—</td><td class="cross">—</td><td class="cross">—</td><td class="cross">—</td><td class="check highlight-col">✓</td>
+        </tr>
+        <tr>
+          <td>Nicotine Pouch Data 尼古丁袋数据</td>
+          <td class="cross">—</td><td class="partial">◐</td><td class="cross">—</td><td class="cross">—</td><td class="check">✓</td><td class="partial">◐</td><td class="cross">—</td><td class="check">✓</td><td class="check">✓</td><td class="check highlight-col">✓</td>
+        </tr>
+        <tr>
+          <td>Demographic Breakdowns 人口统计细分</td>
+          <td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="cross">—</td><td class="cross">—</td><td class="cross">—</td><td class="cross">—</td><td class="cross">—</td><td class="partial">◐</td><td class="check highlight-col">✓</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-blue">
+    <strong>Legend 图例:</strong> ✓ = Full support &nbsp; ◐ = Partial/Limited &nbsp; — = Not available. <br>
+    EpiDataKit is the only platform scoring ✓ on both epidemiological data (youth prevalence, AE, demographics) AND regulatory intelligence (PMTA/MRTP, evidence-grade reports).
+  </div>
+</div>
+
+<!-- ===================== SECTION: PRICING ===================== -->
+<div id="sec-pricing" class="section">
+  <h2>Pricing Comparison <span class="zh">价格对比</span></h2>
+  <p class="section-sub">Annual subscription costs across the competitive landscape. EpiDataKit delivers 80% of premium platform value at a fraction of the cost.</p>
+
+  <div class="chart-grid">
+    <div class="chart-card full">
+      <h3>Annual Cost Comparison (USD) <span class="zh">年度成本对比</span></h3>
+      <div class="chart-wrap tall">
+        <canvas id="pricingChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-label">Cheapest Commercial 最便宜商业平台</div>
+      <div class="stat-value blue">$10K</div>
+      <div class="stat-detail">ECigIntelligence / TobaccoIntelligence entry tier</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Most Expensive 最贵平台</div>
+      <div class="stat-value purple">$200K+</div>
+      <div class="stat-detail">Circana enterprise (POS + panel)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">EpiDataKit DaaS Report EpiDataKit DaaS报告</div>
+      <div class="stat-value" style="color:var(--amber)">$9,900</div>
+      <div class="stat-detail">Per PMTA/MRTP evidence package</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Cost Advantage 成本优势</div>
+      <div class="stat-value green">10–100×</div>
+      <div class="stat-detail">Cheaper than comparable commercial data</div>
+    </div>
+  </div>
+
+  <div class="chart-grid">
+    <div class="chart-card">
+      <h3>Price vs. Regulatory Depth <span class="zh">价格 vs 监管深度</span></h3>
+      <div class="chart-wrap">
+        <canvas id="priceValueChart"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <h3>Cost per Data Source <span class="zh">每数据源成本</span></h3>
+      <div class="chart-wrap">
+        <canvas id="costPerSourceChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout callout-green">
+    <strong>Value Proposition 价值主张:</strong> A single EpiDataKit DaaS report ($9,900) provides PMTA/MRTP-ready epidemiological evidence drawn from 5+ validated data sources — the same evidence that would cost $50K–$200K+ to assemble from commercial platforms, or months of analyst time to extract from raw government data.
+  </div>
+</div>
+
+<!-- ===================== SECTION: GAPS ===================== -->
+<div id="sec-gaps" class="section">
+  <h2>Market Gaps &amp; Opportunities <span class="zh">市场空白与机会</span></h2>
+  <p class="section-sub">Key unmet needs in the tobacco data intelligence market that EpiDataKit is uniquely positioned to address.</p>
+
+  <div class="gap-grid">
+    <div class="gap-card" style="border-left-color:var(--amber)">
+      <h4>Gap 1: Epidemiology-Regulatory Bridge<span class="zh">空白1: 流行病学-监管桥梁</span></h4>
+      <p>No existing platform connects public health surveillance data (NYTS, PATH, AE reports) directly to regulatory submission requirements (PMTA, MRTP). Government data is raw; commercial data ignores public health. This leaves PMTA applicants assembling evidence manually from 5+ disconnected sources.</p>
+      <div class="opp-tag">EpiDataKit fills this gap</div>
+    </div>
+    <div class="gap-card" style="border-left-color:var(--blue)">
+      <h4>Gap 2: Cross-Validation Infrastructure<span class="zh">空白2: 交叉验证基础设施</span></h4>
+      <p>No competitor offers systematic cross-validation across multiple tobacco surveillance datasets. EpiDataKit's triple validation (NYTS vs. Altria ALCS vs. CRST/CAsToR) is unprecedented and strengthens the evidentiary weight of findings for FDA review.</p>
+      <div class="opp-tag">Unique to EpiDataKit</div>
+    </div>
+    <div class="gap-card" style="border-left-color:var(--green)">
+      <h4>Gap 3: Affordable Regulatory Intelligence<span class="zh">空白3: 可负担的监管情报</span></h4>
+      <p>Small and mid-size tobacco manufacturers cannot afford $50K–$200K Euromonitor/Circana subscriptions. They need PMTA-grade data at startup-friendly prices. The $9,900 DaaS report fills a massive pricing gap between free raw data and enterprise platforms.</p>
+      <div class="opp-tag">$9,900 vs. $50K–200K+</div>
+    </div>
+    <div class="gap-card" style="border-left-color:var(--purple)">
+      <h4>Gap 4: Real-Time Youth Surveillance Dashboard<span class="zh">空白4: 实时青少年监测仪表盘</span></h4>
+      <p>With CDC's OSH largely dismantled in 2025, there is an urgent vacuum in accessible tobacco surveillance. NYTS data exists but lacks a public-facing, interactive dashboard. EpiDataKit's 20+ chart dashboard fills this public health communication gap.</p>
+      <div class="opp-tag">Post-OSH opportunity</div>
+    </div>
+    <div class="gap-card" style="border-left-color:var(--red)">
+      <h4>Gap 5: Brand-Level Epi Analysis<span class="zh">空白5: 品牌级流行病学分析</span></h4>
+      <p>Government platforms report aggregate prevalence but rarely break down by brand (e.g., Geek Bar = 64.1% of youth e-cig market). Commercial platforms track brand share but not health outcomes. Only EpiDataKit bridges brand surveillance with epidemiological context.</p>
+      <div class="opp-tag">Brand + epi = unique</div>
+    </div>
+    <div class="gap-card" style="border-left-color:var(--teal)">
+      <h4>Gap 6: Bilingual Tobacco Intelligence<span class="zh">空白6: 双语烟草情报</span></h4>
+      <p>Chinese tobacco manufacturers (world's largest market) entering US regulatory pathways have zero bilingual data tools. EpiDataKit's EN/CN interface serves a large, underserved audience of Chinese manufacturers navigating FDA CTP processes.</p>
+      <div class="opp-tag">Untapped CN market</div>
+    </div>
+  </div>
+
+  <div class="chart-grid">
+    <div class="chart-card full">
+      <h3>Gap Coverage by Competitor <span class="zh">竞争对手空白覆盖</span></h3>
+      <div class="chart-wrap tall">
+        <canvas id="gapChart"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== SECTION: POSITIONING ===================== -->
+<div id="sec-positioning" class="section">
+  <h2>EpiDataKit Positioning <span class="zh">EpiDataKit 战略定位</span></h2>
+  <p class="section-sub">How EpiDataKit differentiates in a market split between free-but-raw government data and expensive-but-incomplete commercial platforms.</p>
+
+  <div class="pos-grid">
+    <div class="pos-card">
+      <h4 style="color:var(--amber)">Unique Value Propositions 独特价值主张</h4>
+      <ul class="pos-list">
+        <li><strong>Regulatory Epidemiology</strong> — the only platform purpose-built for PMTA/MRTP evidence, combining surveillance data with regulatory context</li>
+        <li><strong>Triple Cross-Validation</strong> — EpiDataKit vs Altria ALCS vs CRST/CAsToR methodology unprecedented in this market</li>
+        <li><strong>Brand-Level Public Health Analysis</strong> — Geek Bar 64.1%, flavor trends, demographic breakdowns at brand level</li>
+        <li><strong>Accessible Pricing</strong> — free dashboard + $9,900 DaaS vs. $50K–$200K enterprise competitors</li>
+        <li><strong>Bilingual (EN/CN)</strong> — serves the massive Chinese manufacturer market entering US regulation</li>
+        <li><strong>Academic Rigor</strong> — built by a PhD epidemiologist (Erasmus MC), peer-review quality</li>
+      </ul>
+    </div>
+    <div class="pos-card">
+      <h4 style="color:var(--blue)">Target Customer Segments 目标客户群</h4>
+      <ul class="pos-list">
+        <li><strong>PMTA Applicants</strong> — need evidence packages for FDA submissions; current alternative is $50K+ consulting</li>
+        <li><strong>MRTP Seekers</strong> — need population-level health impact data; no existing platform provides this ready-made</li>
+        <li><strong>Regulatory Affairs Teams</strong> — need ongoing surveillance intelligence; newsletter → DaaS upsell path</li>
+        <li><strong>Tobacco Researchers</strong> — need cross-validated dashboards; free tier drives academic adoption</li>
+        <li><strong>Public Health Officials</strong> — need accessible surveillance tools; post-OSH vacuum creates demand</li>
+        <li><strong>Chinese Manufacturers</strong> — need bilingual FDA navigation tools; zero competitors serve this segment</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="chart-grid">
+    <div class="chart-card full">
+      <h3>Competitive Advantage Radar <span class="zh">竞争优势雷达图</span></h3>
+      <div class="chart-wrap tall">
+        <canvas id="radarChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout callout-amber">
+    <strong>Strategic Summary 战略总结:</strong> EpiDataKit occupies a "blue ocean" at the intersection of epidemiology and regulatory intelligence — a space where government platforms provide raw data without analysis, and commercial platforms provide market data without public health context. The $9,900 DaaS model captures value from a segment that currently spends $50K–$200K+ assembling equivalent evidence from fragmented sources.
+  </div>
+
+  <div class="pos-grid" style="margin-top:24px">
+    <div class="pos-card">
+      <h4 style="color:var(--green)">Moat / Defensibility 护城河</h4>
+      <ul class="pos-list">
+        <li><strong>Domain expertise</strong> — PhD tobacco epidemiologist with regulatory science training</li>
+        <li><strong>Cross-validation methodology</strong> — not easily replicated without deep data science</li>
+        <li><strong>First-mover</strong> — no direct competitor in the regulatory-epi bridge space</li>
+        <li><strong>Newsletter flywheel</strong> — research builds audience, audience funds premium reports</li>
+        <li><strong>Bilingual moat</strong> — Chinese manufacturer relationships are relationship-driven</li>
+      </ul>
+    </div>
+    <div class="pos-card">
+      <h4 style="color:var(--red)">Risks & Mitigations 风险与缓解</h4>
+      <ul class="pos-list">
+        <li><strong>Data dependency</strong> — reliant on NYTS/openFDA continuity → mitigated by multi-source approach</li>
+        <li><strong>Scale</strong> — solo operator → mitigated by automation (GitHub Actions pipeline)</li>
+        <li><strong>Competition entry</strong> — commercial platforms could add epi data → mitigated by cross-validation depth</li>
+        <li><strong>Regulatory changes</strong> — FDA CTP priorities shift → mitigated by diversified data sources</li>
+        <li><strong>CDC OSH cuts</strong> — data supply risk → creates opportunity as alternative public resource</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+</div><!-- /main -->
+
+<!-- Footer -->
+<footer class="footer">
+  <p>Competitive Landscape Analysis — EpiDataKit &copy; 2026 Dr. Nana Liu | <a href="index.html">Back to Dashboard</a> | <a href="methodology.html">Methodology</a></p>
+  <p style="margin-top:6px">Data sourced from public websites, press releases, and market intelligence reports. Pricing estimates based on published ranges and industry benchmarks. Updated April 2026.</p>
+</footer>
+
+<script>
+// ======================== NAVIGATION ========================
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.section-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('sec-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function toggleCard(card) {
+  card.classList.toggle('expanded');
+}
+
+// ======================== CHARTS ========================
+const AMBER = '#d97706';
+const BLUE = '#2563eb';
+const GREEN = '#16a34a';
+const RED = '#dc2626';
+const PURPLE = '#7c3aed';
+const TEAL = '#0d9488';
+const MUTED = '#6b7294';
+const GRAY = '#d1d5db';
+
+Chart.defaults.font.family = "'Inter', -apple-system, sans-serif";
+Chart.defaults.font.size = 11;
+Chart.defaults.color = MUTED;
+
+// --- Position Chart (Bubble) ---
+new Chart(document.getElementById('positionChart'), {
+  type: 'bubble',
+  data: {
+    datasets: [
+      {label:'CDC STATE',data:[{x:1,y:8,r:12}],backgroundColor:'rgba(3,105,161,0.5)',borderColor:'#0369a1'},
+      {label:'FDA CTP',data:[{x:1,y:9,r:14}],backgroundColor:'rgba(3,105,161,0.5)',borderColor:'#0369a1'},
+      {label:'WHO GTSS',data:[{x:1,y:6,r:18}],backgroundColor:'rgba(3,105,161,0.5)',borderColor:'#0369a1'},
+      {label:'STOP',data:[{x:1,y:3,r:8}],backgroundColor:'rgba(3,105,161,0.3)',borderColor:'#0369a1'},
+      {label:'Tobacco Tactics',data:[{x:1,y:4,r:8}],backgroundColor:'rgba(22,163,74,0.4)',borderColor:GREEN},
+      {label:'CRST/CAsToR',data:[{x:1,y:7,r:7}],backgroundColor:'rgba(22,163,74,0.4)',borderColor:GREEN},
+      {label:'Euromonitor',data:[{x:8,y:5,r:20}],backgroundColor:'rgba(124,58,237,0.4)',borderColor:PURPLE},
+      {label:'GlobalData',data:[{x:7,y:4,r:16}],backgroundColor:'rgba(124,58,237,0.4)',borderColor:PURPLE},
+      {label:'ECigIntelligence',data:[{x:6,y:6,r:10}],backgroundColor:'rgba(124,58,237,0.4)',borderColor:PURPLE},
+      {label:'TobaccoIntelligence',data:[{x:6,y:5,r:10}],backgroundColor:'rgba(124,58,237,0.4)',borderColor:PURPLE},
+      {label:'Circana',data:[{x:10,y:2,r:18}],backgroundColor:'rgba(217,119,6,0.3)',borderColor:AMBER},
+      {label:'EpiDataKit',data:[{x:4,y:9,r:14}],backgroundColor:'rgba(220,38,38,0.5)',borderColor:RED,borderWidth:3},
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    scales: {
+      x: {title:{display:true,text:'Cost Level (Free → Enterprise) 成本等级',font:{weight:'bold'}},min:0,max:11,grid:{color:'rgba(0,0,0,0.04)'}},
+      y: {title:{display:true,text:'Regulatory / Epi Depth 监管/流行病学深度',font:{weight:'bold'}},min:0,max:11,grid:{color:'rgba(0,0,0,0.04)'}}
+    },
+    plugins: {
+      legend: {display:true,position:'bottom',labels:{usePointStyle:true,pointStyle:'circle',padding:12,font:{size:10}}},
+      tooltip: {callbacks:{label:ctx => ctx.dataset.label + ' (Cost: ' + ctx.raw.x + '/10, Depth: ' + ctx.raw.y + '/10)'}}
+    }
+  }
+});
+
+// --- Data Source Coverage ---
+new Chart(document.getElementById('dataSourceChart'), {
+  type: 'bar',
+  data: {
+    labels: ['EpiDataKit','FDA CTP','CDC STATE','Euromonitor','ECigIntel','TobaccoIntel','GlobalData','Circana','WHO GTSS','Tob.Tactics'],
+    datasets: [{
+      label: 'Data Sources Integrated',
+      data: [6,4,3,2,2,2,2,1,2,1],
+      backgroundColor: [AMBER,BLUE,BLUE,PURPLE,PURPLE,PURPLE,PURPLE,AMBER,BLUE,GREEN],
+      borderRadius: 6
+    }]
+  },
+  options: {
+    responsive:true, maintainAspectRatio:false, indexAxis:'y',
+    scales: {x:{max:8,grid:{color:'rgba(0,0,0,0.04)'}},y:{grid:{display:false}}},
+    plugins: {legend:{display:false}}
+  }
+});
+
+// --- Audience Chart ---
+new Chart(document.getElementById('audienceChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Government/Academic (Free)','Commercial Market Intel','Regulatory Specialist','Industry Analytics','Regulatory Epi (EpiDataKit)'],
+    datasets: [{
+      data: [4,2,2,1,1],
+      backgroundColor: [BLUE,PURPLE,'#a855f7',AMBER,RED],
+      borderWidth: 2, borderColor: '#fff'
+    }]
+  },
+  options: {
+    responsive:true, maintainAspectRatio:false,
+    plugins: {legend:{position:'bottom',labels:{padding:12,usePointStyle:true,pointStyle:'circle',font:{size:11}}}}
+  }
+});
+
+// --- Pricing Chart ---
+new Chart(document.getElementById('pricingChart'), {
+  type: 'bar',
+  data: {
+    labels: ['CDC STATE','FDA CTP','WHO GTSS','STOP','Tob. Tactics','CRST','ECigIntel','TobaccoIntel','GlobalData','Euromonitor','Circana','EpiDataKit\n(DaaS Report)'],
+    datasets: [
+      {label:'Min Annual Cost',data:[0,0,0,0,0,0,10000,10000,15000,20000,50000,0],backgroundColor:'rgba(37,99,235,0.3)',borderColor:BLUE,borderWidth:1,borderRadius:4},
+      {label:'Max Annual Cost',data:[0,0,0,0,0,0,30000,30000,80000,120000,200000,9900],backgroundColor:[GRAY,GRAY,GRAY,GRAY,GRAY,GRAY,'rgba(124,58,237,0.5)','rgba(124,58,237,0.5)','rgba(124,58,237,0.5)','rgba(124,58,237,0.6)','rgba(217,119,6,0.5)','rgba(220,38,38,0.6)'],borderRadius:4}
+    ]
+  },
+  options: {
+    responsive:true, maintainAspectRatio:false,
+    scales: {
+      y:{ticks:{callback:v=>'$'+v.toLocaleString()},grid:{color:'rgba(0,0,0,0.04)'}},
+      x:{grid:{display:false},ticks:{font:{size:10}}}
+    },
+    plugins: {
+      legend:{position:'top',labels:{usePointStyle:true,pointStyle:'rect',padding:16}},
+      tooltip:{callbacks:{label:ctx=>ctx.dataset.label+': $'+ctx.raw.toLocaleString()}}
+    }
+  }
+});
+
+// --- Price vs Value Scatter ---
+new Chart(document.getElementById('priceValueChart'), {
+  type: 'scatter',
+  data: {
+    datasets: [
+      {label:'Free/Gov',data:[{x:0,y:3},{x:0,y:6},{x:0,y:2},{x:0,y:1},{x:0,y:2},{x:0,y:4}],backgroundColor:BLUE,pointRadius:8},
+      {label:'Commercial',data:[{x:70,y:2},{x:47,y:3},{x:20,y:5},{x:20,y:4}],backgroundColor:PURPLE,pointRadius:8},
+      {label:'Industry',data:[{x:125,y:1}],backgroundColor:AMBER,pointRadius:10},
+      {label:'EpiDataKit',data:[{x:9.9,y:8}],backgroundColor:RED,pointRadius:14,borderColor:'#fff',borderWidth:3}
+    ]
+  },
+  options: {
+    responsive:true, maintainAspectRatio:false,
+    scales: {
+      x:{title:{display:true,text:'Annual Cost ($K) 年成本',font:{weight:'bold'}},grid:{color:'rgba(0,0,0,0.04)'}},
+      y:{title:{display:true,text:'Regulatory Epi Score 监管流行病学评分',font:{weight:'bold'}},min:0,max:10,grid:{color:'rgba(0,0,0,0.04)'}}
+    },
+    plugins: {
+      legend:{position:'bottom',labels:{usePointStyle:true,pointStyle:'circle',padding:12}},
+      tooltip:{callbacks:{label:ctx=>ctx.dataset.label+': $'+ctx.raw.x+'K, Score:'+ctx.raw.y+'/10'}}
+    }
+  }
+});
+
+// --- Cost per Source ---
+new Chart(document.getElementById('costPerSourceChart'), {
+  type: 'bar',
+  data: {
+    labels: ['EpiDataKit','ECigIntel','TobaccoIntel','GlobalData','Euromonitor','Circana'],
+    datasets: [{
+      label: 'Cost per Data Source ($K)',
+      data: [1.65, 10, 10, 20, 30, 100],
+      backgroundColor: [RED,PURPLE,PURPLE,PURPLE,PURPLE,AMBER],
+      borderRadius: 6
+    }]
+  },
+  options: {
+    responsive:true, maintainAspectRatio:false,
+    scales: {y:{ticks:{callback:v=>'$'+v+'K'},grid:{color:'rgba(0,0,0,0.04)'}},x:{grid:{display:false}}},
+    plugins: {legend:{display:false},tooltip:{callbacks:{label:ctx=>'$'+ctx.raw+'K per data source'}}}
+  }
+});
+
+// --- Gap Coverage Heatmap (horizontal stacked) ---
+new Chart(document.getElementById('gapChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Epi-Regulatory Bridge','Cross-Validation','Affordable Reg Intel','Youth Dashboard','Brand-Level Epi','Bilingual (EN/CN)'],
+    datasets: [
+      {label:'EpiDataKit',data:[10,10,10,10,10,10],backgroundColor:'rgba(220,38,38,0.7)',borderRadius:4},
+      {label:'FDA CTP',data:[3,0,8,2,0,0],backgroundColor:'rgba(37,99,235,0.4)',borderRadius:4},
+      {label:'Euromonitor',data:[0,0,0,0,3,0],backgroundColor:'rgba(124,58,237,0.4)',borderRadius:4},
+      {label:'ECigIntelligence',data:[2,0,4,0,2,0],backgroundColor:'rgba(168,85,247,0.4)',borderRadius:4},
+      {label:'Circana',data:[0,0,0,0,4,0],backgroundColor:'rgba(217,119,6,0.4)',borderRadius:4}
+    ]
+  },
+  options: {
+    responsive:true, maintainAspectRatio:false, indexAxis:'y',
+    scales: {x:{stacked:false,max:12,title:{display:true,text:'Coverage Score (0-10)',font:{weight:'bold'}},grid:{color:'rgba(0,0,0,0.04)'}},y:{stacked:false,grid:{display:false}}},
+    plugins: {legend:{position:'bottom',labels:{usePointStyle:true,pointStyle:'rect',padding:12,font:{size:10}}}}
+  }
+});
+
+// --- Radar Chart ---
+new Chart(document.getElementById('radarChart'), {
+  type: 'radar',
+  data: {
+    labels: ['Epi Data Depth\n流行病学深度','Regulatory Intel\n监管情报','Affordability\n可负担性','Data Freshness\n数据时效','Visualization\n可视化','Cross-Validation\n交叉验证','Global Coverage\n全球覆盖','Brand Analytics\n品牌分析'],
+    datasets: [
+      {label:'EpiDataKit',data:[9,9,9,7,9,10,4,8],borderColor:RED,backgroundColor:'rgba(220,38,38,0.15)',borderWidth:3,pointBackgroundColor:RED},
+      {label:'FDA CTP (raw)',data:[8,5,10,5,2,0,1,2],borderColor:BLUE,backgroundColor:'rgba(37,99,235,0.08)',borderWidth:2,pointBackgroundColor:BLUE},
+      {label:'Euromonitor',data:[1,1,2,6,7,0,10,8],borderColor:PURPLE,backgroundColor:'rgba(124,58,237,0.08)',borderWidth:2,pointBackgroundColor:PURPLE},
+      {label:'ECigIntelligence',data:[1,7,5,8,5,0,7,4],borderColor:'#a855f7',backgroundColor:'rgba(168,85,247,0.08)',borderWidth:2,pointBackgroundColor:'#a855f7'}
+    ]
+  },
+  options: {
+    responsive:true, maintainAspectRatio:false,
+    scales: {r:{beginAtZero:true,max:10,ticks:{stepSize:2,backdropColor:'transparent',font:{size:9}},grid:{color:'rgba(0,0,0,0.06)'},pointLabels:{font:{size:10}}}},
+    plugins: {legend:{position:'bottom',labels:{usePointStyle:true,pointStyle:'circle',padding:14}}}
+  }
+});
+</script>
+
+</body>
+</html>
