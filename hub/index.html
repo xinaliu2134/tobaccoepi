@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EpiDataKit — Regulatory Intelligence Platform for Tobacco & Pharmaceutical Epidemiology</title>
+<meta name="description" content="EpiDataKit: Independent epidemiological analysis for tobacco and pharmaceutical regulation. NYTS 2025 youth surveillance, FDA FAERS drug safety, PMTA/MRTP intelligence. Built by researchers, for the industry.">
+<meta name="keywords" content="EpiDataKit, tobacco epidemiology, pharmaceutical epidemiology, NYTS 2025, FDA FAERS, PMTA, MRTP, drug safety, regulatory intelligence, pharmacovigilance">
+<link rel="canonical" href="https://xinaliu2134.github.io/tobaccoepi/sites/hub/">
+<meta property="og:title" content="EpiDataKit — Regulatory Intelligence Platform">
+<meta property="og:description" content="Independent epidemiological analysis for tobacco and pharmaceutical regulation. NYTS 2025, FDA FAERS, PMTA/MRTP intelligence.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://xinaliu2134.github.io/tobaccoepi/sites/hub/">
+<meta property="og:site_name" content="EpiDataKit">
+<meta property="og:image" content="https://xinaliu2134.github.io/tobaccoepi/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="EpiDataKit — Regulatory Intelligence Platform">
+<meta name="twitter:description" content="Independent epidemiological analysis for tobacco and pharmaceutical regulation. NYTS 2025, FDA FAERS, PMTA/MRTP intelligence.">
+<meta name="twitter:image" content="https://xinaliu2134.github.io/tobaccoepi/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "EpiDataKit",
+  "alternateName": "Shenzhen Evidence-Based Smart Health Technology Co., Ltd.",
+  "url": "https://xinaliu2134.github.io/tobaccoepi/sites/hub/",
+  "description": "Regulatory Intelligence Platform for Tobacco & Pharmaceutical Epidemiology",
+  "founder": {
+    "@type": "Person",
+    "name": "Dr. Nana Liu",
+    "jobTitle": "Chief Scientist",
+    "affiliation": {
+      "@type": "Organization",
+      "name": "Erasmus MC"
+    }
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "email": "nana@epidatakit.com",
+    "contactType": "sales"
+  }
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" crossorigin="anonymous">
+<style>
+:root{
+  --bg:#f8f9fc;--bg2:#ffffff;--bg3:#f0f2f7;--border:#e2e5ef;
+  --text:#1a1f36;--muted:#6b7294;
+  --sans:'Inter',-apple-system,sans-serif;--mono:'DM Mono',monospace;
+  --amber:#d97706;--amber-light:#fef3c7;--amber-dim:#fffbeb;
+  --blue:#2563eb;--blue-light:#eff6ff;
+  --red:#dc2626;--red-light:#fef2f2;
+  --green:#16a34a;--green-light:#f0fdf4;
+  --teal:#0d9488;
+  --shadow:0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04);
+  --shadow-lg:0 4px 16px rgba(0,0,0,.08);
+  --shadow-xl:0 8px 30px rgba(0,0,0,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--blue);text-decoration:none}
+
+/* Cross-nav */
+.cross-nav{display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:52px;border-bottom:1px solid var(--border);background:var(--bg2);box-shadow:var(--shadow)}
+.cross-nav-links{display:flex;align-items:center;gap:0}
+.cross-nav-link{padding:14px 20px;font-size:13px;font-weight:500;color:var(--muted);transition:color .15s;position:relative}
+.cross-nav-link:hover{color:var(--text)}
+.cross-nav-link.active{color:var(--text);font-weight:700}
+.cross-nav-link.active::after{content:'';position:absolute;bottom:0;left:20px;right:20px;height:2px;background:var(--amber);border-radius:1px}
+.cross-nav-link.tobacco:hover{color:var(--amber)}
+.cross-nav-link.pharma:hover{color:var(--blue)}
+.cross-nav-right{display:flex;align-items:center;gap:8px}
+.lang-toggle{padding:5px 14px;font-size:12px;font-weight:600;border:1px solid var(--border);border-radius:6px;background:var(--bg2);cursor:pointer;font-family:var(--sans);transition:all .15s}
+.lang-toggle:hover{border-color:var(--amber);color:var(--amber)}
+
+/* Hero */
+.hero{text-align:center;padding:80px 32px 60px;background:linear-gradient(180deg,var(--bg2) 0%,var(--bg) 100%);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-120px;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(217,119,6,.04) 0%,rgba(37,99,235,.03) 40%,transparent 70%);pointer-events:none}
+.hero-logo{font-size:48px;font-weight:800;letter-spacing:-1.5px;margin-bottom:8px;position:relative}
+.hero-logo .epi{color:var(--amber)}
+.hero-logo .data{color:var(--text)}
+.hero-logo .kit{color:var(--blue)}
+.hero-tagline{font-size:16px;font-weight:600;color:var(--muted);letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px}
+.hero-tagline-zh{font-size:14px;color:var(--muted);margin-bottom:20px;display:none}
+.hero-subtitle{font-size:17px;color:var(--muted);max-width:640px;margin:0 auto 36px;line-height:1.7}
+.hero-ctas{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap}
+.cta-primary{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:8px;font-size:15px;font-weight:600;color:#fff;transition:all .2s;font-family:var(--sans);text-decoration:none}
+.cta-amber{background:var(--amber)}.cta-amber:hover{background:#b45309;transform:translateY(-1px);box-shadow:var(--shadow-lg)}
+.cta-blue{background:var(--blue)}.cta-blue:hover{background:#1d4ed8;transform:translateY(-1px);box-shadow:var(--shadow-lg)}
+
+/* Section wrapper */
+.section{max-width:1120px;margin:0 auto;padding:60px 32px}
+.section-title{font-size:28px;font-weight:700;text-align:center;margin-bottom:8px;letter-spacing:-.5px}
+.section-desc{font-size:15px;color:var(--muted);text-align:center;max-width:560px;margin:0 auto 40px}
+
+/* Platform cards */
+.platform-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.platform-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:36px;box-shadow:var(--shadow);transition:all .25s;position:relative;overflow:hidden}
+.platform-card:hover{box-shadow:var(--shadow-xl);transform:translateY(-2px)}
+.platform-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
+.platform-card.amber-card::before{background:linear-gradient(90deg,var(--amber),#f59e0b)}
+.platform-card.blue-card::before{background:linear-gradient(90deg,var(--blue),#3b82f6)}
+.card-icon{font-size:40px;margin-bottom:16px}
+.card-title{font-size:22px;font-weight:700;margin-bottom:6px;letter-spacing:-.3px}
+.card-title.amber{color:var(--amber)}.card-title.blue{color:var(--blue)}
+.card-desc{font-size:14px;color:var(--muted);margin-bottom:16px;line-height:1.6}
+.card-stats{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:600;font-family:var(--mono);margin-bottom:16px}
+.card-stats.amber-bg{background:var(--amber-dim);color:var(--amber)}
+.card-stats.blue-bg{background:var(--blue-light);color:var(--blue)}
+.card-features{list-style:none;padding:0;margin-bottom:24px}
+.card-features li{padding:6px 0;font-size:13px;color:var(--text);display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--bg3)}
+.card-features li:last-child{border-bottom:none}
+.card-features li::before{content:'';width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.amber-card .card-features li::before{background:var(--amber)}
+.blue-card .card-features li::before{background:var(--blue)}
+.card-link{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;transition:gap .2s}
+.card-link:hover{gap:10px}
+.card-link.amber-link{color:var(--amber)}
+.card-link.blue-link{color:var(--blue)}
+
+/* Data sources */
+.sources-section{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.sources-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:16px}
+.source-badge{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:18px 14px;text-align:center;transition:all .2s}
+.source-badge:hover{border-color:var(--amber);box-shadow:var(--shadow)}
+.source-icon{font-size:24px;margin-bottom:8px}
+.source-name{font-size:12px;font-weight:700;color:var(--text);margin-bottom:2px}
+.source-provider{font-size:10px;color:var(--muted);font-family:var(--mono)}
+
+/* About */
+.about-grid{display:grid;grid-template-columns:auto 1fr;gap:40px;align-items:center;max-width:800px;margin:0 auto}
+.about-avatar{width:120px;height:120px;border-radius:50%;background:linear-gradient(135deg,var(--amber-light),var(--blue-light));display:flex;align-items:center;justify-content:center;font-size:48px;border:3px solid var(--border)}
+.about-name{font-size:20px;font-weight:700;margin-bottom:2px}
+.about-role{font-size:13px;color:var(--amber);font-weight:600;margin-bottom:8px}
+.about-bio{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:12px}
+.about-meta{display:flex;flex-wrap:wrap;gap:12px;font-size:12px;color:var(--muted)}
+.about-meta a{color:var(--blue);font-weight:500}
+.about-meta span{display:flex;align-items:center;gap:4px}
+
+/* Enterprise */
+.enterprise-section{background:linear-gradient(135deg,#1a1f36 0%,#2d3561 100%);color:#fff;border-radius:16px;padding:48px;margin:0 auto;max-width:1120px}
+.enterprise-section .section-title{color:#fff}
+.enterprise-section .section-desc{color:rgba(255,255,255,.65)}
+.enterprise-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:32px}
+.enterprise-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:24px;transition:all .2s}
+.enterprise-card:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2)}
+.enterprise-card-icon{font-size:28px;margin-bottom:12px}
+.enterprise-card-title{font-size:15px;font-weight:700;margin-bottom:6px;color:#fff}
+.enterprise-card-desc{font-size:13px;color:rgba(255,255,255,.55);line-height:1.6}
+.enterprise-card-price{font-size:12px;font-family:var(--mono);color:var(--amber);margin-top:10px;font-weight:600}
+
+/* Newsletter CTA */
+.newsletter-bar{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:32px;flex-wrap:wrap}
+.newsletter-input{padding:10px 16px;border:1px solid rgba(255,255,255,.2);border-radius:8px;background:rgba(255,255,255,.08);color:#fff;font-size:13px;font-family:var(--sans);width:260px;outline:none;transition:border-color .2s}
+.newsletter-input::placeholder{color:rgba(255,255,255,.35)}
+.newsletter-input:focus{border-color:var(--amber)}
+.newsletter-btn{padding:10px 24px;background:var(--amber);color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:var(--sans);transition:background .2s}
+.newsletter-btn:hover{background:#b45309}
+
+/* Footer */
+.site-footer{border-top:1px solid var(--border);background:var(--bg2);padding:40px 32px 24px;margin-top:60px}
+.footer-inner{max-width:1120px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:32px;margin-bottom:32px}
+.footer-brand .logo{font-size:20px;font-weight:800;margin-bottom:8px}
+.footer-brand .logo .epi{color:var(--amber)}
+.footer-brand .logo .kit{color:var(--blue)}
+.footer-brand p{font-size:12px;color:var(--muted);line-height:1.7;max-width:320px}
+.footer-col h4{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text);margin-bottom:12px}
+.footer-col ul{list-style:none;padding:0}
+.footer-col li{margin-bottom:6px}
+.footer-col a{font-size:13px;color:var(--muted);transition:color .15s}
+.footer-col a:hover{color:var(--text)}
+.footer-legal{font-size:11px;color:var(--muted);border-top:1px solid var(--border);padding-top:20px;text-align:center;line-height:1.8}
+
+/* Responsive */
+@media(max-width:768px){
+  .cross-nav{padding:0 16px;height:auto;flex-wrap:wrap;padding:8px 16px}
+  .cross-nav-link{padding:10px 12px;font-size:12px}
+  .hero{padding:48px 20px 40px}
+  .hero-logo{font-size:36px}
+  .hero-subtitle{font-size:15px}
+  .section{padding:40px 20px}
+  .platform-grid{grid-template-columns:1fr}
+  .sources-grid{grid-template-columns:repeat(auto-fit,minmax(120px,1fr))}
+  .about-grid{grid-template-columns:1fr;text-align:center;justify-items:center}
+  .enterprise-grid{grid-template-columns:1fr}
+  .enterprise-section{padding:32px 20px;border-radius:0;margin:0 -20px}
+  .footer-grid{grid-template-columns:1fr}
+  .newsletter-bar{flex-direction:column}
+  .newsletter-input{width:100%}
+}
+</style>
+</head>
+<body>
+
+<!-- Cross-nav -->
+<nav class="cross-nav">
+  <div class="cross-nav-links">
+    <a href="./" class="cross-nav-link active" data-i="nav_hub">EpiDataKit Hub</a>
+    <a href="../tobaccoepi/" class="cross-nav-link tobacco" data-i="nav_tobacco">TobaccoEpi</a>
+    <a href="../pharmaepi/" class="cross-nav-link pharma" data-i="nav_pharma">PharmaEpi</a>
+  </div>
+  <div class="cross-nav-right">
+    <button class="lang-toggle" onclick="toggleLang()" id="langBtn">ZH / 中文</button>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-tagline" data-i="hero_tagline">Regulatory Intelligence Platform</div>
+  <div class="hero-tagline-zh" data-i="hero_tagline_zh">监管情报平台</div>
+  <div class="hero-logo"><span class="epi">Epi</span><span class="data">Data</span><span class="kit">Kit</span></div>
+  <p class="hero-subtitle" data-i="hero_subtitle">Independent epidemiological analysis for tobacco and pharmaceutical regulation. Built by researchers, for the industry.</p>
+  <div class="hero-ctas">
+    <a href="../tobaccoepi/" class="cta-primary cta-amber" data-i="cta_tobacco">Explore TobaccoEpi &rarr;</a>
+    <a href="../pharmaepi/" class="cta-primary cta-blue" data-i="cta_pharma">Explore PharmaEpi &rarr;</a>
+  </div>
+</section>
+
+<!-- Platform Cards -->
+<section class="section">
+  <h2 class="section-title" data-i="platforms_title">Two Platforms, One Mission</h2>
+  <p class="section-desc" data-i="platforms_desc">Rigorous, transparent, reproducible analysis across the regulatory spectrum.</p>
+  <div class="platform-grid">
+
+    <!-- TobaccoEpi -->
+    <div class="platform-card amber-card">
+      <div class="card-icon">&#x1F6AC;</div>
+      <h3 class="card-title amber">TobaccoEpi</h3>
+      <p class="card-desc" data-i="tobacco_desc">Youth Tobacco Surveillance & PMTA Intelligence</p>
+      <div class="card-stats amber-bg">13 charts &middot; 5 modules &middot; NYTS 2025 weighted</div>
+      <ul class="card-features">
+        <li data-i="tobacco_f1">Brand Surveillance (Geek Bar, Elf Bar, Lost Mary)</li>
+        <li data-i="tobacco_f2">Youth Prevalence & Demographics</li>
+        <li data-i="tobacco_f3">Adverse Events (openFDA CTP)</li>
+        <li data-i="tobacco_f4">Switching Simulator (counterfactual)</li>
+        <li data-i="tobacco_f5">MRTP Intelligence (ZYN, IQOS)</li>
+      </ul>
+      <a href="../tobaccoepi/" class="card-link amber-link" data-i="tobacco_link">Explore TobaccoEpi &rarr;</a>
+    </div>
+
+    <!-- PharmaEpi -->
+    <div class="platform-card blue-card">
+      <div class="card-icon">&#x1F48A;</div>
+      <h3 class="card-title blue">PharmaEpi</h3>
+      <p class="card-desc" data-i="pharma_desc">Drug Safety Surveillance & Regulatory Intelligence</p>
+      <div class="card-stats blue-bg">7 charts &middot; 4 modules &middot; FDA FAERS real-time</div>
+      <ul class="card-features">
+        <li data-i="pharma_f1">Drug Safety Monitor (GLP-1 focus)</li>
+        <li data-i="pharma_f2">Competitive AE Benchmarking</li>
+        <li data-i="pharma_f3">Recall & Quality Intelligence</li>
+        <li data-i="pharma_f4">Device Intelligence (510(k))</li>
+      </ul>
+      <a href="../pharmaepi/" class="card-link blue-link" data-i="pharma_link">Explore PharmaEpi &rarr;</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- Data Sources -->
+<section class="sources-section">
+  <div class="section" style="padding-top:48px;padding-bottom:48px">
+    <h2 class="section-title" data-i="sources_title">Data Sources</h2>
+    <p class="section-desc" data-i="sources_desc">Seven authoritative data sources powering our analysis.</p>
+    <div class="sources-grid">
+      <div class="source-badge">
+        <div class="source-icon">&#x1F4CA;</div>
+        <div class="source-name">NYTS 2025</div>
+        <div class="source-provider">FDA CTP</div>
+      </div>
+      <div class="source-badge">
+        <div class="source-icon">&#x1F393;</div>
+        <div class="source-name">MTF</div>
+        <div class="source-provider">Monitoring the Future</div>
+      </div>
+      <div class="source-badge">
+        <div class="source-icon">&#x1F4C4;</div>
+        <div class="source-name">FDA CTP FOIA</div>
+        <div class="source-provider">PMTA / MRTP</div>
+      </div>
+      <div class="source-badge">
+        <div class="source-icon">&#x1F48A;</div>
+        <div class="source-name">FDA FAERS</div>
+        <div class="source-provider">Adverse Events</div>
+      </div>
+      <div class="source-badge">
+        <div class="source-icon">&#x26A0;&#xFE0F;</div>
+        <div class="source-name">FDA Recalls</div>
+        <div class="source-provider">Enforcement</div>
+      </div>
+      <div class="source-badge">
+        <div class="source-icon">&#x1FA7A;</div>
+        <div class="source-name">FDA 510(k)</div>
+        <div class="source-provider">Device Clearances</div>
+      </div>
+      <div class="source-badge">
+        <div class="source-icon">&#x1F30D;</div>
+        <div class="source-name">WHO GHO</div>
+        <div class="source-provider">Global Health Observatory</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About / Founder -->
+<section class="section">
+  <h2 class="section-title" data-i="about_title">About</h2>
+  <p class="section-desc" data-i="about_desc">Built on rigorous methodology. Led by domain expertise.</p>
+  <div class="about-grid">
+    <div class="about-avatar">&#x1F9D1;&#x200D;&#x1F52C;</div>
+    <div>
+      <div class="about-name">Dr. Nana Liu</div>
+      <div class="about-role" data-i="about_role">Chief Scientist &middot; PhD, Erasmus MC</div>
+      <p class="about-bio" data-i="about_bio">Epidemiology, biostatistics, and regulatory science. Specializing in evidence synthesis for tobacco and pharmaceutical product regulation. Independent analysis with full methodological transparency.</p>
+      <div class="about-meta" data-i="about_company">
+        <span data-i="about_company_name">Shenzhen Evidence-Based Smart Health Technology Co., Ltd.</span>
+      </div>
+      <div class="about-meta" style="margin-top:8px">
+        <span>&#x2709; <a href="mailto:nana@epidatakit.com">nana@epidatakit.com</a></span>
+        <span>&#x1F517; <a href="https://linkedin.com/in/nanaliu" target="_blank" rel="noopener">LinkedIn</a></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Enterprise -->
+<section class="section" style="padding-bottom:0">
+  <div class="enterprise-section">
+    <h2 class="section-title" data-i="enterprise_title">Enterprise Solutions</h2>
+    <p class="section-desc" data-i="enterprise_desc">From open intelligence to bespoke regulatory evidence.</p>
+    <div class="enterprise-grid">
+      <div class="enterprise-card">
+        <div class="enterprise-card-icon">&#x1F4E6;</div>
+        <div class="enterprise-card-title" data-i="ent_daas_title">DaaS Evidence Packages</div>
+        <p class="enterprise-card-desc" data-i="ent_daas_desc">Turnkey PMTA and MRTP evidence packages. Weighted survey analysis, adverse event profiling, and competitive landscape reports delivered in regulatory-ready format.</p>
+        <div class="enterprise-card-price" data-i="ent_daas_price">From $9,900 per package</div>
+      </div>
+      <div class="enterprise-card">
+        <div class="enterprise-card-icon">&#x1F52C;</div>
+        <div class="enterprise-card-title" data-i="ent_custom_title">Custom Analysis</div>
+        <p class="enterprise-card-desc" data-i="ent_custom_desc">Bespoke epidemiological studies tailored to your regulatory strategy. Cross-validated methodology with transparent, reproducible pipelines.</p>
+        <div class="enterprise-card-price" data-i="ent_custom_price">Contact for pricing</div>
+      </div>
+      <div class="enterprise-card">
+        <div class="enterprise-card-icon">&#x1F4E8;</div>
+        <div class="enterprise-card-title" data-i="ent_newsletter_title">TobaccoEpi Intelligence</div>
+        <p class="enterprise-card-desc" data-i="ent_newsletter_desc">Weekly briefings on youth tobacco surveillance, brand market shifts, regulatory filings, and enforcement actions. Stay ahead of the data.</p>
+        <div class="enterprise-card-price" data-i="ent_newsletter_price">Free &middot; Subscribe below</div>
+      </div>
+    </div>
+    <div class="newsletter-bar">
+      <input type="email" class="newsletter-input" id="newsletterEmail" data-i-placeholder="newsletter_placeholder" placeholder="Enter your email for weekly intelligence">
+      <button class="newsletter-btn" data-i="newsletter_btn">Subscribe</button>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo"><span class="epi">Epi</span>Data<span class="kit">Kit</span></div>
+        <p data-i="footer_brand">Independent regulatory intelligence platform. Rigorous epidemiological analysis for tobacco and pharmaceutical industries.</p>
+      </div>
+      <div class="footer-col">
+        <h4 data-i="footer_platforms">Platforms</h4>
+        <ul>
+          <li><a href="../tobaccoepi/">TobaccoEpi</a></li>
+          <li><a href="../pharmaepi/">PharmaEpi</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-i="footer_contact">Contact</h4>
+        <ul>
+          <li><a href="mailto:nana@epidatakit.com">nana@epidatakit.com</a></li>
+          <li><a href="https://linkedin.com/in/nanaliu" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://github.com/xinaliu2134/tobaccoepi" target="_blank" rel="noopener">GitHub</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal" data-i="footer_legal">
+      <strong data-i="footer_disclaimer">Disclaimer:</strong> This platform is for informational and research purposes only. Data may not reflect real-time values. Not intended as medical, legal, or regulatory advice. EpiDataKit is a product of Shenzhen Evidence-Based Smart Health Technology Co., Ltd.<br>
+      &copy; 2025 EpiDataKit. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<script>
+/* i18n translations */
+const T = {
+  nav_hub: { en: 'EpiDataKit Hub', zh: 'EpiDataKit 中心' },
+  nav_tobacco: { en: 'TobaccoEpi', zh: 'TobaccoEpi 烟草' },
+  nav_pharma: { en: 'PharmaEpi', zh: 'PharmaEpi 医药' },
+  hero_tagline: { en: 'Regulatory Intelligence Platform', zh: 'Regulatory Intelligence Platform' },
+  hero_tagline_zh: { en: '监管情报平台', zh: '监管情报平台' },
+  hero_subtitle: {
+    en: 'Independent epidemiological analysis for tobacco and pharmaceutical regulation. Built by researchers, for the industry.',
+    zh: '独立的烟草与医药监管流行病学分析平台。由研究者构建，服务于行业。'
+  },
+  cta_tobacco: { en: 'Explore TobaccoEpi \u2192', zh: '探索 TobaccoEpi \u2192' },
+  cta_pharma: { en: 'Explore PharmaEpi \u2192', zh: '探索 PharmaEpi \u2192' },
+  platforms_title: { en: 'Two Platforms, One Mission', zh: '两大平台，一个使命' },
+  platforms_desc: {
+    en: 'Rigorous, transparent, reproducible analysis across the regulatory spectrum.',
+    zh: '覆盖监管全领域的严谨、透明、可重复分析。'
+  },
+  tobacco_desc: {
+    en: 'Youth Tobacco Surveillance & PMTA Intelligence',
+    zh: '青少年烟草监测 & PMTA 情报'
+  },
+  tobacco_f1: { en: 'Brand Surveillance (Geek Bar, Elf Bar, Lost Mary)', zh: '品牌监测（Geek Bar、Elf Bar、Lost Mary）' },
+  tobacco_f2: { en: 'Youth Prevalence & Demographics', zh: '青少年流行率与人口统计' },
+  tobacco_f3: { en: 'Adverse Events (openFDA CTP)', zh: '不良事件（openFDA CTP）' },
+  tobacco_f4: { en: 'Switching Simulator (counterfactual)', zh: '转换模拟器（反事实分析）' },
+  tobacco_f5: { en: 'MRTP Intelligence (ZYN, IQOS)', zh: 'MRTP 情报（ZYN、IQOS）' },
+  tobacco_link: { en: 'Explore TobaccoEpi \u2192', zh: '探索 TobaccoEpi \u2192' },
+  pharma_desc: {
+    en: 'Drug Safety Surveillance & Regulatory Intelligence',
+    zh: '药物安全监测 & 监管情报'
+  },
+  pharma_f1: { en: 'Drug Safety Monitor (GLP-1 focus)', zh: '药物安全监测（GLP-1 专题）' },
+  pharma_f2: { en: 'Competitive AE Benchmarking', zh: '竞品不良事件基准分析' },
+  pharma_f3: { en: 'Recall & Quality Intelligence', zh: '召回与质量情报' },
+  pharma_f4: { en: 'Device Intelligence (510(k))', zh: '器械情报（510(k)）' },
+  pharma_link: { en: 'Explore PharmaEpi \u2192', zh: '探索 PharmaEpi \u2192' },
+  sources_title: { en: 'Data Sources', zh: '数据来源' },
+  sources_desc: {
+    en: 'Seven authoritative data sources powering our analysis.',
+    zh: '七大权威数据源驱动我们的分析。'
+  },
+  about_title: { en: 'About', zh: '关于' },
+  about_desc: {
+    en: 'Built on rigorous methodology. Led by domain expertise.',
+    zh: '基于严谨方法论，由领域专家主导。'
+  },
+  about_role: { en: 'Chief Scientist \u00b7 PhD, Erasmus MC', zh: '首席科学家 \u00b7 博士，Erasmus MC' },
+  about_bio: {
+    en: 'Epidemiology, biostatistics, and regulatory science. Specializing in evidence synthesis for tobacco and pharmaceutical product regulation. Independent analysis with full methodological transparency.',
+    zh: '流行病学、生物统计学与监管科学。专注于烟草与医药产品监管的证据综合。独立分析，方法论完全透明。'
+  },
+  about_company_name: {
+    en: 'Shenzhen Evidence-Based Smart Health Technology Co., Ltd.',
+    zh: '深圳循证智慧健康科技有限公司'
+  },
+  enterprise_title: { en: 'Enterprise Solutions', zh: '企业解决方案' },
+  enterprise_desc: {
+    en: 'From open intelligence to bespoke regulatory evidence.',
+    zh: '从开放情报到定制化监管证据。'
+  },
+  ent_daas_title: { en: 'DaaS Evidence Packages', zh: 'DaaS 证据包' },
+  ent_daas_desc: {
+    en: 'Turnkey PMTA and MRTP evidence packages. Weighted survey analysis, adverse event profiling, and competitive landscape reports delivered in regulatory-ready format.',
+    zh: '交钥匙 PMTA 和 MRTP 证据包。加权调查分析、不良事件画像和竞争格局报告，以监管就绪格式交付。'
+  },
+  ent_daas_price: { en: 'From $9,900 per package', zh: '每个证据包 $9,900 起' },
+  ent_custom_title: { en: 'Custom Analysis', zh: '定制分析' },
+  ent_custom_desc: {
+    en: 'Bespoke epidemiological studies tailored to your regulatory strategy. Cross-validated methodology with transparent, reproducible pipelines.',
+    zh: '为您的监管策略量身定制的流行病学研究。交叉验证方法论，透明可重复的分析管道。'
+  },
+  ent_custom_price: { en: 'Contact for pricing', zh: '联系获取报价' },
+  ent_newsletter_title: { en: 'TobaccoEpi Intelligence', zh: 'TobaccoEpi 情报通讯' },
+  ent_newsletter_desc: {
+    en: 'Weekly briefings on youth tobacco surveillance, brand market shifts, regulatory filings, and enforcement actions. Stay ahead of the data.',
+    zh: '每周简报：青少年烟草监测、品牌市场变化、监管申报和执法行动。领先数据一步。'
+  },
+  ent_newsletter_price: { en: 'Free \u00b7 Subscribe below', zh: '免费 \u00b7 在下方订阅' },
+  newsletter_placeholder: { en: 'Enter your email for weekly intelligence', zh: '输入邮箱订阅每周情报' },
+  newsletter_btn: { en: 'Subscribe', zh: '订阅' },
+  footer_brand: {
+    en: 'Independent regulatory intelligence platform. Rigorous epidemiological analysis for tobacco and pharmaceutical industries.',
+    zh: '独立监管情报平台。为烟草和医药行业提供严谨的流行病学分析。'
+  },
+  footer_platforms: { en: 'Platforms', zh: '平台' },
+  footer_contact: { en: 'Contact', zh: '联系方式' },
+  footer_disclaimer: { en: 'Disclaimer:', zh: '免责声明：' },
+  footer_legal: {
+    en: '<strong>Disclaimer:</strong> This platform is for informational and research purposes only. Data may not reflect real-time values. Not intended as medical, legal, or regulatory advice. EpiDataKit is a product of Shenzhen Evidence-Based Smart Health Technology Co., Ltd.<br>&copy; 2025 EpiDataKit. All rights reserved.',
+    zh: '<strong>免责声明：</strong>本平台仅供信息和研究用途。数据可能不反映实时数值。不构成医学、法律或监管建议。EpiDataKit 是深圳循证智慧健康科技有限公司的产品。<br>&copy; 2025 EpiDataKit. 保留所有权利。'
+  }
+};
+
+let currentLang = 'en';
+
+function toggleLang() {
+  currentLang = currentLang === 'en' ? 'zh' : 'en';
+  applyLang();
+}
+
+function applyLang() {
+  const btn = document.getElementById('langBtn');
+  btn.textContent = currentLang === 'en' ? 'ZH / \u4e2d\u6587' : 'EN / English';
+
+  /* Show/hide ZH tagline */
+  const zhTagline = document.querySelector('.hero-tagline-zh');
+  if (zhTagline) zhTagline.style.display = currentLang === 'zh' ? 'block' : 'none';
+
+  /* Text nodes */
+  document.querySelectorAll('[data-i]').forEach(function(el) {
+    const key = el.getAttribute('data-i');
+    if (T[key]) {
+      if (key === 'footer_legal') {
+        el.innerHTML = T[key][currentLang];
+      } else {
+        el.textContent = T[key][currentLang];
+      }
+    }
+  });
+
+  /* Placeholders */
+  document.querySelectorAll('[data-i-placeholder]').forEach(function(el) {
+    const key = el.getAttribute('data-i-placeholder');
+    if (T[key]) el.placeholder = T[key][currentLang];
+  });
+
+  /* Update html lang */
+  document.documentElement.lang = currentLang === 'en' ? 'en' : 'zh-CN';
+}
+
+/* Init */
+applyLang();
+</script>
+</body>
+</html>

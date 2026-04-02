@@ -3,19 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NYTS 2025 Youth Tobacco Data | EpiDataKit — E-Cigarette Brand Surveillance & Regulatory Intelligence</title>
-<meta name="description" content="EpiDataKit: Independent weighted analysis of NYTS 2025 youth tobacco data. E-cigarette brand surveillance, nicotine pouch trends, PMTA regulatory intelligence, openFDA adverse events. Cross-validated with Altria and CRST/Rutgers.">
-<meta name="keywords" content="NYTS 2025, youth tobacco use, e-cigarette brands, Geek Bar, nicotine pouch, ZYN MRTP, PMTA data, FDA tobacco, openFDA, tobacco epidemiology">
+<title>TobaccoEpi — Youth Tobacco Surveillance & Regulatory Intelligence</title>
+<meta name="description" content="TobaccoEpi: Independent weighted analysis of NYTS 2025 youth tobacco data. E-cigarette brand surveillance, nicotine pouch trends, PMTA regulatory intelligence, openFDA adverse events, switching simulator.">
+<meta name="keywords" content="NYTS 2025, youth tobacco use, e-cigarette brands, Geek Bar, nicotine pouch, ZYN MRTP, PMTA data, FDA tobacco, openFDA, tobacco epidemiology, Elf Bar, Lost Mary, Raz, switching simulator, adverse events">
 <link rel="canonical" href="https://xinaliu2134.github.io/tobaccoepi/">
-<meta property="og:title" content="EpiDataKit — NYTS 2025 Youth Tobacco Data Dashboard">
-<meta property="og:description" content="Independent weighted analysis of NYTS 2025: Geek Bar captures 64.1% of youth e-cig market. 9 modules, 20+ charts, triple cross-validated.">
+<meta property="og:title" content="TobaccoEpi — Youth Tobacco Surveillance & Regulatory Intelligence">
+<meta property="og:description" content="Independent weighted analysis of NYTS 2025: Geek Bar captures 64.1% of youth e-cig market. 5 modules, 15+ charts, triple cross-validated.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://xinaliu2134.github.io/tobaccoepi/">
-<meta property="og:site_name" content="EpiDataKit">
+<meta property="og:site_name" content="TobaccoEpi">
 <meta property="og:image" content="https://xinaliu2134.github.io/tobaccoepi/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="EpiDataKit — NYTS 2025 Youth Tobacco Data Dashboard">
-<meta name="twitter:description" content="Independent weighted analysis of NYTS 2025: Geek Bar captures 64.1% of youth e-cig market. 9 modules, 20+ charts, triple cross-validated.">
+<meta name="twitter:title" content="TobaccoEpi — Youth Tobacco Surveillance & Regulatory Intelligence">
+<meta name="twitter:description" content="Independent weighted analysis of NYTS 2025: Geek Bar captures 64.1% of youth e-cig market. 5 modules, 15+ charts, triple cross-validated.">
 <meta name="twitter:image" content="https://xinaliu2134.github.io/tobaccoepi/og-image.png">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" integrity="sha384-vsrfeLOOY6KuIYKDlmVH5UiBmgIdB1oEf7p01YgWHuqmOHfZr374+odEv96n9tNC" crossorigin="anonymous"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" crossorigin="anonymous">
@@ -24,6 +24,13 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14px;line-height:1.6}
 a{color:var(--blue);text-decoration:none}
+
+/* Cross-nav bar */
+.cross-nav{display:flex;align-items:center;justify-content:center;gap:18px;padding:8px 32px;background:var(--bg3);border-bottom:1px solid var(--border);font-size:12px;font-weight:500}
+.cross-nav a{color:var(--muted);transition:color .15s}
+.cross-nav a:hover{color:var(--amber)}
+.cross-nav .current{color:var(--amber);font-weight:700}
+.cross-nav .sep{color:var(--border)}
 
 /* Header */
 .disclaimer{background:#f0f2f7;border-bottom:1px solid #e2e5ef;color:#6b7294;font-size:10px;padding:6px 32px;text-align:center}
@@ -36,20 +43,11 @@ a{color:var(--blue);text-decoration:none}
 .lang-btn{padding:5px 14px;font-size:12px;font-weight:600;border:1px solid var(--border);border-radius:6px;background:var(--bg2);cursor:pointer;font-family:var(--sans);transition:all .15s}
 .lang-btn:hover{border-color:var(--amber);color:var(--amber)}
 
-/* Section nav */
-.section-nav{display:flex;background:var(--bg2);border-bottom:1px solid var(--border);padding:0 32px;gap:0}
-.section-btn{padding:12px 24px;font-size:14px;font-weight:600;color:var(--muted);background:none;border:none;border-bottom:3px solid transparent;cursor:pointer;font-family:var(--sans);transition:all .15s}
-.section-btn:hover{color:var(--text)}
-.section-btn.active-tobacco{color:var(--amber);border-bottom-color:var(--amber)}
-.section-btn.active-pharma{color:var(--blue);border-bottom-color:var(--blue)}
-
 /* Tabs */
 .tab-nav{display:flex;background:var(--bg3);border-bottom:1px solid var(--border);padding:0 32px;overflow-x:auto;gap:0}
 .tab-btn{padding:10px 18px;font-size:13px;font-weight:500;color:var(--muted);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;font-family:var(--sans);white-space:nowrap;transition:all .15s}
 .tab-btn:hover{color:var(--text)}
-.tab-btn.active{font-weight:600}
-.tab-btn.active.t-amber{color:var(--amber);border-bottom-color:var(--amber)}
-.tab-btn.active.t-blue{color:var(--blue);border-bottom-color:var(--blue)}
+.tab-btn.active{font-weight:600;color:var(--amber);border-bottom-color:var(--amber)}
 
 /* Main */
 .main{max-width:1200px;margin:0 auto;padding:28px 32px}
@@ -107,6 +105,16 @@ h3{font-size:14px;font-weight:600;margin-bottom:12px}
 .sim-group.warn-box{border-color:var(--red);background:var(--red-light)}
 .sim-group.warn-box .warn-label{font-size:10px;color:var(--red);font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
 
+/* CTA */
+.cta-bar{display:flex;align-items:center;justify-content:center;gap:16px;padding:10px 32px;background:linear-gradient(90deg,#fffbeb,#eff6ff);border-bottom:1px solid var(--border);flex-wrap:wrap}
+.cta-text{font-size:13px;font-weight:500;color:var(--text)}
+.cta-btn{padding:7px 20px;background:var(--amber);color:white;border-radius:6px;font-size:12px;font-weight:600;text-decoration:none;font-family:var(--sans);transition:all .15s}
+.cta-btn:hover{background:#b45309}
+.cta-link{font-size:12px;color:var(--blue);text-decoration:underline}
+.about-section{max-width:800px;margin:0 auto;padding:32px;text-align:center}
+.about-section h3{font-size:16px;margin-bottom:8px}
+.about-section p{font-size:13px;color:var(--muted);line-height:1.7}
+
 /* Footer */
 .site-footer{border-top:1px solid var(--border);background:var(--bg2);padding:32px;margin-top:40px}
 .footer-inner{max-width:1200px;margin:0 auto}
@@ -119,24 +127,26 @@ h3{font-size:14px;font-weight:600;margin-bottom:12px}
 /* Responsive */
 @media(max-width:768px){
  .site-header{padding:0 16px;height:auto;padding-top:10px;padding-bottom:10px}
- .section-nav,.tab-nav{padding:0 16px}
+ .tab-nav{padding:0 16px}
  .main{padding:20px 16px}
  .chart-grid{grid-template-columns:1fr}
  .sim-controls{grid-template-columns:1fr}
  .stats-row{grid-template-columns:repeat(2,1fr)}
  .footer-grid{grid-template-columns:1fr}
+ .cross-nav{padding:8px 16px;gap:10px;font-size:11px}
 }
-.cta-bar{display:flex;align-items:center;justify-content:center;gap:16px;padding:10px 32px;background:linear-gradient(90deg,#fffbeb,#eff6ff);border-bottom:1px solid var(--border);flex-wrap:wrap}
-.cta-text{font-size:13px;font-weight:500;color:var(--text)}
-.cta-btn{padding:7px 20px;background:var(--amber);color:white;border-radius:6px;font-size:12px;font-weight:600;text-decoration:none;font-family:var(--sans);transition:all .15s}
-.cta-btn:hover{background:#b45309}
-.cta-link{font-size:12px;color:var(--blue);text-decoration:underline}
-.about-section{max-width:800px;margin:0 auto;padding:32px;text-align:center}
-.about-section h3{font-size:16px;margin-bottom:8px}
-.about-section p{font-size:13px;color:var(--muted);line-height:1.7}
 </style>
 </head>
 <body>
+
+<!-- Cross-nav -->
+<nav class="cross-nav">
+ <a href="../hub/">EpiDataKit Hub</a>
+ <span class="sep">|</span>
+ <span class="current">TobaccoEpi</span>
+ <span class="sep">|</span>
+ <a href="../pharmaepi/">PharmaEpi</a>
+</nav>
 
 <!-- Disclaimer -->
 <div class="disclaimer"><strong data-i="disc_strong">Disclaimer</strong> <span data-i="disc_text">This dashboard is for informational purposes only. Data may not reflect real-time values. Not intended as medical or regulatory advice.</span></div>
@@ -145,8 +155,8 @@ h3{font-size:14px;font-weight:600;margin-bottom:12px}
 <header class="site-header">
  <div class="hdr-left">
   <div>
-   <div class="logo">Epi<span>DataKit</span></div>
-   <div class="subtitle" data-i="subtitle">Regulatory Intelligence Platform</div>
+   <div class="logo">Tobacco<span>Epi</span></div>
+   <div class="subtitle" data-i="subtitle">Youth Tobacco Surveillance & Regulatory Intelligence</div>
   </div>
   <div class="subtitle" style="font-size:12px;color:var(--muted);" data-i="company">Shenzhen Evidence-Based Smart Health Technology Co., Ltd.</div>
  </div>
@@ -161,27 +171,13 @@ h3{font-size:14px;font-weight:600;margin-bottom:12px}
   <a href="https://www.linkedin.com/in/xiaona-nana-liu/" class="cta-link" data-i="cta_linkedin">About the Founder</a>
 </div>
 
-<!-- Section Nav -->
-<nav class="section-nav">
- <button class="section-btn active-tobacco" data-section="tobacco" onclick="switchSection('tobacco')" data-i="nav_tobacco">TobaccoEpi</button>
- <button class="section-btn" data-section="pharma" onclick="switchSection('pharma')" data-i="nav_pharma">PharmaEpi</button>
-</nav>
-
-<!-- TOBACCO TABS -->
-<div id="tobacco-tabs" class="tab-nav">
- <button class="tab-btn active t-amber" data-tab="a1" onclick="switchTab('a1','tobacco')" data-i="tab_a1">Brand Surveillance</button>
- <button class="tab-btn t-amber" data-tab="a2" onclick="switchTab('a2','tobacco')" data-i="tab_a2">Youth Prevalence</button>
- <button class="tab-btn t-amber" data-tab="a3" onclick="switchTab('a3','tobacco')" data-i="tab_a3">Adverse Events</button>
- <button class="tab-btn t-amber" data-tab="a4" onclick="switchTab('a4','tobacco')" data-i="tab_a4">Switching Simulator</button>
- <button class="tab-btn t-amber" data-tab="a5" onclick="switchTab('a5','tobacco')" data-i="tab_a5">MRTP Intelligence</button>
-</div>
-
-<!-- PHARMA TABS -->
-<div id="pharma-tabs" class="tab-nav" style="display:none">
- <button class="tab-btn active t-blue" data-tab="b1" onclick="switchTab('b1','pharma')" data-i="tab_b1">Drug Safety Monitor</button>
- <button class="tab-btn t-blue" data-tab="b2" onclick="switchTab('b2','pharma')" data-i="tab_b2">Competitive AE Benchmarking</button>
- <button class="tab-btn t-blue" data-tab="b3" onclick="switchTab('b3','pharma')" data-i="tab_b3">Recall & Quality</button>
- <button class="tab-btn t-blue" data-tab="b4" onclick="switchTab('b4','pharma')" data-i="tab_b4">Device Intelligence</button>
+<!-- Tab Nav -->
+<div class="tab-nav">
+ <button class="tab-btn active" data-tab="a1" onclick="switchTab('a1')" data-i="tab_a1">Brand Surveillance</button>
+ <button class="tab-btn" data-tab="a2" onclick="switchTab('a2')" data-i="tab_a2">Youth Prevalence</button>
+ <button class="tab-btn" data-tab="a3" onclick="switchTab('a3')" data-i="tab_a3">Adverse Events</button>
+ <button class="tab-btn" data-tab="a4" onclick="switchTab('a4')" data-i="tab_a4">Switching Simulator</button>
+ <button class="tab-btn" data-tab="a5" onclick="switchTab('a5')" data-i="tab_a5">MRTP Intelligence</button>
 </div>
 
 <div class="main">
@@ -372,115 +368,6 @@ h3{font-size:14px;font-weight:600;margin-bottom:12px}
 </table>
 </div>
 
-<!-- ===== B1: Drug Safety Monitor ===== -->
-<div class="panel" id="panel-b1">
-<h2 data-i="b1_title">Drug Safety Monitor</h2>
-<div class="section-sub" data-i="b1_sub">FDA FAERS adverse event tracking for GLP-1 and metabolic drugs</div>
-<div class="callout callout-blue" data-ih="b1_usecase"><strong>Enterprise Question:</strong> What is my drug's adverse event profile post-market? Are AE reports increasing? How does my safety profile compare to competitor drugs in the same class?<br><strong>How to use:</strong> Monitor your drug's AE trend over time. A steep increase (like Ozempic 2023-2025: 9K→20K) may signal growing off-label use or emerging safety concerns. Compare your top AEs against competitors to identify differentiation opportunities or risks for label updates.</div>
-<div class="stats-row">
- <div class="stat-card"><div class="stat-label">Ozempic</div><div class="stat-value blue">59,880</div><div class="stat-detail" data-i="b_ae_reports">AE Reports</div></div>
- <div class="stat-card"><div class="stat-label">Mounjaro</div><div class="stat-value blue">79,973</div><div class="stat-detail" data-i="b_ae_reports">AE Reports</div></div>
- <div class="stat-card"><div class="stat-label">Wegovy</div><div class="stat-value blue">17,958</div><div class="stat-detail" data-i="b_ae_reports">AE Reports</div></div>
- <div class="stat-card"><div class="stat-label">Jardiance</div><div class="stat-value blue">61,560</div><div class="stat-detail" data-i="b_ae_reports">AE Reports</div></div>
-</div>
-<div class="chart-grid">
- <div class="chart-card full"><h3 data-i="b1_c1t">Ozempic AE Reports by Year</h3><div class="chart-wrap tall"><canvas id="c-b1-trend"></canvas></div><span class="source-tag">FDA FAERS</span></div>
- <div class="chart-card full"><h3 data-i="b1_c2t">Top AE Comparison Across Drugs</h3><div class="chart-wrap tall"><canvas id="c-b1-compare"></canvas></div><span class="source-tag">FDA FAERS</span></div>
-</div>
-<h3 data-i="b1_tbl_title">Top 8 Adverse Events by Drug</h3>
-<div class="chart-grid">
- <div class="chart-card">
-  <h3>Ozempic</h3>
-  <table class="data-table"><thead><tr><th data-i="th_ae">Adverse Event</th><th data-i="th_count">Count</th></tr></thead><tbody>
-   <tr><td>Nausea</td><td class="hl-blue">5,182</td></tr><tr><td>Diarrhoea</td><td class="hl-blue">2,470</td></tr>
-   <tr><td>Vomiting</td><td class="hl-blue">2,294</td></tr><tr><td>Off Label Use</td><td class="hl-blue">3,528</td></tr>
-   <tr><td>Product Quality</td><td class="hl-blue">1,990</td></tr><tr><td>Fatigue</td><td class="hl-blue">1,585</td></tr>
-   <tr><td>Headache</td><td class="hl-blue">1,432</td></tr><tr><td>Constipation</td><td class="hl-blue">1,228</td></tr>
-  </tbody></table>
- </div>
- <div class="chart-card">
-  <h3>Mounjaro</h3>
-  <table class="data-table"><thead><tr><th data-i="th_ae">Adverse Event</th><th data-i="th_count">Count</th></tr></thead><tbody>
-   <tr><td>Nausea</td><td class="hl-blue">6,791</td></tr><tr><td>Diarrhoea</td><td class="hl-blue">3,530</td></tr>
-   <tr><td>Vomiting</td><td class="hl-blue">3,988</td></tr><tr><td>Off Label Use</td><td class="hl-blue">5,114</td></tr>
-   <tr><td>Constipation</td><td class="hl-blue">2,412</td></tr><tr><td>Fatigue</td><td class="hl-blue">2,010</td></tr>
-   <tr><td>Headache</td><td class="hl-blue">1,870</td></tr><tr><td>Abdominal Pain</td><td class="hl-blue">1,655</td></tr>
-  </tbody></table>
- </div>
- <div class="chart-card">
-  <h3>Wegovy</h3>
-  <table class="data-table"><thead><tr><th data-i="th_ae">Adverse Event</th><th data-i="th_count">Count</th></tr></thead><tbody>
-   <tr><td>Nausea</td><td class="hl-blue">2,150</td></tr><tr><td>Vomiting</td><td class="hl-blue">1,120</td></tr>
-   <tr><td>Diarrhoea</td><td class="hl-blue">985</td></tr><tr><td>Headache</td><td class="hl-blue">742</td></tr>
-   <tr><td>Constipation</td><td class="hl-blue">630</td></tr><tr><td>Fatigue</td><td class="hl-blue">580</td></tr>
-   <tr><td>Dizziness</td><td class="hl-blue">415</td></tr><tr><td>Abdominal Pain</td><td class="hl-blue">390</td></tr>
-  </tbody></table>
- </div>
- <div class="chart-card">
-  <h3>Jardiance</h3>
-  <table class="data-table"><thead><tr><th data-i="th_ae">Adverse Event</th><th data-i="th_count">Count</th></tr></thead><tbody>
-   <tr><td>Urinary Tract Inf.</td><td class="hl-blue">3,210</td></tr><tr><td>Drug Ineffective</td><td class="hl-blue">2,880</td></tr>
-   <tr><td>Diabetic Ketoacid.</td><td class="hl-blue">2,115</td></tr><tr><td>Nausea</td><td class="hl-blue">1,640</td></tr>
-   <tr><td>Diarrhoea</td><td class="hl-blue">1,420</td></tr><tr><td>Genital Inf. Fungal</td><td class="hl-blue">1,350</td></tr>
-   <tr><td>Renal Impairment</td><td class="hl-blue">1,180</td></tr><tr><td>Weight Decreased</td><td class="hl-blue">980</td></tr>
-  </tbody></table>
- </div>
-</div>
-</div>
-
-<!-- ===== B2: Competitive AE Benchmarking ===== -->
-<div class="panel" id="panel-b2">
-<h2 data-i="b2_title">Competitive AE Benchmarking</h2>
-<div class="section-sub" data-i="b2_sub">Head-to-head GI side effect profile comparison</div>
-<div class="callout callout-blue" data-ih="b2_usecase"><strong>Enterprise Question:</strong> How does my drug's GI tolerability compare head-to-head with competitors? Which AEs should I highlight (or minimize) in marketing materials and KOL discussions?<br><strong>How to use:</strong> Use the radar chart for a visual competitive positioning. If your drug has lower nausea/vomiting rates, emphasize this in promotional materials. If higher, prepare medical affairs talking points explaining the clinical significance.</div>
-<div class="chart-grid">
- <div class="chart-card full"><h3 data-i="b2_c1t">GI AE Profile Comparison (Radar)</h3><div class="chart-wrap tall"><canvas id="c-b2-radar"></canvas></div><span class="source-tag">FDA FAERS</span></div>
-</div>
-<h3 data-i="b2_tbl_title">Head-to-Head AE Rates</h3>
-<table class="data-table">
- <thead><tr><th data-i="th_ae">Adverse Event</th><th>Ozempic</th><th>Mounjaro</th><th>Wegovy</th></tr></thead>
- <tbody>
-  <tr><td>Nausea</td><td class="hl-blue">5,182</td><td class="hl-blue">6,791</td><td class="hl-blue">2,150</td></tr>
-  <tr><td>Vomiting</td><td class="hl-blue">2,294</td><td class="hl-blue">3,988</td><td class="hl-blue">1,120</td></tr>
-  <tr><td>Diarrhoea</td><td class="hl-blue">2,470</td><td class="hl-blue">3,530</td><td class="hl-blue">985</td></tr>
-  <tr><td>Constipation</td><td class="hl-blue">1,228</td><td class="hl-blue">2,412</td><td class="hl-blue">630</td></tr>
-  <tr><td>Abdominal Pain</td><td class="hl-blue">980</td><td class="hl-blue">1,655</td><td class="hl-blue">390</td></tr>
- </tbody>
-</table>
-<span class="source-tag">FDA FAERS</span>
-</div>
-
-<!-- ===== B3: Recall & Quality ===== -->
-<div class="panel" id="panel-b3">
-<h2 data-i="b3_title">Recall & Quality</h2>
-<div class="section-sub" data-i="b3_sub">FDA drug recall enforcement actions and classification</div>
-<div class="callout callout-blue" data-ih="b3_usecase"><strong>Enterprise Question:</strong> Are there quality issues or recalls in my therapeutic area? Is my supply chain at risk? What is the FDA enforcement trend for my product category?<br><strong>How to use:</strong> Monitor Class I recalls (most severe) in your therapeutic area. A competitor recall creates both risk (regulatory scrutiny across the class) and opportunity (market share capture). Track yearly trends to anticipate FDA inspection priorities.</div>
-<div class="stats-row">
- <div class="stat-card"><div class="stat-label" data-i="b3_s1l">2025 Recalls</div><div class="stat-value blue">765</div></div>
- <div class="stat-card"><div class="stat-label" data-i="b3_s2l">Class I (Severe)</div><div class="stat-value red">1,723</div></div>
- <div class="stat-card"><div class="stat-label" data-i="b3_s3l">Class II</div><div class="stat-value blue">14,128</div></div>
-</div>
-<div class="chart-grid">
- <div class="chart-card"><h3 data-i="b3_c1t">Drug Recalls by Year</h3><div class="chart-wrap"><canvas id="c-b3-year"></canvas></div><span class="source-tag">FDA Recalls DB</span></div>
- <div class="chart-card"><h3 data-i="b3_c2t">By Classification</h3><div class="chart-wrap"><canvas id="c-b3-class"></canvas></div><span class="source-tag">FDA Recalls DB</span></div>
-</div>
-</div>
-
-<!-- ===== B4: Device Intelligence ===== -->
-<div class="panel" id="panel-b4">
-<h2 data-i="b4_title">Device Intelligence</h2>
-<div class="section-sub" data-i="b4_sub">FDA 510(k) medical device clearance tracking</div>
-<div class="callout callout-blue" data-ih="b4_usecase"><strong>Enterprise Question:</strong> How many 510(k) clearances are issued in my device category annually? What is the competitive intensity? Which categories are growing fastest?<br><strong>How to use:</strong> Track your device category's 510(k) volume trend. Rising clearance numbers indicate increasing competition. Use category benchmarks to set realistic expectations for your regulatory timeline and market entry strategy.</div>
-<div class="stats-row">
- <div class="stat-card"><div class="stat-label" data-i="b4_s1l">2025 510(k) Clearances</div><div class="stat-value blue">3,225</div></div>
- <div class="stat-card"><div class="stat-label" data-i="b4_s2l">Top Category</div><div class="stat-value blue">18,960</div><div class="stat-detail" data-i="b4_cardio">Cardiovascular</div></div>
-</div>
-<div class="chart-grid">
- <div class="chart-card"><h3 data-i="b4_c1t">510(k) Clearances by Year</h3><div class="chart-wrap"><canvas id="c-b4-year"></canvas></div><span class="source-tag">FDA 510(k) DB</span></div>
- <div class="chart-card"><h3 data-i="b4_c2t">Top 5 Device Categories</h3><div class="chart-wrap"><canvas id="c-b4-cat"></canvas></div><span class="source-tag">FDA 510(k) DB</span></div>
-</div>
-</div>
-
 </div><!-- /main -->
 
 <!-- Data Sources -->
@@ -493,9 +380,6 @@ h3{font-size:14px;font-weight:600;margin-bottom:12px}
   <tr><td>NYTS</td><td>CDC / FDA</td><td data-i="ds_nyts_cov">U.S. Youth Tobacco, 2011-2025 · FDA CTP PUF weighted</td><td data-i="ds_public">Public</td></tr>
   <tr><td>MTF</td><td>NIDA / Univ. Michigan</td><td data-i="ds_mtf_cov">U.S. 8th/10th/12th Grade, 1975-2025</td><td data-i="ds_public">Public</td></tr>
   <tr><td>FDA CTP FOIA</td><td>FDA CTP</td><td data-i="ds_ctp_cov">Tobacco Product AE, 2017-2025</td><td data-i="ds_foia">FOIA</td></tr>
-  <tr><td>FDA FAERS</td><td>FDA CDER</td><td data-i="ds_faers_cov">Drug AE Reports, 2004-present</td><td data-i="ds_public">Public</td></tr>
-  <tr><td>FDA Recalls</td><td>FDA</td><td data-i="ds_recalls_cov">Drug Recalls, 2012-present</td><td data-i="ds_public">Public</td></tr>
-  <tr><td>FDA 510(k)</td><td>FDA CDRH</td><td data-i="ds_510k_cov">510(k) Clearances, 1976-present</td><td data-i="ds_public">Public</td></tr>
   <tr><td>WHO GHO</td><td>WHO</td><td data-i="ds_who_cov">Global Smoking Prevalence, 2000-2024</td><td data-i="ds_public">Public</td></tr>
  </tbody>
 </table>
@@ -513,9 +397,9 @@ h3{font-size:14px;font-weight:600;margin-bottom:12px}
 <footer class="site-footer">
 <div class="footer-inner">
  <div class="footer-grid">
-  <div><h4 data-i="ft_about_title">About</h4><p data-i="ft_about_text">EpiDataKit is a regulatory intelligence platform built by Shenzhen Evidence-Based Smart Health Technology Co., Ltd. for tobacco and pharmaceutical epidemiology monitoring.</p></div>
+  <div><h4 data-i="ft_about_title">About</h4><p data-i="ft_about_text">TobaccoEpi is a regulatory intelligence platform built by Shenzhen Evidence-Based Smart Health Technology Co., Ltd. for tobacco epidemiology and youth surveillance monitoring.</p></div>
   <div><h4 data-i="ft_sources_title">Data Sources</h4><ul>
-   <li>NYTS (CDC/FDA)</li><li>MTF (NIDA)</li><li>FDA FAERS</li><li>FDA CTP FOIA</li><li>FDA 510(k)</li><li>WHO GHO</li>
+   <li>NYTS (CDC/FDA)</li><li>MTF (NIDA)</li><li>FDA CTP FOIA</li><li>WHO GHO</li>
   </ul></div>
   <div><h4 data-i="ft_contact_title">Contact</h4><p data-i="ft_contact_text">Shenzhen Evidence-Based Smart Health Technology Co., Ltd.</p></div>
  </div>
@@ -529,29 +413,19 @@ var curLang='en';
 var I={
  disc_strong:{en:'Disclaimer',zh:'免责声明'},
  disc_text:{en:'This dashboard is for informational purposes only. Data may not reflect real-time values. Not intended as medical or regulatory advice.',zh:'本仪表板仅供参考。数据可能非实时。不构成医学或监管建议。'},
- subtitle:{en:'Regulatory Intelligence Platform',zh:'监管情报平台'},
+ subtitle:{en:'Youth Tobacco Surveillance & Regulatory Intelligence',zh:'青少年烟草监测与监管情报'},
  company:{en:'Shenzhen Evidence-Based Smart Health Technology Co., Ltd.',zh:'深圳循证智康科技有限公司'},
- nav_tobacco:{en:'TobaccoEpi',zh:'TobaccoEpi 烟草'},
- nav_pharma:{en:'PharmaEpi',zh:'PharmaEpi 医药'},
  tab_a1:{en:'Brand Surveillance',zh:'品牌监测'},
  tab_a2:{en:'Youth Prevalence',zh:'青少年使用率'},
  tab_a3:{en:'Adverse Events',zh:'不良事件监测'},
  tab_a4:{en:'Switching Simulator',zh:'切换模拟器'},
  tab_a5:{en:'MRTP Intelligence',zh:'MRTP情报'},
- tab_b1:{en:'Drug Safety Monitor',zh:'药物安全监测'},
- tab_b2:{en:'Competitive AE Benchmarking',zh:'竞品安全对标'},
- tab_b3:{en:'Recall & Quality',zh:'召回与质量'},
- tab_b4:{en:'Device Intelligence',zh:'器械情报'},
  /* Use case descriptions */
  a1_usecase:{en:'<strong>Enterprise Question:</strong> Is my brand appearing in NYTS youth surveillance data? How does my market share trend compare to competitors? Am I on FDA\'s enforcement radar?<br><strong>How to use:</strong> Check your brand\'s rank in the historical table below. If your brand appears in the top 10 among youth AND is not PMTA-authorized, expect FDA enforcement action. Authorized brands (Vuse, JUUL, NJOY) should monitor share trends to demonstrate their products are not disproportionately attracting youth.',zh:'<strong>企业问题：</strong>我的品牌是否出现在NYTS青少年监测数据中？我的市场份额趋势与竞品相比如何？我是否在FDA执法雷达上？<br><strong>使用方法：</strong>在下方历史排行表中查看品牌排名。如果品牌出现在青少年前10且未获PMTA授权，需预期FDA执法行动。已授权品牌（Vuse, JUUL, NJOY）应监测份额趋势，以证明产品未不成比例地吸引青少年。'},
  a2_usecase:{en:'<strong>Enterprise Question:</strong> What is the overall youth tobacco use trajectory? Is my product category growing or declining among youth? How do demographic disparities affect regulatory risk?<br><strong>How to use:</strong> Track your product category in the trend chart. Rising youth use = higher PMTA denial risk. Use demographic data to understand which populations your product may disproportionately affect — FDA considers equity in authorization decisions.',zh:'<strong>企业问题：</strong>青少年烟草使用的整体趋势如何？我的产品品类在青少年中是增长还是下降？人口统计学差异如何影响监管风险？<br><strong>使用方法：</strong>在趋势图中追踪您的产品品类。青少年使用率上升=PMTA被拒风险增高。利用人口统计数据了解您的产品可能不成比例地影响哪些人群——FDA在授权决策中考虑公平性。'},
  a3_usecase:{en:'<strong>Enterprise Question:</strong> How many adverse event reports are filed against my product category? Are there emerging safety signals? How does my product\'s AE profile compare to the EVALI baseline?<br><strong>How to use:</strong> Monitor the yearly trend for spikes. A sudden increase in AE reports (like the 2019 EVALI peak) can trigger FDA enforcement sweeps. The health problem breakdown helps identify which AEs to address in your PMTA safety narrative.',zh:'<strong>企业问题：</strong>我的产品品类有多少不良事件报告？是否存在新出现的安全信号？我的产品AE谱与EVALI基线相比如何？<br><strong>使用方法：</strong>监控年度趋势中的峰值。AE报告突然增加（如2019年EVALI高峰）可触发FDA执法行动。健康问题分布有助于确定PMTA安全叙事中需要解决的AE类型。'},
  a4_usecase:{en:'<strong>Enterprise Question:</strong> What is the population health impact if smokers switch to my product? How do I quantify the benefit for my PMTA/MRTP application?<br><strong>How to use:</strong> Select your target market, set the switching rate from your consumer studies, input the relative harm from your toxicology research, and the simulator projects avoided disease burden. Use these figures as supporting evidence in PMTA Section 5 (Health Risk Assessment) or MRTP population impact modeling.',zh:'<strong>企业问题：</strong>如果吸烟者转用我的产品，人群健康影响有多大？如何量化PMTA/MRTP申请中的收益？<br><strong>使用方法：</strong>选择目标市场，设置消费者研究中的切换率，输入毒理学研究的相对危害值，模拟器将预测避免的疾病负担。这些数据可用于PMTA第5部分（健康风险评估）或MRTP人群影响建模的支撑证据。'},
  a5_usecase:{en:'<strong>Enterprise Question:</strong> What is the regulatory landscape for nicotine pouches? How is ZYN\'s MRTP progressing and what does it mean for my product strategy? Is youth NP uptake a threat to MRTP approval?<br><strong>How to use:</strong> Track the NP use trend — the 3x surge from 2023-2025 is the single biggest risk to ZYN\'s MRTP. If you are developing a competing NP product, benchmark against ZYN\'s data. Use the FDA evaluation framework table to structure your own MRTP evidence package.',zh:'<strong>企业问题：</strong>尼古丁袋的监管格局如何？ZYN的MRTP进展如何，对我的产品策略意味着什么？青少年NP使用增长是否威胁MRTP审批？<br><strong>使用方法：</strong>追踪NP使用趋势——2023-2025年3倍增长是ZYN MRTP的最大风险。如果您正在开发竞争NP产品，以ZYN数据为基准。使用FDA评估框架表来构建您自己的MRTP证据包。'},
- b1_usecase:{en:'<strong>Enterprise Question:</strong> What is my drug\'s adverse event profile post-market? Are AE reports increasing? How does my safety profile compare to competitor drugs in the same class?<br><strong>How to use:</strong> Monitor your drug\'s AE trend over time. A steep increase (like Ozempic 2023-2025: 9K→20K) may signal growing off-label use or emerging safety concerns. Compare your top AEs against competitors to identify differentiation opportunities or risks for label updates.',zh:'<strong>企业问题：</strong>我的药物上市后不良事件谱如何？AE报告是否在增加？我的安全性特征与同类竞品相比如何？<br><strong>使用方法：</strong>监控药物AE随时间的趋势。急剧增加（如Ozempic 2023-2025: 9K→20K）可能预示超适应症使用增长或新安全隐患。将您的头号AE与竞品对比，以识别差异化机会或标签更新风险。'},
- b2_usecase:{en:'<strong>Enterprise Question:</strong> How does my drug\'s GI tolerability compare head-to-head with competitors? Which AEs should I highlight (or minimize) in marketing materials and KOL discussions?<br><strong>How to use:</strong> Use the radar chart for a visual competitive positioning. If your drug has lower nausea/vomiting rates, emphasize this in promotional materials. If higher, prepare medical affairs talking points explaining the clinical significance.',zh:'<strong>企业问题：</strong>我的药物GI耐受性与竞品头对头比较如何？在营销材料和KOL讨论中应强调（或淡化）哪些AE？<br><strong>使用方法：</strong>使用雷达图进行可视化竞争定位。如果您的药物恶心/呕吐率较低，在推广材料中强调。如果较高，准备医学事务部门的沟通要点，解释临床意义。'},
- b3_usecase:{en:'<strong>Enterprise Question:</strong> Are there quality issues or recalls in my therapeutic area? Is my supply chain at risk? What is the FDA enforcement trend for my product category?<br><strong>How to use:</strong> Monitor Class I recalls (most severe) in your therapeutic area. A competitor recall creates both risk (regulatory scrutiny across the class) and opportunity (market share capture). Track yearly trends to anticipate FDA inspection priorities.',zh:'<strong>企业问题：</strong>我的治疗领域是否存在质量问题或召回？我的供应链是否有风险？我的产品品类FDA执法趋势如何？<br><strong>使用方法：</strong>监控您的治疗领域中的Class I召回（最严重）。竞品召回既带来风险（整个品类的监管审查加强）也带来机会（市场份额获取）。追踪年度趋势以预判FDA检查重点。'},
- b4_usecase:{en:'<strong>Enterprise Question:</strong> How many 510(k) clearances are issued in my device category annually? What is the competitive intensity? Which categories are growing fastest?<br><strong>How to use:</strong> Track your device category\'s 510(k) volume trend. Rising clearance numbers indicate increasing competition. Use category benchmarks to set realistic expectations for your regulatory timeline and market entry strategy.',zh:'<strong>企业问题：</strong>我的器械品类每年发放多少510(k)许可？竞争强度如何？哪些品类增长最快？<br><strong>使用方法：</strong>追踪您的器械品类510(k)数量趋势。许可数量增加表明竞争加剧。使用品类基准为您的监管时间线和市场进入策略设定合理预期。'},
  a1_hist_title:{en:'Usual Brand Rankings — Youth E-Cigarette Users (2020-2025)',zh:'通常使用品牌排行 — 青少年电子烟用户 (2020-2025)'},
  a1_brand_insight:{en:'<strong>Key Insight — 2025 NYTS FDA CTP PUF Weighted Analysis:</strong> The e-cigarette youth market has undergone 4 regime changes in 6 years: JUUL (2019-2020) → Puff Bar (2021-2022) → Elf Bar (2023-2024) → <strong>Geek Bar (2025, 64.1% contact rate)</strong>. Geek Bar was not even in the 2024 top 5, yet captured 64.1% of youth users in 2025 — the fastest brand takeover in NYTS history. Elf Bar continues declining (56.7% → 36.1% → 21.5%). New entrants Lost Mary (19.8%) and Raz (19.4%) also surged. Only 2 of the 2025 top 10 (Vuse #5, JUUL #9) hold FDA PMTA authorization. Disposables now account for 66.3% of e-cig device types (↑10.7pp from 2024). Daily use: 27.5%; frequent use (20-30 days): 41.2%.',zh:'<strong>核心洞察 — 2025 NYTS FDA CTP公开数据加权分析：</strong>青少年电子烟市场6年内经历4次格局变化：JUUL（2019-2020）→ Puff Bar（2021-2022）→ Elf Bar（2023-2024）→ <strong>Geek Bar（2025，64.1%接触率）</strong>。Geek Bar在2024年甚至未进前5，2025年即以64.1%占据青少年用户首位——NYTS历史上最快的品牌颠覆。Elf Bar持续下滑（56.7%→36.1%→21.5%）。新进入者Lost Mary（19.8%）和Raz（19.4%）也大幅增长。2025前10中仅2个品牌（Vuse #5, JUUL #9）持有FDA PMTA授权。一次性设备占电子烟设备类型的66.3%（较2024年↑10.7pp）。每日使用：27.5%；频繁使用（20-30天）：41.2%。'},
  /* A1 */
@@ -630,33 +504,6 @@ var I={
  a5_crit3:{en:'Impact on initiation among non-users (especially youth)',zh:'对非用户（尤其青少年）的启用影响'},
  a5_crit4:{en:'Impact on cessation among current users',zh:'对现有用户戒烟的影响'},
  a5_crit5:{en:'Health risks to individual product users',zh:'对个体产品使用者的健康风险'},
- /* B1 */
- b1_title:{en:'Drug Safety Monitor',zh:'药物安全监测'},
- b1_sub:{en:'FDA FAERS adverse event tracking for GLP-1 and metabolic drugs',zh:'FDA FAERS GLP-1及代谢药物不良事件追踪'},
- b_ae_reports:{en:'AE Reports',zh:'不良事件报告'},
- b1_c1t:{en:'Ozempic AE Reports by Year',zh:'Ozempic 按年度不良事件'},
- b1_c2t:{en:'Top AE Comparison Across Drugs',zh:'药物主要不良事件对比'},
- b1_tbl_title:{en:'Top 8 Adverse Events by Drug',zh:'各药物前8不良事件'},
- th_ae:{en:'Adverse Event',zh:'不良事件'},th_count:{en:'Count',zh:'数量'},
- /* B2 */
- b2_title:{en:'Competitive AE Benchmarking',zh:'竞品安全对标'},
- b2_sub:{en:'Head-to-head GI side effect profile comparison',zh:'GI副作用特征正面对比'},
- b2_c1t:{en:'GI AE Profile Comparison (Radar)',zh:'GI不良事件特征对比（雷达图）'},
- b2_tbl_title:{en:'Head-to-Head AE Rates',zh:'正面AE对比'},
- /* B3 */
- b3_title:{en:'Recall & Quality',zh:'召回与质量'},
- b3_sub:{en:'FDA drug recall enforcement actions and classification',zh:'FDA药品召回执法行动及分类'},
- b3_s1l:{en:'2025 Recalls',zh:'2025年召回'},b3_s2l:{en:'Class I (Severe)',zh:'I类（严重）'},b3_s3l:{en:'Class II',zh:'II类'},
- b3_c1t:{en:'Drug Recalls by Year',zh:'按年度药品召回'},
- b3_c2t:{en:'By Classification',zh:'按分类'},
- /* B4 */
- b4_title:{en:'Device Intelligence',zh:'器械情报'},
- b4_sub:{en:'FDA 510(k) medical device clearance tracking',zh:'FDA 510(k) 医疗器械审批追踪'},
- b4_s1l:{en:'2025 510(k) Clearances',zh:'2025年510(k)审批'},
- b4_s2l:{en:'Top Category',zh:'首要类别'},
- b4_cardio:{en:'Cardiovascular',zh:'心血管'},
- b4_c1t:{en:'510(k) Clearances by Year',zh:'按年度510(k)审批'},
- b4_c2t:{en:'Top 5 Device Categories',zh:'前5器械类别'},
  /* Data Sources */
  ds_title:{en:'Data Sources',zh:'数据来源'},
  ds_sub:{en:'Primary regulatory and epidemiological data feeds',zh:'主要监管和流行病学数据源'},
@@ -664,14 +511,11 @@ var I={
  ds_nyts_cov:{en:'U.S. Youth Tobacco, 2011-2025 · FDA CTP PUF weighted',zh:'美国青少年烟草，2011-2025 · FDA CTP PUF加权'},
  ds_mtf_cov:{en:'U.S. 8th/10th/12th Grade, 1975-2025',zh:'美国8/10/12年级，1975-2025'},
  ds_ctp_cov:{en:'Tobacco Product AE, 2017-2025',zh:'烟草产品不良事件，2017-2025'},
- ds_faers_cov:{en:'Drug AE Reports, 2004-present',zh:'药物不良事件，2004至今'},
- ds_recalls_cov:{en:'Drug Recalls, 2012-present',zh:'药品召回，2012至今'},
- ds_510k_cov:{en:'510(k) Clearances, 1976-present',zh:'510(k)审批，1976至今'},
  ds_who_cov:{en:'Global Smoking Prevalence, 2000-2024',zh:'全球吸烟率，2000-2024'},
  ds_public:{en:'Public',zh:'公开'},ds_foia:{en:'FOIA',zh:'FOIA'},
  /* Footer */
  ft_about_title:{en:'About',zh:'关于'},
- ft_about_text:{en:'EpiDataKit is a regulatory intelligence platform built by Shenzhen Evidence-Based Smart Health Technology Co., Ltd. for tobacco and pharmaceutical epidemiology monitoring.',zh:'EpiDataKit 是由深圳循证智康科技有限公司构建的监管情报平台，用于烟草和医药流行病学监测。'},
+ ft_about_text:{en:'TobaccoEpi is a regulatory intelligence platform built by Shenzhen Evidence-Based Smart Health Technology Co., Ltd. for tobacco epidemiology and youth surveillance monitoring.',zh:'TobaccoEpi 是由深圳循证智康科技有限公司构建的监管情报平台，用于烟草流行病学和青少年监测。'},
  ft_sources_title:{en:'Data Sources',zh:'数据来源'},
  ft_contact_title:{en:'Contact',zh:'联系方式'},
  ft_contact_text:{en:'Shenzhen Evidence-Based Smart Health Technology Co., Ltd.',zh:'深圳循证智康科技有限公司'},
@@ -703,26 +547,12 @@ function applyLang(){
 }
 
 /* ========== Navigation ========== */
-var currentSection='tobacco';
-var currentTab={tobacco:'a1',pharma:'b1'};
+var currentTab='a1';
 
-function switchSection(s){
- currentSection=s;
- document.querySelectorAll('.section-btn').forEach(function(b){b.className='section-btn';});
- var btn=document.querySelector('[data-section="'+s+'"]');
- btn.classList.add(s==='tobacco'?'active-tobacco':'active-pharma');
- document.getElementById('tobacco-tabs').style.display=s==='tobacco'?'flex':'none';
- document.getElementById('pharma-tabs').style.display=s==='pharma'?'flex':'none';
- showPanel(currentTab[s]);
-}
-function switchTab(t,s){
- currentTab[s]=t;
- var container=document.getElementById(s+'-tabs');
- container.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});
- container.querySelector('[data-tab="'+t+'"]').classList.add('active');
- showPanel(t);
-}
-function showPanel(t){
+function switchTab(t){
+ currentTab=t;
+ document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});
+ document.querySelector('[data-tab="'+t+'"]').classList.add('active');
  document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('active');});
  var el=document.getElementById('panel-'+t);
  if(el)el.classList.add('active');
@@ -761,7 +591,7 @@ function buildAllCharts(){
  var amber='#d97706',amberL='rgba(217,119,6,.15)',blue='#2563eb',blueL='rgba(37,99,235,.15)',red='#dc2626',green='#16a34a',teal='#0d9488';
  var mono="'DM Mono',monospace";
 
- /* A1: Brand doughnut (contact rate, multi-select >100%) */
+ /* A1: Brand bar (contact rate, multi-select >100%) */
  charts.a1brand=new Chart(document.getElementById('c-a1-brand'),{type:'bar',data:{
   labels:['Geek Bar','Elf Bar','Lost Mary','Raz','Vuse','Breeze','Juicy Bar','Mr Fog','JUUL','Other'],
   datasets:[{data:[64.1,21.5,19.8,19.4,15.8,14.4,11.6,10.6,9.8,31.0],backgroundColor:[amber,'#f59e0b','#fbbf24','#fb923c',green,blue,teal,'#94a3b8','#6366f1','#cbd5e1'],borderRadius:4}]
@@ -863,59 +693,6 @@ function buildAllCharts(){
   labels:npFlavorLabels,
   datasets:[{data:[59.6,24.3,18.1,9.6,9.1,8.0],backgroundColor:amber,borderRadius:4}]
  },options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,title:{display:true,text:'%'}}}}});
-
- /* B1: Ozempic AE trend */
- charts.b1trend=new Chart(document.getElementById('c-b1-trend'),{type:'line',data:{
-  labels:['2018','2019','2020','2021','2022','2023','2024','2025'],
-  datasets:[{label:'Ozempic',data:[1159,1749,3203,4056,5780,9355,14299,20234],borderColor:blue,backgroundColor:blueL,tension:.3,fill:true,pointRadius:4}]
- },options:{responsive:true,maintainAspectRatio:false,scales:{y:{beginAtZero:true}},interaction:{mode:'index',intersect:false}}});
-
- /* B1: Top AE comparison */
- var aeLabels=curLang==='zh'?['恶心','呕吐','腹泻','超适应症']:['Nausea','Vomiting','Diarrhoea','Off Label Use'];
- charts.b1compare=new Chart(document.getElementById('c-b1-compare'),{type:'bar',data:{
-  labels:aeLabels,
-  datasets:[
-   {label:'Ozempic',data:[5182,2294,2470,3528],backgroundColor:'rgba(37,99,235,.7)',borderRadius:4},
-   {label:'Mounjaro',data:[6791,3988,3530,5114],backgroundColor:'rgba(217,119,6,.7)',borderRadius:4},
-   {label:'Wegovy',data:[2150,1120,985,680],backgroundColor:'rgba(13,148,136,.7)',borderRadius:4},
-   {label:'Jardiance',data:[1640,0,1420,0],backgroundColor:'rgba(148,163,184,.7)',borderRadius:4}
-  ]
- },options:{responsive:true,maintainAspectRatio:false,scales:{y:{beginAtZero:true}}}});
-
- /* B2: Radar */
- charts.b2radar=new Chart(document.getElementById('c-b2-radar'),{type:'radar',data:{
-  labels:curLang==='zh'?['恶心','呕吐','腹泻','便秘','腹痛']:['Nausea','Vomiting','Diarrhoea','Constipation','Abdom. Pain'],
-  datasets:[
-   {label:'Ozempic',data:[5182,2294,2470,1228,980],borderColor:blue,backgroundColor:'rgba(37,99,235,.1)',pointRadius:3},
-   {label:'Mounjaro',data:[6791,3988,3530,2412,1655],borderColor:amber,backgroundColor:'rgba(217,119,6,.1)',pointRadius:3},
-   {label:'Wegovy',data:[2150,1120,985,630,390],borderColor:teal,backgroundColor:'rgba(13,148,136,.1)',pointRadius:3}
-  ]
- },options:{responsive:true,maintainAspectRatio:false,scales:{r:{beginAtZero:true,ticks:{font:{family:mono}}}}}});
-
- /* B3: Recalls by year */
- charts.b3year=new Chart(document.getElementById('c-b3-year'),{type:'bar',data:{
-  labels:['2019','2020','2021','2022','2023','2024','2025'],
-  datasets:[{data:[2152,1035,1016,1351,1252,657,765],backgroundColor:blue,borderRadius:4}]
- },options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true}}}});
-
- /* B3: Classification doughnut */
- charts.b3class=new Chart(document.getElementById('c-b3-class'),{type:'doughnut',data:{
-  labels:['Class I','Class II','Class III'],
-  datasets:[{data:[1723,14128,1678],backgroundColor:[red,blue,'#94a3b8'],borderWidth:0}]
- },options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right'}}}});
-
- /* B4: 510k by year */
- charts.b4year=new Chart(document.getElementById('c-b4-year'),{type:'bar',data:{
-  labels:['2019','2020','2021','2022','2023','2024','2025'],
-  datasets:[{data:[2918,2925,3023,3212,3347,3129,3225],backgroundColor:blue,borderRadius:4}]
- },options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true}}}});
-
- /* B4: Top categories */
- var catLabels=curLang==='zh'?['心血管','骨科','通用/整形','综合医院','放射科']:['Cardiovascular','Orthopedic','General/Plastic','General Hospital','Radiology'];
- charts.b4cat=new Chart(document.getElementById('c-b4-cat'),{type:'bar',data:{
-  labels:catLabels,
-  datasets:[{data:[18960,16849,16119,15646,14426],backgroundColor:blue,borderRadius:4}]
- },options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{beginAtZero:true}}}});
 
  /* A4: PAF chart (initial) */
  buildSimCharts();
