@@ -6,11 +6,11 @@
 <title>EpiDataKit — Regulatory Intelligence Platform for Tobacco & Pharmaceutical Epidemiology</title>
 <meta name="description" content="EpiDataKit: Independent epidemiological analysis for tobacco and pharmaceutical regulation. NYTS 2025 youth surveillance, FDA FAERS drug safety, PMTA/MRTP intelligence. Built by researchers, for the industry.">
 <meta name="keywords" content="EpiDataKit, tobacco epidemiology, pharmaceutical epidemiology, NYTS 2025, FDA FAERS, PMTA, MRTP, drug safety, regulatory intelligence, pharmacovigilance">
-<link rel="canonical" href="https://xinaliu2134.github.io/tobaccoepi/sites/hub/">
+<link rel="canonical" href="https://xinaliu2134.github.io/tobaccoepi/hub/">
 <meta property="og:title" content="EpiDataKit — Regulatory Intelligence Platform">
 <meta property="og:description" content="Independent epidemiological analysis for tobacco and pharmaceutical regulation. NYTS 2025, FDA FAERS, PMTA/MRTP intelligence.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://xinaliu2134.github.io/tobaccoepi/sites/hub/">
+<meta property="og:url" content="https://xinaliu2134.github.io/tobaccoepi/hub/">
 <meta property="og:site_name" content="EpiDataKit">
 <meta property="og:image" content="https://xinaliu2134.github.io/tobaccoepi/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -23,7 +23,7 @@
   "@type": "Organization",
   "name": "EpiDataKit",
   "alternateName": "Shenzhen Evidence-Based Smart Health Technology Co., Ltd.",
-  "url": "https://xinaliu2134.github.io/tobaccoepi/sites/hub/",
+  "url": "https://xinaliu2134.github.io/tobaccoepi/hub/",
   "description": "Regulatory Intelligence Platform for Tobacco & Pharmaceutical Epidemiology",
   "founder": {
     "@type": "Person",
@@ -228,7 +228,7 @@ a{color:var(--blue);text-decoration:none}
       <div class="card-icon">&#x1F6AC;</div>
       <h3 class="card-title amber">TobaccoEpi</h3>
       <p class="card-desc" data-i="tobacco_desc">Youth Tobacco Surveillance & PMTA Intelligence</p>
-      <div class="card-stats amber-bg">13 charts &middot; 5 modules &middot; NYTS 2025 weighted</div>
+      <div class="card-stats amber-bg">15 charts &middot; 5 modules &middot; NYTS 2025 weighted</div>
       <ul class="card-features">
         <li data-i="tobacco_f1">Brand Surveillance (Geek Bar, Elf Bar, Lost Mary)</li>
         <li data-i="tobacco_f2">Youth Prevalence & Demographics</li>
@@ -317,7 +317,7 @@ a{color:var(--blue);text-decoration:none}
       </div>
       <div class="about-meta" style="margin-top:8px">
         <span>&#x2709; <a href="mailto:nana@epidatakit.com">nana@epidatakit.com</a></span>
-        <span>&#x1F517; <a href="https://linkedin.com/in/nanaliu" target="_blank" rel="noopener">LinkedIn</a></span>
+        <span>&#x1F517; <a href="https://www.linkedin.com/in/xiaona-nana-liu/" target="_blank" rel="noopener">LinkedIn</a></span>
       </div>
     </div>
   </div>
@@ -350,7 +350,7 @@ a{color:var(--blue);text-decoration:none}
     </div>
     <div class="newsletter-bar">
       <input type="email" class="newsletter-input" id="newsletterEmail" data-i-placeholder="newsletter_placeholder" placeholder="Enter your email for weekly intelligence">
-      <button class="newsletter-btn" data-i="newsletter_btn">Subscribe</button>
+      <button class="newsletter-btn" data-i="newsletter_btn" onclick="subscribeNewsletter()">Subscribe</button>
     </div>
   </div>
 </section>
@@ -374,14 +374,14 @@ a{color:var(--blue);text-decoration:none}
         <h4 data-i="footer_contact">Contact</h4>
         <ul>
           <li><a href="mailto:nana@epidatakit.com">nana@epidatakit.com</a></li>
-          <li><a href="https://linkedin.com/in/nanaliu" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://www.linkedin.com/in/xiaona-nana-liu/" target="_blank" rel="noopener">LinkedIn</a></li>
           <li><a href="https://github.com/xinaliu2134/tobaccoepi" target="_blank" rel="noopener">GitHub</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-legal" data-i="footer_legal">
       <strong data-i="footer_disclaimer">Disclaimer:</strong> This platform is for informational and research purposes only. Data may not reflect real-time values. Not intended as medical, legal, or regulatory advice. EpiDataKit is a product of Shenzhen Evidence-Based Smart Health Technology Co., Ltd.<br>
-      &copy; 2025 EpiDataKit. All rights reserved.
+      &copy; 2025-2026 EpiDataKit. All rights reserved.
     </div>
   </div>
 </footer>
@@ -476,8 +476,8 @@ const T = {
   footer_contact: { en: 'Contact', zh: '联系方式' },
   footer_disclaimer: { en: 'Disclaimer:', zh: '免责声明：' },
   footer_legal: {
-    en: '<strong>Disclaimer:</strong> This platform is for informational and research purposes only. Data may not reflect real-time values. Not intended as medical, legal, or regulatory advice. EpiDataKit is a product of Shenzhen Evidence-Based Smart Health Technology Co., Ltd.<br>&copy; 2025 EpiDataKit. All rights reserved.',
-    zh: '<strong>免责声明：</strong>本平台仅供信息和研究用途。数据可能不反映实时数值。不构成医学、法律或监管建议。EpiDataKit 是深圳循证智慧健康科技有限公司的产品。<br>&copy; 2025 EpiDataKit. 保留所有权利。'
+    en: '<strong>Disclaimer:</strong> This platform is for informational and research purposes only. Data may not reflect real-time values. Not intended as medical, legal, or regulatory advice. EpiDataKit is a product of Shenzhen Evidence-Based Smart Health Technology Co., Ltd.<br>&copy; 2025-2026 EpiDataKit. All rights reserved.',
+    zh: '<strong>免责声明：</strong>本平台仅供信息和研究用途。数据可能不反映实时数值。不构成医学、法律或监管建议。EpiDataKit 是深圳循证智慧健康科技有限公司的产品。<br>&copy; 2025-2026 EpiDataKit. 保留所有权利。'
   }
 };
 
@@ -516,6 +516,16 @@ function applyLang() {
 
   /* Update html lang */
   document.documentElement.lang = currentLang === 'en' ? 'en' : 'zh-CN';
+}
+
+/* Newsletter subscribe */
+function subscribeNewsletter() {
+  var email = document.getElementById('newsletterEmail').value.trim();
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    alert(currentLang === 'en' ? 'Please enter a valid email address.' : '请输入有效的电子邮件地址。');
+    return;
+  }
+  window.location.href = 'mailto:nana@epidatakit.com?subject=Newsletter%20Subscription&body=Please%20subscribe%20me%20to%20TobaccoEpi%20Intelligence:%20' + encodeURIComponent(email);
 }
 
 /* Init */

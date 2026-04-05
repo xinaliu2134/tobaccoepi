@@ -205,6 +205,7 @@ h3{font-size:14px;font-weight:600;margin-bottom:12px}
   <tr><td>JUUL</td><td><span class="badge-ok" data-i="authorized">Authorized</span></td><td>Jul 2025</td><td data-i="a1_juul_prod">Device + Virginia Tobacco + Menthol</td></tr>
   <tr><td>ZYN</td><td><span class="badge-ok" data-i="authorized">Authorized</span></td><td>Jan 2025</td><td data-i="a1_zyn_prod">20 nicotine pouch products</td></tr>
   <tr><td>NJOY</td><td><span class="badge-ok" data-i="authorized">Authorized</span></td><td>Apr 2024</td><td data-i="a1_njoy_prod">Device + Tobacco + Menthol</td></tr>
+  <tr><td>on!</td><td><span class="badge-ok" data-i="authorized">Authorized</span></td><td>Aug 2024</td><td data-i="a1_on_prod">Nicotine pouches</td></tr>
   <tr><td>Elf Bar</td><td><span class="badge-no" data-i="not_authorized">Not Authorized</span></td><td>-</td><td data-i="a1_elfbar_prod">Enforcement target</td></tr>
   <tr><td>Mr Fog</td><td><span class="badge-no" data-i="not_authorized">Not Authorized</span></td><td>-</td><td data-i="a1_mrfog_prod">Enforcement target</td></tr>
  </tbody>
@@ -445,6 +446,7 @@ var I={
  a1_zyn_prod:{en:'20 nicotine pouch products',zh:'20款尼古丁袋产品'},
  a1_njoy_prod:{en:'Device + Tobacco + Menthol',zh:'设备 + 烟草 + 薄荷'},
  a1_elfbar_prod:{en:'Enforcement target',zh:'执法目标'},
+ a1_on_prod:{en:'Nicotine pouches',zh:'尼古丁袋'},
  a1_mrfog_prod:{en:'Enforcement target',zh:'执法目标'},
  /* A2 */
  a2_title:{en:'Youth Prevalence',zh:'青少年使用率'},
@@ -529,7 +531,6 @@ var I={
 
 function toggleLang(){
  curLang=curLang==='en'?'zh':'en';
- document.documentElement.lang=curLang==='en'?'en':'zh';
  document.getElementById('langBtn').textContent=curLang==='en'?'中文':'EN';
  applyLang();
  rebuildCharts();
@@ -667,8 +668,8 @@ function buildAllCharts(){
 
  /* A3: AE by product type */
  charts.a3type=new Chart(document.getElementById('c-a3-type'),{type:'doughnut',data:{
-  labels:[curLang==='zh'?'电子烟':'E-Cigarette',curLang==='zh'?'卷烟':'Cigarette',curLang==='zh'?'其他':'Other',curLang==='zh'?'无烟':'Smokeless',curLang==='zh'?'雪茄':'Cigar',curLang==='zh'?'口腔尼古丁':'Oral NP',curLang==='zh'?'加热烟草':'HTP',curLang==='zh'?'鼻烟':'Snus'],
-  datasets:[{data:[1066,110,83,15,14,12,8,7],backgroundColor:[amber,'#94a3b8','#cbd5e1',green,blue,teal,'#f59e0b','#fbbf24'],borderWidth:0}]
+  labels:[curLang==='zh'?'电子烟':'E-Cigarette',curLang==='zh'?'卷烟':'Cigarette',curLang==='zh'?'其他/未分类':'Other/Unclassified',curLang==='zh'?'无烟':'Smokeless',curLang==='zh'?'雪茄':'Cigar',curLang==='zh'?'口腔尼古丁':'Oral NP',curLang==='zh'?'加热烟草':'HTP',curLang==='zh'?'鼻烟':'Snus'],
+  datasets:[{data:[810,110,361,15,14,12,8,7],backgroundColor:[amber,'#94a3b8','#cbd5e1',green,blue,teal,'#f59e0b','#fbbf24'],borderWidth:0}]
  },options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right'}}}});
 
  /* A5: NP trend — updated with 2025 NYTS weighted */
