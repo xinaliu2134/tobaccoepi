@@ -136,8 +136,174 @@ h3{font-size:14px;font-weight:600;margin-bottom:12px}
  .cross-nav{padding:8px 16px;gap:10px;font-size:11px}
 }
 </style>
+<style id="nana-gate-style">
+  #nana-login-gate {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: radial-gradient(ellipse at center, #12305a 0%, #0B1F3A 70%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    transition: opacity 300ms ease;
+  }
+  #nana-login-gate.nlg-hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+  #nana-login-gate .nlg-card {
+    position: relative;
+    width: calc(100% - 40px);
+    max-width: 400px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+    padding: 44px 36px 28px;
+    overflow: hidden;
+    text-align: center;
+  }
+  #nana-login-gate .nlg-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: #C9A84C;
+  }
+  #nana-login-gate .nlg-card.nlg-shake {
+    animation: nlg-shake 0.4s ease;
+  }
+  @keyframes nlg-shake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-8px); }
+    40% { transform: translateX(8px); }
+    60% { transform: translateX(-6px); }
+    80% { transform: translateX(6px); }
+  }
+  #nana-login-gate .nlg-monogram {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #C9A84C;
+    color: #0B1F3A;
+    font-weight: 700;
+    font-size: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 18px;
+    font-family: Georgia, "Times New Roman", serif;
+    letter-spacing: 0.02em;
+  }
+  #nana-login-gate .nlg-title {
+    color: #0B1F3A;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    letter-spacing: 0.01em;
+  }
+  #nana-login-gate .nlg-subtitle {
+    color: #C9A84C;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+  #nana-login-gate .nlg-field {
+    margin-bottom: 14px;
+    text-align: left;
+  }
+  #nana-login-gate .nlg-label {
+    display: block;
+    color: #6b7280;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  #nana-login-gate .nlg-input {
+    width: 100%;
+    padding: 12px 14px;
+    background: #0B1F3A;
+    border: 1px solid #1a3556;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 150ms ease, box-shadow 150ms ease;
+    font-family: inherit;
+  }
+  #nana-login-gate .nlg-input::placeholder {
+    color: #6b7d99;
+  }
+  #nana-login-gate .nlg-input:focus {
+    border-color: #C9A84C;
+    box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.18);
+  }
+  #nana-login-gate .nlg-submit {
+    width: 100%;
+    padding: 13px;
+    background: #C9A84C;
+    color: #0B1F3A;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 150ms ease, transform 80ms ease;
+    font-family: inherit;
+  }
+  #nana-login-gate .nlg-submit:hover {
+    background: #b3923b;
+  }
+  #nana-login-gate .nlg-submit:active {
+    transform: translateY(1px);
+  }
+  #nana-login-gate .nlg-error {
+    color: #d23b5a;
+    font-size: 13px;
+    margin-top: 12px;
+    min-height: 18px;
+    font-weight: 500;
+  }
+  #nana-login-gate .nlg-footer {
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 1px solid #eef0f3;
+    color: #9aa0a6;
+    font-size: 11px;
+    line-height: 1.5;
+  }
+  html.nlg-locked, body.nlg-locked {
+    overflow: hidden !important;
+  }
+</style>
 </head>
 <body>
+<div id="nana-login-gate" role="dialog" aria-modal="true" aria-labelledby="nlg-title">
+  <form class="nlg-card" id="nlg-form" autocomplete="off">
+    <div class="nlg-monogram" aria-hidden="true">N</div>
+    <div class="nlg-title" id="nlg-title">Nana Liu, PhD</div>
+    <div class="nlg-subtitle">Restricted Access</div>
+    <div class="nlg-field">
+      <label class="nlg-label" for="nlg-user">Username</label>
+      <input class="nlg-input" id="nlg-user" name="username" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" required />
+    </div>
+    <div class="nlg-field">
+      <label class="nlg-label" for="nlg-pass">Password</label>
+      <input class="nlg-input" id="nlg-pass" name="password" type="password" autocomplete="off" required />
+    </div>
+    <button class="nlg-submit" type="submit">Enter</button>
+    <div class="nlg-error" id="nlg-error" aria-live="polite"></div>
+    <div class="nlg-footer">This content is shared by invitation only.</div>
+  </form>
+</div>
+
 <!-- Login Gate -->
 <div id="loginGate" style="position:fixed;inset:0;background:linear-gradient(135deg,#fffbeb 0%,#fef3c7 100%);z-index:99999;display:flex;align-items:center;justify-content:center;font-family:'Inter',-apple-system,sans-serif;">
  <div style="background:#fff;padding:40px 36px;border-radius:14px;box-shadow:0 10px 40px rgba(0,0,0,.12);width:100%;max-width:360px;border:1px solid #e2e5ef;">
@@ -2202,6 +2368,89 @@ function runFeasibility(){
 
 /* ========== Init ========== */
 setTimeout(initCharts,100);
+</script>
+<script id="nana-gate-script">
+(function () {
+  var STORAGE_KEY = 'nana_auth';
+  var VALID_CREDENTIALS = {
+    'nana': '93609dc10fd4c4fcdb7e14b24e02d6c290117bcf1b56e02dc17115404888ca19'
+  };
+
+  function sha256(message) {
+    var msgBuffer = new TextEncoder().encode(message);
+    return crypto.subtle.digest('SHA-256', msgBuffer).then(function (hashBuffer) {
+      var hashArray = Array.from(new Uint8Array(hashBuffer));
+      return hashArray.map(function (b) { return b.toString(16).padStart(2, '0'); }).join('');
+    });
+  }
+
+  function unlock(gate) {
+    gate.classList.add('nlg-hidden');
+    document.documentElement.classList.remove('nlg-locked');
+    document.body.classList.remove('nlg-locked');
+    setTimeout(function () {
+      if (gate && gate.parentNode) gate.parentNode.removeChild(gate);
+    }, 350);
+  }
+
+  function init() {
+    var gate = document.getElementById('nana-login-gate');
+    if (!gate) return;
+
+    try {
+      if (sessionStorage.getItem(STORAGE_KEY) === '1') {
+        unlock(gate);
+        return;
+      }
+    } catch (e) {}
+
+    document.documentElement.classList.add('nlg-locked');
+    document.body.classList.add('nlg-locked');
+
+    var form = document.getElementById('nlg-form');
+    var userInput = document.getElementById('nlg-user');
+    var passInput = document.getElementById('nlg-pass');
+    var errorEl = document.getElementById('nlg-error');
+    var card = form;
+
+    userInput.focus();
+
+    form.addEventListener('submit', function (ev) {
+      ev.preventDefault();
+      var u = (userInput.value || '').trim().toLowerCase();
+      var p = passInput.value || '';
+      errorEl.textContent = '';
+      var expected = VALID_CREDENTIALS[u];
+      if (!expected) {
+        fail();
+        return;
+      }
+      sha256(p).then(function (hash) {
+        if (hash === expected) {
+          try { sessionStorage.setItem(STORAGE_KEY, '1'); } catch (e) {}
+          unlock(gate);
+        } else {
+          fail();
+        }
+      }).catch(function () { fail(); });
+    });
+
+    function fail() {
+      errorEl.textContent = 'Invalid credentials';
+      card.classList.remove('nlg-shake');
+      void card.offsetWidth;
+      card.classList.add('nlg-shake');
+      passInput.value = '';
+      passInput.focus();
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
 </script>
 </body>
 </html>
